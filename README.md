@@ -21,5 +21,5 @@ This project use the [recommended workflow][2] with [Waffle.io][1].
 5. Create a pull request with the word closes like "closes #2".
 6. Add reviewers.
 
-[1]:(https://waffle.io/ntfournier/SORT)
+[1]:(https://waffle.io/SORT-ETS/SORT)
 [2]:(https://github.com/waffleio/waffle.io/wiki/Recommended-Workflow-Using-Pull-Requests-&-Automatic-Work-Tracking)
