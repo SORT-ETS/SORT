@@ -16,6 +16,7 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - ./web-client/:/usr/src/web-client/
+      - ./web-client/public/:/usr/src/web-client/public/
+      - ./web-client/server.js:/usr/src/web-client/server.js
     depends_on:
       - server

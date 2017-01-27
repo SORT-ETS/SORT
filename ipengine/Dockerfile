@@ -9,4 +9,6 @@ RUN apt-get install -y build-essential
 RUN mkdir -p /usr/src/ipengine
 WORKDIR /usr/src/ipengine
 
-CMD touch /usr/src/ipengine/log.txt && tail -F /usr/src/ipengine/log.txt
+COPY . /usr/src/ipengine
+
+CMD g++ src/app.cpp -o app && touch /usr/src/ipengine/log.txt && tail -F /usr/src/ipengine/log.txt
