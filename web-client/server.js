@@ -2,10 +2,10 @@ var express = require('express');
 var proxy = require('express-http-proxy');
 var app = express();
 
-app.use('/api', proxy("server:5000"));
+app.use('/api', proxy(process.env.SERVER));
 
 app.use(express.static('public'));
 
-app.listen(3000, function () {
-	  console.log('Example app listening on port 3000!');
+app.listen(6088, function () {
+	  console.log('Web-client listening on port 6088!');
 })

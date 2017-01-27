@@ -4,7 +4,7 @@
   "description": "SORT project web client",
   "main": "server.js",
   "scripts": {
-	"start": "node server.js",
+    "start": "SERVER=server:5000 node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

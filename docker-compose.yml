@@ -6,15 +6,15 @@ services:
       - ./ipengine/:/usr/src/ipengine/
   server:
     build: ./server
-    depends_on:
-      - ipengine
     volumes:
       - ./server/:/usr/src/server/
       - ./ipengine/:/usr/src/ipengine/
+    depends_on:
+      - ipengine
   web-client:
     build: ./web-client/
     ports:
-      - "3000:3000"
+      - "6088:6088"
     volumes:
       - ./web-client/public/:/usr/src/web-client/public/
       - ./web-client/server.js:/usr/src/web-client/server.js

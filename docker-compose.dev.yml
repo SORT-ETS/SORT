@@ -1,0 +1,5 @@
+version: '2'
+services:
+  web-client:
+    volumes:
+      - ./web-client/:/usr/src/web-client/

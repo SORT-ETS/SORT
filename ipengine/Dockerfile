@@ -11,4 +11,4 @@ WORKDIR /usr/src/ipengine
 
 COPY . /usr/src/ipengine
 
-CMD g++ src/app.cpp -o app && touch /usr/src/ipengine/log.txt && tail -F /usr/src/ipengine/log.txt
+CMD g++ src/app.cpp -o app && rm -f /usr/src/ipengine/log.txt && touch /usr/src/ipengine/log.txt && tail -F /usr/src/ipengine/log.txt

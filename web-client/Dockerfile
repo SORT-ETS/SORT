@@ -7,5 +7,5 @@ COPY . /usr/src/web-client
 
 RUN npm install
 
-EXPOSE 3000
+EXPOSE 6088
 CMD [ "npm", "start" ]
