@@ -1,3 +1,5 @@
+"use strict";
+
 var proxy = require('express-http-proxy');
 
 // Class wrapper for the express-http-proxy module

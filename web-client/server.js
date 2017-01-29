@@ -1,3 +1,5 @@
+"use strict";
+
 var HTTPServer = require('./src/http-server');
 
 // Server process variables

@@ -1,3 +1,5 @@
+"use strict";
+
 var express = require('express');
 var bodyParser = require('body-parser');
 
@@ -20,6 +22,8 @@ class HTTPServer {
 			console.log('Web-client HTTP server listening on port ' + this.port);
 		});
 
+		console.log('START')
+
 		this._handleImagesResquests();
 		this._deliverStaticFiles();
 		this._setReverseProxy();
@@ -40,7 +44,7 @@ class HTTPServer {
 	_setReverseProxy() {
 		// Instantiate wrapper as private reference
 		this._reverseProxy = new ReverseProxy(this.proxyHost);
-		console.log(this._reverseProxy)
+
 		// Delegates every HTTP /api request to the proxy
 		this.app.use('/api', this._reverseProxy);
 	}
