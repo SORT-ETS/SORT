@@ -1,16 +1,5 @@
-// var xmlHttp = new XMLHttpRequest();
-// xmlHttp.open( "GET", '/api/version', false ); // false for synchronous request
-// xmlHttp.send( null );
-
-// var element = document.getElementById("serverVersion");
-// element.innerHTML = "The current version of the server is " + JSON.parse(xmlHttp.responseText).version;
-
-// xmlHttp.open( "GET", '/api/image', false ); // false for synchronous request
-// xmlHttp.send( null );
-
-// var element = document.getElementById("serverApp");
-// element.innerHTML = "The current response from the server is " + xmlHttp.responseText;
 function sendImage(data) {
+	// HTTP Post request wrapper. It sends the provided data as in the requests body
 	var xhttp = new XMLHttpRequest();
 
 	xhttp.onreadystatechange = function() {
@@ -19,22 +8,21 @@ function sendImage(data) {
 		}
 	};
 
-	xhttp.open("POST", "/image", true);
-	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	xhttp.send("imgData=" + data);
+	xhttp.open("POST", "/api/image", true);
+	xhttp.setRequestHeader("Content-type", "application/json");
+	xhttp.send('{ "base64": "'+ data +'" }');
 }
 
+// Inspired by :
 // https://developer.mozilla.org/fr/docs/WebRTC/Prendre_des_photos_avec_la_webcam
 function main() {
-	console.log('TEST')
-	var streaming = false,
-	video        = document.querySelector('#video'),
-	cover        = document.querySelector('#cover'),
-	canvas       = document.querySelector('#canvas'),
-	photo        = document.querySelector('#photo'),
-	startbutton  = document.querySelector('#startbutton'),
-	width = 320,
-	height = 0;
+
+	var streaming = false;
+	var video = document.querySelector('#video');
+	var canvas = document.querySelector('#canvas');
+	var pictureButton = document.querySelector('#pictureButton');
+	var width = 320;
+	var height = 0;
 
 	navigator.getMedia = ( navigator.getUserMedia ||
 		navigator.webkitGetUserMedia ||
@@ -47,6 +35,7 @@ function main() {
 		audio: false
 	},
 	function(stream) {
+		// Setup video stream
 		if (navigator.mozGetUserMedia) {
 			video.mozSrcObject = stream;
 		} else {
@@ -63,32 +52,40 @@ function main() {
 	video.addEventListener('canplay', function(ev){
 		if (!streaming) {
 			height = video.videoHeight / (video.videoWidth/width);
+
 			video.setAttribute('width', width);
 			video.setAttribute('height', height);
+
 			canvas.setAttribute('width', width);
 			canvas.setAttribute('height', height);
+
 			streaming = true;
 		}
 	}, false);
 
-	function takepicture(callback) {
+	function takePicture(callback) {
+		// Draws video frame into cavas
 		canvas.width = width;
 		canvas.height = height;
 		canvas.getContext('2d').drawImage(video, 0, 0, width, height);
 
 		// By default base64, no conversion needed
 		var data = canvas.toDataURL('image/png');
-		photo.setAttribute('src', data);
 
-		console.log(data)
+		// After drawing image, send canvas pixel to callback
 		callback(data)
 	}
 
-	startbutton.addEventListener('click', function(ev){
-		takepicture(sendImage);
+	pictureButton.addEventListener('click', function(event){
+		event.preventDefault();
 
-		ev.preventDefault();
+		// Take a picture and send image as a callback
+		takePicture(sendImage);
 	}, false);	
 }
 
-main()
+
+document.addEventListener("DOMContentLoaded", function(event) {
+	// Setup app
+	main();
+});

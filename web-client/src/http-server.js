@@ -6,6 +6,8 @@ var ReverseProxy = require('./reverse-proxy');
 class HTTPServer {
 
 	constructor(port, proxyHost) {
+		// Using agregation with express instance, because inheritence was limited
+		// Class functions were somehow not accessible
 		this.app = express();
 
 		this.port = port;
@@ -38,7 +40,7 @@ class HTTPServer {
 	_setReverseProxy() {
 		// Instantiate wrapper as private reference
 		this._reverseProxy = new ReverseProxy(this.proxyHost);
-
+		console.log(this._reverseProxy)
 		// Delegates every HTTP /api request to the proxy
 		this.app.use('/api', this._reverseProxy);
 	}
