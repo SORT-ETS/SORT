@@ -1,11 +1,33 @@
-var express = require('express');
-var proxy = require('express-http-proxy');
-var app = express();
+var HTTPServer = require('./src/http-server');
 
-app.use('/api', proxy(process.env.SERVER));
+// Server process variables
+var httpServerPort = process.env.PORT || 6088;
+var proxyHostURI = 'localhost:5000';
 
-app.use(express.static('public'));
+var httpServer = new HTTPServer(httpServerPort, proxyHostURI);
 
-app.listen(6088, function () {
-	  console.log('Web-client listening on port 6088!');
-})
+httpServer.startServer();
+
+// function saveImg(data) {
+// 	data = data.replace(/^data:image\/(png|gif|jpeg);base64,/,'');
+// 	var image = Buffer.from(b64string, 'base64')
+
+// 	fs.writeFile(__dirname + "/out-client.png", image, function(err) {
+//   		console.log('TEST', err, this);
+// 	});
+// }
+
+
+// app.get('/', function (req, res) {
+//   res.sendFile(__dirname + '/index.html')
+// })
+
+// app.post('/image', function(req, res) {
+// 	res.send('OK')
+
+// 	saveImg(req.body.imgData)
+// });
+
+// app.listen(3000, function () {
+//   console.log('Example app listening on port 3000!')
+// });
