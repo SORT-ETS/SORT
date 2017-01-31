@@ -1,11 +1,12 @@
 import os
 import base64
-from flask import Flask, request
+import time
+from flask import Flask, request, send_file
 from flask_restful import Resource, Api
 
 from subprocess import call
 
-UPLOAD_FOLDER = '../images'
+UPLOAD_FOLDER = '../ipengine/images'
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -14,12 +15,19 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 def analyse_image():
         imageData = request.get_json()['image']
 
-        f = open(os.path.join(app.config['UPLOAD_FOLDER'], 'image.png'), 'wb')
+        fileLocation = os.path.join(app.config['UPLOAD_FOLDER'], 'image.png')
+
+        f = open(fileLocation, 'wb')
         f.write(base64.b64decode(imageData.split(',')[1]))
         f.close()
 
-        call(["../ipengine/app", "fromFlask"]);
-        return "I call OpenCV"
+        time.sleep(1)
+
+        # call(["../ipengine/app", fileLocation]);
+        i = open(fileLocation, 'rb')
+        encoded_string = base64.b64encode(i.read())
+        i.close()
+        return encoded_string
 
 @app.route('/version')
 def get_version(self):
