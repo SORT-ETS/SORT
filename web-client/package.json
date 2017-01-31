@@ -4,12 +4,13 @@
   "description": "SORT project web client",
   "main": "server.js",
   "scripts": {
-    "start": "SERVER=server:5000 node server.js",
+    "start": "PROXY=server:5000 node --use_strict server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "AGPL-3.0",
   "dependencies": {
+    "body-parser": "^1.16.0",
     "express": "^4.14.0",
     "express-http-proxy": "^0.11.0"
   }

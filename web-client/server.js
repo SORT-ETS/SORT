@@ -1,11 +1,11 @@
-var express = require('express');
-var proxy = require('express-http-proxy');
-var app = express();
+"use strict";
 
-app.use('/api', proxy(process.env.SERVER));
+var HTTPServer = require('./src/http-server');
 
-app.use(express.static('public'));
+// Server process variables
+var httpServerPort = process.env.PORT || 6088;
+var proxyHostURI = process.env.PROXY || 'localhost:5000';
 
-app.listen(6088, function () {
-	  console.log('Web-client listening on port 6088!');
-})
+var httpServer = new HTTPServer(httpServerPort, proxyHostURI);
+
+httpServer.startServer();
