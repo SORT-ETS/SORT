@@ -1,0 +1,22 @@
+version: '2'
+services:
+  ipengine:
+    build: ./ipengine
+    volumes:
+      - ./ipengine/:/usr/src/ipengine/
+  server:
+    build: ./server
+    volumes:
+      - ./server/:/usr/src/server/
+      - ./ipengine/:/usr/src/ipengine/
+    depends_on:
+      - ipengine
+  web-client:
+    build: ./web-client/
+    ports:
+      - "6088:6088"
+    volumes:
+      - ./web-client/public/:/usr/src/web-client/public/
+      - ./web-client/server.js:/usr/src/web-client/server.js
+    depends_on:
+      - server
