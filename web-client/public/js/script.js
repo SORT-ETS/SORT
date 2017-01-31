@@ -8,9 +8,10 @@ function sendImage(data) {
 		}
 	};
 
+	console.log(data);
 	xhttp.open("POST", "/api/image", true);
 	xhttp.setRequestHeader("Content-type", "application/json");
-	xhttp.send('{ "base64": "'+ data +'" }');
+	xhttp.send('{ "image": "'+ data +'" }');
 }
 
 // Inspired by :
@@ -81,7 +82,7 @@ function main() {
 
 		// Take a picture and send image as a callback
 		takePicture(sendImage);
-	}, false);	
+	}, false);
 }
 
 
