@@ -10,7 +10,7 @@ class SORT(Resource):
         return {'version': '0.0.0'}
 
 class Image(Resource):
-    def get(self):
+    def post(self):
         call(["../ipengine/app", "fromFlask"]);
         return "I call OpenCV"
 

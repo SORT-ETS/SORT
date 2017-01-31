@@ -4,7 +4,7 @@
   "description": "SORT project web client",
   "main": "server.js",
   "scripts": {
-    "start": "SERVER=server:5000 node --use_strict server.js",
+    "start": "PROXY=server:5000 node --use_strict server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
