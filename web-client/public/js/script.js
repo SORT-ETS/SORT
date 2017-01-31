@@ -4,11 +4,10 @@ function sendImage(data) {
 
 	xhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
-			console.log('Request sent and got OK');
+			document.getElementById('processed').setAttribute('src', "data:image/png;base64,"+xhttp.responseText);
 		}
 	};
 
-	console.log(data);
 	xhttp.open("POST", "/api/image", true);
 	xhttp.setRequestHeader("Content-type", "application/json");
 	xhttp.send('{ "image": "'+ data +'" }');
