@@ -13,8 +13,8 @@ using namespace cv;
 void detectAndDisplay( Mat frame );
 
 /** Global variables */
-String face_cascade_name = "haarcascade_frontalface_alt.xml";
-String eyes_cascade_name = "haarcascade_eye_tree_eyeglasses.xml";
+String face_cascade_name = "ipengine/haarcascade_frontalface_alt.xml";
+String eyes_cascade_name = "ipengine/haarcascade_eye_tree_eyeglasses.xml";
 CascadeClassifier face_cascade;
 CascadeClassifier eyes_cascade;
 
@@ -24,7 +24,7 @@ RNG rng(12345);
 int main( int argc, const char** argv )
 {
 	// Print parameters.
-	ofstream logFile("/usr/src/ipengine/log.txt", ios::app);
+	ofstream logFile("/usr/src/server/ipengine/log.txt", ios::app);
 	logFile << "OpenCV application run\n";
 	for(int count = 1; count < argc; count++) {
 		logFile << " argv[ " << count  << "]  " << argv[count] << "\n";
