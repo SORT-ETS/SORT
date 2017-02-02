@@ -1,16 +1,11 @@
 version: '2'
 services:
-  ipengine:
-    build: ./ipengine
-    volumes:
-      - ./ipengine/:/usr/src/ipengine/
   server:
     build: ./server
     volumes:
       - ./server/:/usr/src/server/
-      - ./ipengine/:/usr/src/ipengine/
-    depends_on:
-      - ipengine
+    ports:
+      - "5000:5000"
   web-client:
     build: ./web-client/
     ports:
