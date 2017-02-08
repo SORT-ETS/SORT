@@ -3,9 +3,7 @@ FROM ubuntu:latest
 # Install OpenCV
 RUN apt-get -y update
 
-RUN apt-get install -y build-essential
-RUN apt-get install -y cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev
-RUN apt-get install -y wget
+RUN apt-get install -y build-essential cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev wget
 
 RUN mkdir /OpenCV
 WORKDIR /OpenCV
@@ -30,9 +28,6 @@ RUN cd opencv-3.2.0 && \
     make -j4 && \
     make install && \ 
     ldconfig
-
-
-# CMD ./watch.sh & ./compile.sh && rm -f /usr/src/ipengine/log.txt && touch /usr/src/ipengine/log.txt && tail -F /usr/src/ipengine/log.txt
 
 # Update operating system and install packages
 RUN apt-get install -y python-pip python-dev build-essential
