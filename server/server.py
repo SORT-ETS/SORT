@@ -1,8 +1,12 @@
 import os
 import base64
 import time
+<<<<<<< master
 import random
 import string
+=======
+from tools.stub import Stub
+>>>>>>> Improve test Stub
 from flask import Flask, request, send_file
 from flask_restful import Resource, Api
 
@@ -27,9 +31,8 @@ def id_generator():
 
 def callIPEngine(fileLocation):
     if app.config['USE_STUB']:
-        # TODO Move in another file
-        # TODO Add randomization
-        return string("metro_container: 0.797689\n" "can_pepsi: 0.05116\n" "can_monster: 0.006402\n")
+        stub = Stub()
+        return stub.getRandomOutput()
 
     else:
         # TODO eventually parse stdout
@@ -76,7 +79,7 @@ def analyse_image():
     f.write(base64.b64decode(imageData))
     f.close()
 
-    # Call Yolo
+    # Call IPEngine
     itemList = callIPEngine(fileLocation)
 
     # Encode result
