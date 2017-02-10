@@ -16,6 +16,7 @@ app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['RESULT_FOLDER'] = RESULT_FOLDER
 app.config['DARKNET_DIR'] = DARKNET_DIR
+app.config['USE_STUB'] = False
 
 preId = 0;
 def id_generator():
@@ -23,6 +24,17 @@ def id_generator():
     number = "%03d" % preId
     preId = preId + 1
     return number + '_' + ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(8))
+
+def callIPEngine(fileLocation):
+    if app.config['USE_STUB']:
+        # TODO Move in another file
+        # TODO Add randomization
+        return string("metro_container: 0.797689\n" "can_pepsi: 0.05116\n" "can_monster: 0.006402\n")
+
+    else:
+        # TODO eventually parse stdout
+        output = call(['./yolo.sh', app.config['DARKNET_DIR'], fileLocation, resultLocation]);
+        return ""
 
 
 @app.route('/image', methods=['POST'])
@@ -65,13 +77,14 @@ def analyse_image():
     f.close()
 
     # Call Yolo
-    output = call(['./yolo.sh', app.config['DARKNET_DIR'], fileLocation, resultLocation]);
+    itemList = callIPEngine(fileLocation)
 
     # Encode result
     i = open(resultLocation, 'rb')
     encoded_string = base64.b64encode(i.read())
     i.close()
 
+    # TODO return found objects and image
     return encoded_string
 
 
