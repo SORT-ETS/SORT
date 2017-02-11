@@ -18,17 +18,27 @@ RUN cd opencv-3.2.0 && \
     mkdir build && \
     cd build && \
     cmake \
-    -DWITH_QT=ON \ 
-    -DWITH_OPENGL=ON \ 
+    -DWITH_QT=ON \
+    -DWITH_OPENGL=ON \
     -DFORCE_VTK=ON \
     -DWITH_TBB=ON \
     -DWITH_GDAL=ON \
     -DWITH_XINE=ON \
     -DBUILD_EXAMPLES=ON .. && \
     make -j4 && \
-    make install && \ 
+    make install && \
     ldconfig
 
+
+## Install Darknet ##
+WORKDIR /usr/src/
+RUN git clone https://github.com/pjreddie/darknet.git
+WORKDIR /usr/src/darknet
+RUN make
+RUN wget http://pjreddie.com/media/files/extraction.weights
+
+
+## Install Python server
 # Update operating system and install packages
 RUN apt-get install -y python-pip python-dev build-essential
 
@@ -45,10 +55,7 @@ RUN pip install -r requirements.txt
 # Copy the rest of the code
 ADD . /usr/src/server
 
-## Install Darknet ##
-WORKDIR /usr/src/
-RUN git clone https://github.com/pjreddie/darknet.git && cd darknet && make
 
 WORKDIR /usr/src/server
 EXPOSE 5000
-CMD ./ipengine/compile.sh && python ./server.py
+CMD python ./server.py

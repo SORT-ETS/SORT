@@ -6,10 +6,12 @@ from flask_restful import Resource, Api
 
 from subprocess import call
 
-UPLOAD_FOLDER = './images'
+UPLOAD_FOLDER = '../server/images'
+IMAGE_PROCESSING_CMD = []
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.config['IMAGE_PROCESSING_CMD'] = IMAGE_PROCESSING_CMD
 
 @app.route('/image', methods=['POST'])
 def analyse_image():
@@ -21,7 +23,7 @@ def analyse_image():
         f.write(base64.b64decode(imageData.split(',')[1]))
         f.close()
 
-        call(["./ipengine/app", fileLocation]);
+        output = call(['./darknet','classifier','predict','cfg/imagenet1k.data','cfg/extraction.cfg','extraction.weights', fileLocation], cwd=r'../darknet');
 
         i = open(fileLocation, 'rb')
         encoded_string = base64.b64encode(i.read())
