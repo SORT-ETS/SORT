@@ -1,10 +1,22 @@
 FROM ubuntu:latest
 
+# Update operating system and install packages
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    cmake \
+    git \
+    libgtk2.0-dev \
+    pkg-config \
+    libavcodec-dev \
+    libavformat-dev \
+    libswscale-dev \
+    wget \
+    python-pip \
+    python-dev \
+    build-essential \
+ && rm -rf /var/lib/apt/lists/*
+
 ## Install OpenCV ##
-RUN apt-get -y update
-
-RUN apt-get install -y build-essential cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev wget
-
 RUN mkdir /OpenCV
 WORKDIR /OpenCV
 RUN wget https://github.com/Itseez/opencv/archive/3.2.0.zip
@@ -39,8 +51,6 @@ RUN wget http://pjreddie.com/media/files/extraction.weights
 
 
 ## Install Python server
-# Update operating system and install packages
-RUN apt-get install -y python-pip python-dev build-essential
 
 # Create application directory
 RUN mkdir -p /usr/src/server
