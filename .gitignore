@@ -1,1 +1,4 @@
 images/
+iot/*.png
+*.pyc
+
