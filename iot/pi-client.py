@@ -6,7 +6,9 @@ import re
 import smbus
 import time
 
+# Open IO bus
 bus = smbus.SMBus(1)
+# BrightPI adress
 address = 0x70
 
 on_sig = 0xff
@@ -15,9 +17,9 @@ off_sig = 0x00
 camera = picamera.PiCamera()
 camera.hflip = True
 
-bus.write_byte_data(address, 0, on_sig)
+bus.write_byte_data(address, 0, on_sig) # Dels on
 picture = camera.capture('picture.png', 'png')
-bus.write_byte_data(address, 0, off_sig)
+bus.write_byte_data(address, 0, off_sig) # Dels off
 
 print 'test'
 
