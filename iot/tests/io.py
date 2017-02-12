@@ -10,5 +10,4 @@ while True:
         bus.write_byte_data(address, 0, on_sig)
         time.sleep(1)
         bus.write_byte_data(address, 0, off_sig)
-        time.sleep(1)
-
+	time.sleep(1)
