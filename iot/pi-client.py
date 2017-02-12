@@ -3,11 +3,23 @@ import json
 import httplib
 import picamera
 import re
+import smbus
+import time
+
+bus = smbus.SMBus(1)
+address = 0x70
+
+on_sig = 0xff
+off_sig = 0x00
 
 camera = picamera.PiCamera()
 camera.hflip = True
 
+bus.write_byte_data(address, 0, on_sig)
 picture = camera.capture('picture.png', 'png')
+bus.write_byte_data(address, 0, off_sig)
+
+print 'test'
 
 with open('picture.png', 'r') as picture:
     picture_data = picture.read()
@@ -36,3 +48,4 @@ with open('picture.png', 'r') as picture:
         analysed_picture.close()
 
     picture.close()
+
