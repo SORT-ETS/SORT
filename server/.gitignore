@@ -2,3 +2,6 @@ venv/
 
 images/*
 !images/.gitkeep
+
+results/*
+!results/.gitkeep
