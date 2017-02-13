@@ -14,14 +14,14 @@ RUN apt-get update && apt-get install -y \
     python-pip \
     python-dev \
     build-essential \
+    unzip \
+    qt5-default \
  && rm -rf /var/lib/apt/lists/*
 
 ## Install OpenCV ##
 RUN mkdir /OpenCV
 WORKDIR /OpenCV
 RUN wget https://github.com/Itseez/opencv/archive/3.2.0.zip
-
-RUN apt-get install -y unzip qt5-default
 
 # Build OpenCV
 RUN unzip 3.2.0.zip && \
@@ -47,7 +47,7 @@ WORKDIR /usr/src/
 RUN git clone https://github.com/pjreddie/darknet.git
 WORKDIR /usr/src/darknet
 RUN make
-RUN wget http://pjreddie.com/media/files/extraction.weights
+RUN wget http://pjreddie.com/media/files/yolo.weights
 
 
 ## Install Python server
