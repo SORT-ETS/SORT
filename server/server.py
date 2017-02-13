@@ -8,8 +8,8 @@ from flask_restful import Resource, Api
 
 from subprocess import call
 
-UPLOAD_FOLDER = '../server/images'
-RESULT_FOLDER = '../server/results'
+UPLOAD_FOLDER = '/usr/src/server/images'
+RESULT_FOLDER = '/usr/src/server/results'
 DARKNET_DIR = '/usr/src/darknet'
 
 app = Flask(__name__)
