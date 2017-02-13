@@ -18,16 +18,16 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 @apiParam {Object} image Data associated with the image to analyze (DOM reference to the image tag').
 
-@apiSuccess {Object}   image       Encoded analyzed image modified with colorised area.
-@apiSuccess {Object[]} residues    List of sectors where trash were found with information on them. return a list of objects that were found in the image.
-@apiSuccess {Object}   bondaries   Represent the rectangle were the trash is in the image
-@apiSuccess {Integer}  x1          This value is the horizontal distance from the upper left of the image to the upper left corner of the bondary
-@apiSuccess {Integer}  y1          This value is the vertical distance from the upper left of the image to the upper left corner of the bondary
-@apiSuccess {Integer}  x2          This value is the horizontal distance from the upper left of the image to the bottom right corner of the bondary
-@apiSuccess {Integer}  y2          This value is the vertical distance from the upper left of the image to the bottom right corner of the bondary
-@apiSuccess {Object[]} categories  Represent the different classification the trash can be.
-@apiSuccess {String}   category    This value is the category of the found trash. (List of categories TBD [WIP])
-@apiSuccess {Number}   certitude   This value is the percentage of certitude that the category fits the object.
+@apiSuccess {Object}   image                Encoded analyzed image modified with colorised area.
+@apiSuccess {Object[]} residues             List of sectors where trash were found with information on them. return a list of objects that were found in the image.
+@apiSuccess {Object}   bondaries            Represent the rectangle were the trash is in the image
+@apiSuccess {Integer}  bondaries.x1         This value is the horizontal distance from the upper left of the image to the upper left corner of the bondary
+@apiSuccess {Integer}  bondaries.y1         This value is the vertical distance from the upper left of the image to the upper left corner of the bondary
+@apiSuccess {Integer}  bondaries.x2         This value is the horizontal distance from the upper left of the image to the bottom right corner of the bondary
+@apiSuccess {Integer}  bondaries.y2         This value is the vertical distance from the upper left of the image to the bottom right corner of the bondary
+@apiSuccess {Object[]} categories           Represent the different classification the trash can be.
+@apiSuccess {String}   categories.category  This value is the category of the found trash. (List of categories TBD [WIP])
+@apiSuccess {Number}   categories.certitude This value is the percentage of certitude that the category fits the object.
 
 @apiParamExample {json} Answer-Exemple
 {
@@ -62,7 +62,7 @@ def analyse_image():
     f.write(base64.b64decode(imageData.split(',')[1]))
     f.close()
 
-    #call(["./ipengine/app", fileLocation]);
+    call(["./ipengine/app", fileLocation]);
 
     i = open(fileLocation, 'rb')
     encoded_string = base64.b64encode(i.read())
