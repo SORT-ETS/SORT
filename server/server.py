@@ -18,11 +18,11 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 @apiParam {Object} image Data associated with the image to analyze (DOM reference to the image tag).
 
-@apiSuccess {Object}   image                Encoded analyzed image modified with colorised area.
-@apiSuccess {Object[]} residues             List of the residues that were found in the image.
-@apiSuccess {String}   name                 The name of the item.
-@apiSuccess {String}   categories           Represent the different classification the trash can be.
-@apiSuccess {String}   notes                Notes concerning the item.
+@apiSuccess (Main Fields)           {Object}   image     Encoded analyzed image modified with colorised area.
+@apiSuccess (Main Fields)           {Object[]} residues  List of the residues that were found in the image.
+@apiSuccess (Residue Object Fields) {String}   name      The name of the item.
+@apiSuccess (Residue Object Fields) {String}   category  Represent the different classification the trash can be.
+@apiSuccess (Residue Object Fields) {String}   notes     Notes concerning the item.
 
 @apiParamExample {json} Answer-Exemple
 {
