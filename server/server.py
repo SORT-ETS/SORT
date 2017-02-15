@@ -38,7 +38,7 @@ def analyse_image():
     @apiSuccess (Main Fields)           {Object[]} residues  List of the residues that were found in the image.
     @apiSuccess (Residue Object Fields) {String}   name      The name of the item.
     @apiSuccess (Residue Object Fields) {String}   category  Represent the different classification the trash can be.
-    @apiSuccess (Residue Object Fields) {String}   notes     Notes concerning the item.
+    @apiSuccess (Residue Object Fields) {String[]} notes     Notes or facts concerning the item.
 
     @apiParamExample {json} Answer-Exemple
     {
@@ -65,7 +65,7 @@ def analyse_image():
     f.close()
 
     # Call Yolo
-    output = call(['./yolo.sh', app.config['DARKNET_DIR'], fileLocation, resultLocation]);
+    output = call(['./yolo.sh', app.config['DARKNET_DIR'], fileLocation, resultLocation])
 
     # Encode result
     i = open(resultLocation, 'rb')
