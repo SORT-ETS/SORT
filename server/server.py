@@ -11,40 +11,39 @@ UPLOAD_FOLDER = './images'
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-"""
-@api {post} /api/image  Request Image Analysis
-@apiName  AnalyseImage
-@apiGroup Communication
-
-@apiParam {Object} image Data associated with the image to analyze (DOM reference to the image tag).
-
-@apiSuccess (Main Fields)           {Object}   image     Encoded analyzed image modified with colorised area.
-@apiSuccess (Main Fields)           {Object[]} residues  List of the residues that were found in the image.
-@apiSuccess (Residue Object Fields) {String}   name      The name of the item.
-@apiSuccess (Residue Object Fields) {String}   category  Represent the different classification the trash can be.
-@apiSuccess (Residue Object Fields) {String}   notes     Notes concerning the item.
-
-@apiParamExample {json} Answer-Exemple
-{
-    image : object,
-    residues : [
-        {
-            name: "container_metro",
-            categories : "recyclable",
-            notes: "May contain something inside, handle carefully"
-        }
-    ]
-}
-
-"""
 @app.route('/image', methods=['POST'])
 def analyse_image():
+    """
+    @api {post} /image  Request Image Analysis
+    @apiName  AnalyseImage
+    @apiGroup Communication
+
+    @apiParam {Object} Image Image data encoded in base64.
+
+    @apiSuccess (Main Fields)           {Object}   image     Analyzed image data encoded in base64 modified with colorised area.
+    @apiSuccess (Main Fields)           {Object[]} residues  List of the residues that were found in the image.
+    @apiSuccess (Residue Object Fields) {String}   name      The name of the item.
+    @apiSuccess (Residue Object Fields) {String}   category  Represent the different classification the trash can be.
+    @apiSuccess (Residue Object Fields) {String}   notes     Notes concerning the item.
+
+    @apiParamExample {json} Answer-Exemple
+    {
+        image : object,
+        residues : [
+            {
+                name: "container_metro",
+                categories : "recyclable",
+                notes: "May contain something inside, handle carefully"
+            }
+        ]
+    }
+    """
     imageData = request.get_json()['image']
 
     fileLocation = os.path.join(app.config['UPLOAD_FOLDER'], 'image.png')
 
     f = open(fileLocation, 'wb')
-    f.write(base64.b64decode(imageData.split(',')[1]))
+    f.write(base64.b64decode(imageData))
     f.close()
 
     call(["./ipengine/app", fileLocation]);
