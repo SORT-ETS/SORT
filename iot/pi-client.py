@@ -32,7 +32,7 @@ with open('picture.png', 'r') as picture:
 
     headers = {"Content-type": "application/json"}
 
-    body = {"image": "data:image/jpeg;base64," + base64_picture_data}
+    body = {"image": base64_picture_data}
     body_str = json.dumps(body)
 
     conn.request("POST", "/image", body_str, headers)
@@ -50,4 +50,3 @@ with open('picture.png', 'r') as picture:
         analysed_picture.close()
 
     picture.close()
-

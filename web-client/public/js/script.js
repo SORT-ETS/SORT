@@ -10,7 +10,7 @@ function sendImage(data) {
 
 	xhttp.open("POST", "/api/image", true);
 	xhttp.setRequestHeader("Content-type", "application/json");
-	xhttp.send('{ "image": "'+ data +'" }');
+	xhttp.send('{ "image": "'+ data.split(',')[1] +'" }');
 }
 
 // Inspired by :
