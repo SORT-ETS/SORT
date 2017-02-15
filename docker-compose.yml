@@ -15,3 +15,6 @@ services:
       - ./web-client/server.js:/usr/src/web-client/server.js
     depends_on:
       - server
+    environment:
+      PROXY: server:5000
+

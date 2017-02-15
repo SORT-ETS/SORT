@@ -1,17 +1,27 @@
 FROM ubuntu:latest
 
-# Install OpenCV
-RUN apt-get -y update
+# Update operating system and install packages
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    cmake \
+    git \
+    libgtk2.0-dev \
+    pkg-config \
+    libavcodec-dev \
+    libavformat-dev \
+    libswscale-dev \
+    wget \
+    python-pip \
+    python-dev \
+    build-essential \
+    unzip \
+    qt5-default \
+ && rm -rf /var/lib/apt/lists/*
 
-RUN apt-get install -y build-essential
-RUN apt-get install -y cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev
-RUN apt-get install -y wget
-
+## Install OpenCV ##
 RUN mkdir /OpenCV
 WORKDIR /OpenCV
 RUN wget https://github.com/Itseez/opencv/archive/3.2.0.zip
-
-RUN apt-get install -y unzip qt5-default
 
 # Build OpenCV
 RUN unzip 3.2.0.zip && \
@@ -20,22 +30,27 @@ RUN cd opencv-3.2.0 && \
     mkdir build && \
     cd build && \
     cmake \
-    -DWITH_QT=ON \ 
-    -DWITH_OPENGL=ON \ 
+    -DWITH_QT=ON \
+    -DWITH_OPENGL=ON \
     -DFORCE_VTK=ON \
     -DWITH_TBB=ON \
     -DWITH_GDAL=ON \
     -DWITH_XINE=ON \
     -DBUILD_EXAMPLES=ON .. && \
     make -j4 && \
-    make install && \ 
+    make install && \
     ldconfig
 
 
-# CMD ./watch.sh & ./compile.sh && rm -f /usr/src/ipengine/log.txt && touch /usr/src/ipengine/log.txt && tail -F /usr/src/ipengine/log.txt
+## Install Darknet ##
+WORKDIR /usr/src/
+RUN git clone https://github.com/pjreddie/darknet.git
+WORKDIR /usr/src/darknet
+RUN make
+RUN wget http://pjreddie.com/media/files/yolo.weights
 
-# Update operating system and install packages
-RUN apt-get install -y python-pip python-dev build-essential
+
+## Install Python server
 
 # Create application directory
 RUN mkdir -p /usr/src/server
@@ -50,5 +65,7 @@ RUN pip install -r requirements.txt
 # Copy the rest of the code
 ADD . /usr/src/server
 
+
+WORKDIR /usr/src/server
 EXPOSE 5000
-CMD ./ipengine/compile.sh && python ./server.py
+CMD python ./server.py
