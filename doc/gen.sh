@@ -1,1 +1,3 @@
-apidoc -i ../server/ -o apidoc/
+#!/bin/bash
+apidoc -i ../server/ -o apidoc/ -e ../venv
+
