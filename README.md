@@ -46,7 +46,7 @@ To develop the web-client on your local machine:
 You can also use the normal instructions just be sure to run step 3 when you're installing new NPM packages.
 
 ## Version
-0.0.1
+0.0.2
 
 ## Licence
 AGPL-3.0
