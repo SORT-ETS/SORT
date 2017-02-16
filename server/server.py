@@ -103,7 +103,7 @@ def analyse_image():
 
 @app.route('/version')
 def get_version(self):
-    return {'version': '0.0.1'}
+    return {'version': '0.0.2'}
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True, threaded=True)
