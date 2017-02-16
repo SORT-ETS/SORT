@@ -44,8 +44,9 @@ RUN cd opencv-3.2.0 && \
 
 ## Install Darknet ##
 WORKDIR /usr/src/
-RUN git clone https://github.com/pjreddie/darknet.git
+RUN git clone https://github.com/SORT-ETS/darknet.git
 WORKDIR /usr/src/darknet
+RUN git checkout origin/custom-output
 RUN make
 RUN wget http://pjreddie.com/media/files/yolo.weights
 
