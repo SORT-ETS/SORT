@@ -93,7 +93,7 @@ def analyse_image():
         sys.stderr.write('    '.join(b) + '\n')
 
     # Encode result
-    i = open(fileLocation, 'rb') # TODO do not return the same image.
+    i = open(resultLocation, 'rb')
     encoded_string = base64.b64encode(i.read())
     i.close()
 
