@@ -38,7 +38,7 @@ def callIPEngine(fileLocation, resultLocation, imageWidth, imageHeight):
         boxes = stub.getRandomOutput(imageWidth, imageHeight)
 
     else:
-        stdout = subprocess.check_output(['./yolo.sh',
+        stdout = subprocess.check_output(['./tools/yolo.sh',
                                           app.config['DARKNET_DIR'],
                                           fileLocation, resultLocation])
         boxes = []
