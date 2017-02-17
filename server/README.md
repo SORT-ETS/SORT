@@ -3,3 +3,5 @@
 ## Development
 
 To attach to the server container simply do `make attach`
+
+Before commiting just be sure to run `make lint`
