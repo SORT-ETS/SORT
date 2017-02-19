@@ -2,44 +2,12 @@ FROM ubuntu:latest
 
 # Update operating system and install packages
 RUN apt-get update && apt-get install -y \
-    build-essential \
-    cmake \
     git \
-    libgtk2.0-dev \
-    pkg-config \
-    libavcodec-dev \
-    libavformat-dev \
-    libswscale-dev \
     wget \
     python-pip \
     python-dev \
     build-essential \
-    unzip \
-    qt5-default \
  && rm -rf /var/lib/apt/lists/*
-
-## Install OpenCV ##
-RUN mkdir /OpenCV
-WORKDIR /OpenCV
-RUN wget https://github.com/Itseez/opencv/archive/3.2.0.zip
-
-# Build OpenCV
-RUN unzip 3.2.0.zip && \
-    rm 3.2.0.zip
-RUN cd opencv-3.2.0 && \
-    mkdir build && \
-    cd build && \
-    cmake \
-    -DWITH_QT=ON \
-    -DWITH_OPENGL=ON \
-    -DFORCE_VTK=ON \
-    -DWITH_TBB=ON \
-    -DWITH_GDAL=ON \
-    -DWITH_XINE=ON \
-    -DBUILD_EXAMPLES=ON .. && \
-    make -j4 && \
-    make install && \
-    ldconfig
 
 
 ## Install Darknet ##
