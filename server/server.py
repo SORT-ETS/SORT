@@ -1,12 +1,10 @@
 import os
 import base64
-import time
 import random
 import string
 import sys
 from tools.stub import Stub
-from flask import Flask, request, send_file
-from flask_restful import Resource, Api
+from flask import Flask, request
 from PIL import Image
 
 import subprocess
@@ -22,12 +20,17 @@ app.config['RESULT_FOLDER'] = RESULT_FOLDER
 app.config['DARKNET_DIR'] = DARKNET_DIR
 app.config['USE_STUB'] = False
 
-preId = 0;
+preId = 0
+
+
 def id_generator():
     global preId
     number = "%03d" % preId
     preId = preId + 1
-    return number + '_' + ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(8))
+    return number + '_' + \
+        ''.join(random.choice(string.ascii_uppercase + string.digits)
+                for _ in range(8))
+
 
 def callIPEngine(fileLocation, resultLocation, imageWidth, imageHeight):
     if app.config['USE_STUB']:
@@ -35,7 +38,9 @@ def callIPEngine(fileLocation, resultLocation, imageWidth, imageHeight):
         boxes = stub.getRandomOutput(imageWidth, imageHeight)
 
     else:
-        stdout = subprocess.check_output(['./yolo.sh', app.config['DARKNET_DIR'], fileLocation, resultLocation]);
+        stdout = subprocess.check_output(['./tools/yolo.sh',
+                                          app.config['DARKNET_DIR'],
+                                          fileLocation, resultLocation])
         boxes = []
         for l in stdout.splitlines():
             boxes.append(tuple(l.split(',')))
@@ -52,11 +57,20 @@ def analyse_image():
 
     @apiParam {Object} Image Image data encoded in base64.
 
-    @apiSuccess (Main Fields)           {Object}   image     Analyzed image data encoded in base64 modified with colorised area.
-    @apiSuccess (Main Fields)           {Object[]} residues  List of the residues that were found in the image.
-    @apiSuccess (Residue Object Fields) {String}   name      The name of the item.
-    @apiSuccess (Residue Object Fields) {String}   category  Represent the different classification the trash can be.
-    @apiSuccess (Residue Object Fields) {String[]} notes     Notes or facts concerning the item.
+    @apiSuccess (Main Fields)           {Object}   image
+            Analyzed image data encoded in base64 modified with colorised area.
+
+    @apiSuccess (Main Fields)           {Object[]} residues
+            List of the residues that were found in the image.
+
+    @apiSuccess (Residue Object Fields) {String}   name
+            The name of the item.
+
+    @apiSuccess (Residue Object Fields) {String}   category
+            Represent the different classification the trash can be.
+
+    @apiSuccess (Residue Object Fields) {String[]} notes
+            Notes or facts concerning the item.
 
     @apiParamExample {json} Answer-Exemple
     {
