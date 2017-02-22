@@ -1,5 +1,9 @@
 images/
+<<<<<<< HEAD
 iot/*.png
 *.pyc
 *.DS_Store
 
+=======
+.DS_Store
+>>>>>>> bb79620... Dev setup for watching client/js folder and ES2015 syntax

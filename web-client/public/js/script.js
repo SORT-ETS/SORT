@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // import Image from "./src/image";
 
 // var image = new Image();
