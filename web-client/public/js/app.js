@@ -68,7 +68,44 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
 // }
 
-},{"./src/application-controller":2}],2:[function(require,module,exports){
+},{"./src/application-controller":3}],2:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+// HTTP Post request wrapper. It sends the provided data as in the requests body
+var AnalysisRequest = function AnalysisRequest(imageData) {
+	var _this = this;
+
+	_classCallCheck(this, AnalysisRequest);
+
+	this.request = new XMLHttpRequest();
+
+	this.type = 'POST';
+	this.path = '/api/image';
+
+	this.request.onreadystatechange = function () {
+		if (_this.readyState == 4 && _this.status == 200) {
+			// This scope will change as the API evolves to new features
+			document.getElementById('processed-image').setAttribute('src', "data:image/png;base64," + _this.request.responseText);
+		}
+	};
+
+	this.request.open(this.type, this.path, true);
+	this.request.setRequestHeader("Content-type", "application/json");
+	this.request.send('{ "image": "' + this.imageData + '" }');
+}
+
+// methods
+;
+
+exports.default = AnalysisRequest;
+
+},{}],3:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -84,6 +121,10 @@ var _videoController2 = _interopRequireDefault(_videoController);
 var _imageController = require('./image-controller');
 
 var _imageController2 = _interopRequireDefault(_imageController);
+
+var _analysisRequest = require('./analysis-request');
+
+var _analysisRequest2 = _interopRequireDefault(_analysisRequest);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -116,12 +157,22 @@ var ApplicationController = function () {
 
 			this.pictureButton.addEventListener('click', function (event) {
 				event.preventDefault();
-
+				// This button is only present when streaming and user to trigger
+				// analysys
 				if (_this.videoController.isStreaming) {
-					_this.imageController.setImage(_this.videoController.getVideo());
-					_this.videoController.stopStream();
+					_this._analyseImage();
 				}
 			}, false);
+		}
+	}, {
+		key: '_analyseImage',
+		value: function _analyseImage() {
+			// Must set image before stopping stream otherwise nothing visible
+			this.imageController.setImage(this.videoController.getVideo());
+			this.videoController.stopStream();
+
+			var imageData = this.imageController.getImageData();
+			var analysis = new _analysisRequest2.default(imageData);
 		}
 	}]);
 
@@ -130,7 +181,7 @@ var ApplicationController = function () {
 
 exports.default = ApplicationController;
 
-},{"./image-controller":3,"./video-controller":5}],3:[function(require,module,exports){
+},{"./analysis-request":2,"./image-controller":4,"./video-controller":6}],4:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -155,12 +206,21 @@ var ImageController = function () {
 		_classCallCheck(this, ImageController);
 
 		this.imageView = new _imageView2.default('image-canvas');
+
+		// hidden by default
+		this.imageView.hide();
 	}
 
 	_createClass(ImageController, [{
 		key: 'setImage',
 		value: function setImage(video) {
+			this.imageView.display();
 			this.imageView.setImage(video);
+		}
+	}, {
+		key: 'getImageData',
+		value: function getImageData() {
+			return this.imageView.getData();
 		}
 	}]);
 
@@ -169,7 +229,7 @@ var ImageController = function () {
 
 exports.default = ImageController;
 
-},{"./image-view":4}],4:[function(require,module,exports){
+},{"./image-view":5}],5:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -245,7 +305,7 @@ var ImageView = function (_View) {
 
 exports.default = ImageView;
 
-},{"./view":7}],5:[function(require,module,exports){
+},{"./view":8}],6:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -328,7 +388,7 @@ var VideoController = function () {
 
 exports.default = VideoController;
 
-},{"./video-view":6}],6:[function(require,module,exports){
+},{"./video-view":7}],7:[function(require,module,exports){
 'use strict';
 'use-scrict';
 
@@ -411,7 +471,7 @@ var VideoView = function (_View) {
 
 exports.default = VideoView;
 
-},{"./view":7}],7:[function(require,module,exports){
+},{"./view":8}],8:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
