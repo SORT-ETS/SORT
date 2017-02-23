@@ -12,12 +12,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 	var applicationController = new _applicationController2.default();
 
 	applicationController.initApp();
-}); // import Image from "./src/image";
-
-// var image = new Image();
-// console.log(image.data);
-
-// function sendImage(data) {
+}); // function sendImage(data) {
 // 	// HTTP Post request wrapper. It sends the provided data as in the requests body
 // 	var xhttp = new XMLHttpRequest();
 
@@ -43,30 +38,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
 // 	var width = 320;
 // 	var height = 0;
 
-// 	navigator.getMedia = ( navigator.getUserMedia ||
-// 		navigator.webkitGetUserMedia ||
-// 		navigator.mozGetUserMedia ||
-// 		navigator.msGetUserMedia);
-
-// 	navigator.getMedia(
-// 	{
-// 		video: true,
-// 		audio: false
-// 	},
-// 	function(stream) {
-// 		// Setup video stream
-// 		if (navigator.mozGetUserMedia) {
-// 			video.mozSrcObject = stream;
-// 		} else {
-// 			var vendorURL = window.URL || window.webkitURL;
-// 			video.src = vendorURL.createObjectURL(stream);
-// 		}
-// 		video.play();
-// 	},
-// 	function(err) {
-// 		console.log("An error occured! " + err);
-// 	}
-// 	);
 
 // 	video.addEventListener('canplay', function(ev){
 // 		if (!streaming) {
@@ -228,6 +199,8 @@ Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 var _videoView = require('./video-view');
 
 var _videoView2 = _interopRequireDefault(_videoView);
@@ -237,13 +210,53 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 /**
-* Video controller class
+* The video controller class has the responsability to delegate events to the 
+* VideoView.
 */
-var VideoController = function VideoController() {
-	_classCallCheck(this, VideoController);
+var VideoController = function () {
+	function VideoController() {
+		_classCallCheck(this, VideoController);
 
-	this.videoView = new _videoView2.default('video');
-};
+		this.videoView = new _videoView2.default('video');
+	}
+
+	_createClass(VideoController, [{
+		key: 'initStream',
+		value: function initStream() {
+			var _this = this;
+
+			// Makes sure navigatore.getUserMedia is browser independant
+			navigator.getMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
+
+			navigator.getMedia({
+				video: true,
+				audio: false
+			}, function (stream) {
+				_this._handleStream(stream);
+			}, function (err) {
+				console.log("An error occured! " + err);
+			});
+
+			this.videoView.display();
+		}
+	}, {
+		key: 'stopStream',
+		value: function stopStream() {
+			this.videoView.stop();
+			this.videoView.hide();
+		}
+	}, {
+		key: '_handleStream',
+		value: function _handleStream(stream) {
+			// Setup video stream
+			this.videoView.setStreamSrc(stream, !!navigator.mozGetUserMedia);
+
+			this.videoView.play();
+		}
+	}]);
+
+	return VideoController;
+}();
 
 exports.default = VideoController;
 
@@ -270,7 +283,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 /**
-* 
+* The video view wraps the video DOM object and handles it settings and methods.
 */
 var VideoView = function (_View) {
 	_inherits(VideoView, _View);
@@ -293,6 +306,35 @@ var VideoView = function (_View) {
 		key: 'hide',
 		value: function hide() {
 			this.domElement.style.display = 'none';
+		}
+	}, {
+		key: 'play',
+		value: function play() {
+			this.domElement.play();
+		}
+	}, {
+		key: 'stop',
+		value: function stop() {
+			this.domElement.stop();
+		}
+	}, {
+		key: 'getDomElement',
+		value: function getDomElement() {
+			return this.domElement;
+		}
+	}, {
+		key: 'setStreamSrc',
+		value: function setStreamSrc(streamObj, isNavMoz) {
+			// Sets the stream source on the DOM element
+
+			if (isNavMoz) {
+				// Moz can use the stream directly
+				this.domElement.mozSrcObject = streamObj;
+			} else {
+				// Webkit and opera need to wrap it in a URL
+				var vendorURL = window.URL || window.webkitURL;
+				this.domElement.src = vendorURL.createObjectURL(streamObj);
+			}
 		}
 	}]);
 
