@@ -66,12 +66,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
 // 		callback(data)
 // 	}
 
-// 	pictureButton.addEventListener('click', function(event){
-// 		event.preventDefault();
-
-// 		// Take a picture and send image as a callback
-// 		takePicture(sendImage);
-// 	}, false);
 // }
 
 },{"./src/application-controller":2}],2:[function(require,module,exports){
@@ -104,12 +98,30 @@ var ApplicationController = function () {
 
 		this.videoController = new _videoController2.default();
 		this.imageController = new _imageController2.default();
+
+		this.pictureButton = document.getElementById('pictureButton');
 	}
 
 	_createClass(ApplicationController, [{
 		key: 'initApp',
 		value: function initApp() {
 			this.videoController.initStream();
+
+			this._handleInteractions();
+		}
+	}, {
+		key: '_handleInteractions',
+		value: function _handleInteractions() {
+			var _this = this;
+
+			this.pictureButton.addEventListener('click', function (event) {
+				event.preventDefault();
+
+				if (_this.videoController.isStreaming) {
+					_this.imageController.setImage(_this.videoController.getVideo());
+					_this.videoController.stopStream();
+				}
+			}, false);
 		}
 	}]);
 
@@ -125,6 +137,8 @@ Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 var _imageView = require('./image-view');
 
 var _imageView2 = _interopRequireDefault(_imageView);
@@ -136,11 +150,22 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 /**
 * Image controller class
 */
-var ImageController = function ImageController() {
-	_classCallCheck(this, ImageController);
+var ImageController = function () {
+	function ImageController() {
+		_classCallCheck(this, ImageController);
 
-	this.imageView = new _imageView2.default('image-canvas');
-};
+		this.imageView = new _imageView2.default('image-canvas');
+	}
+
+	_createClass(ImageController, [{
+		key: 'setImage',
+		value: function setImage(video) {
+			this.imageView.setImage(video);
+		}
+	}]);
+
+	return ImageController;
+}();
 
 exports.default = ImageController;
 
@@ -176,15 +201,43 @@ var ImageView = function (_View) {
 	function ImageView(domId) {
 		_classCallCheck(this, ImageView);
 
-		return _possibleConstructorReturn(this, (ImageView.__proto__ || Object.getPrototypeOf(ImageView)).call(this, domId));
+		var _this = _possibleConstructorReturn(this, (ImageView.__proto__ || Object.getPrototypeOf(ImageView)).call(this, domId));
+
+		_this.domElement = document.getElementById(_this.domId);
+		_this.base64Data = '';
+		return _this;
 	}
 
 	_createClass(ImageView, [{
 		key: 'display',
-		value: function display() {}
+		value: function display() {
+			this.domElement.parentNode.style.display = 'block';
+		}
 	}, {
 		key: 'hide',
-		value: function hide() {}
+		value: function hide() {
+			this.domElement.parentNode.style.display = 'none';
+		}
+	}, {
+		key: 'setImage',
+		value: function setImage(videoElement) {
+			// Could get videoWith or height, but as they are never set we 
+			// rely on the dom's element dimensions
+			var width = videoElement.offsetWidth;
+			var height = videoElement.offsetHeight;
+
+			this.domElement.width = width;
+			this.domElement.height = height;
+			this.domElement.getContext('2d').drawImage(videoElement, 0, 0, width, height);
+
+			// By default base64, no conversion needed
+			this.base64Data = this.domElement.toDataURL('image/png');
+		}
+	}, {
+		key: 'getData',
+		value: function getData() {
+			return this.base64Data;
+		}
 	}]);
 
 	return ImageView;
@@ -218,6 +271,7 @@ var VideoController = function () {
 		_classCallCheck(this, VideoController);
 
 		this.videoView = new _videoView2.default('video');
+		this.isStreaming = false;
 	}
 
 	_createClass(VideoController, [{
@@ -238,18 +292,32 @@ var VideoController = function () {
 			});
 
 			this.videoView.display();
+
+			this.isStreaming = true;
 		}
 	}, {
 		key: 'stopStream',
 		value: function stopStream() {
 			this.videoView.stop();
 			this.videoView.hide();
+
+			// Stop the getMedia execution
+			this.videoSteam.getTracks()[0].stop();
+
+			this.isStreaming = false;
+		}
+	}, {
+		key: 'getVideo',
+		value: function getVideo() {
+			return this.videoView.getDomElement();
 		}
 	}, {
 		key: '_handleStream',
 		value: function _handleStream(stream) {
+			this.videoSteam = stream;
+
 			// Setup video stream
-			this.videoView.setStreamSrc(stream, !!navigator.mozGetUserMedia);
+			this.videoView.setStreamSrc(this.videoSteam, !!navigator.mozGetUserMedia);
 
 			this.videoView.play();
 		}
@@ -300,12 +368,12 @@ var VideoView = function (_View) {
 	_createClass(VideoView, [{
 		key: 'display',
 		value: function display() {
-			this.domElement.style.display = 'block';
+			this.domElement.parentNode.style.display = 'block';
 		}
 	}, {
 		key: 'hide',
 		value: function hide() {
-			this.domElement.style.display = 'none';
+			this.domElement.parentNode.style.display = 'none';
 		}
 	}, {
 		key: 'play',
@@ -315,7 +383,7 @@ var VideoView = function (_View) {
 	}, {
 		key: 'stop',
 		value: function stop() {
-			this.domElement.stop();
+			this.domElement.pause();
 		}
 	}, {
 		key: 'getDomElement',
