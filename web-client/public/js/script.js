@@ -1,8 +1,3 @@
-// import Image from "./src/image";
-
-// var image = new Image();
-// console.log(image.data);
-
 // function sendImage(data) {
 // 	// HTTP Post request wrapper. It sends the provided data as in the requests body
 // 	var xhttp = new XMLHttpRequest();
@@ -29,30 +24,6 @@
 // 	var width = 320;
 // 	var height = 0;
 
-// 	navigator.getMedia = ( navigator.getUserMedia ||
-// 		navigator.webkitGetUserMedia ||
-// 		navigator.mozGetUserMedia ||
-// 		navigator.msGetUserMedia);
-
-// 	navigator.getMedia(
-// 	{
-// 		video: true,
-// 		audio: false
-// 	},
-// 	function(stream) {
-// 		// Setup video stream
-// 		if (navigator.mozGetUserMedia) {
-// 			video.mozSrcObject = stream;
-// 		} else {
-// 			var vendorURL = window.URL || window.webkitURL;
-// 			video.src = vendorURL.createObjectURL(stream);
-// 		}
-// 		video.play();
-// 	},
-// 	function(err) {
-// 		console.log("An error occured! " + err);
-// 	}
-// 	);
 
 // 	video.addEventListener('canplay', function(ev){
 // 		if (!streaming) {
