@@ -5,16 +5,8 @@
   "main": "server.js",
   "scripts": {
     "start": "node --use_strict server.js",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
     "build-client": "browserify ./public/js/script.js -o ./public/js/app.js -t [ babelify --presets [ es2015 ] ]",
     "watch-client": "nodemon --watch public/js -x 'npm run build-client' --ignore app.*",
->>>>>>> bb79620... Dev setup for watching client/js folder and ES2015 syntax
-=======
-    "build-client": "browserify ./public/js/script.js -o ./public/js/app.js -t [ babelify --presets [ es2015 ] ]",
-    "watch-client": "nodemon --watch public/js -x 'npm run build-client' --ignore app.*",
->>>>>>> bb79620... Dev setup for watching client/js folder and ES2015 syntax
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
