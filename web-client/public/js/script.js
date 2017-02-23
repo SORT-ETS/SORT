@@ -52,12 +52,6 @@
 // 		callback(data)
 // 	}
 
-// 	pictureButton.addEventListener('click', function(event){
-// 		event.preventDefault();
-
-// 		// Take a picture and send image as a callback
-// 		takePicture(sendImage);
-// 	}, false);
 // }
 
 import ApplicationController from './src/application-controller';

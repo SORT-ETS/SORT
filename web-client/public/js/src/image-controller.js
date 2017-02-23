@@ -7,4 +7,8 @@ export default class ImageController {
 	constructor() {
 		this.imageView = new ImageView('image-canvas');
 	}
+
+	setImage(video) {
+		this.imageView.setImage(video);
+	}
 }

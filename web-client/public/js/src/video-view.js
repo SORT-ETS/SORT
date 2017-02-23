@@ -13,11 +13,11 @@ export default class VideoView extends View {
 	}
 
 	display() {
-		this.domElement.style.display = 'block';
+		this.domElement.parentNode.style.display = 'block';
 	}
 
 	hide() {
-		this.domElement.style.display = 'none';
+		this.domElement.parentNode.style.display = 'none';
 	}
 
 	play() {
@@ -25,9 +25,9 @@ export default class VideoView extends View {
 	}
 
 	stop() {
-		this.domElement.stop();
+		this.domElement.pause();		
 	}
-
+	
 	getDomElement() {
 		return this.domElement;
 	}

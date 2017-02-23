@@ -10,6 +10,7 @@
 }
 
 .video-sect #video {
+	display: block;
 	width: 75%;
 	margin: 0 auto;
 }
@@ -20,4 +21,23 @@
     transform: translate(-50%,-200%);
     background: rgba(0,0,0,0.75);
     color: #fff;
+}
+
+.image-sect {
+	text-align: center;
+}
+
+.image-sect #image-canvas { 
+	display: block;
+	width: 75%;
+	margin: 0 auto;
+}
+
+.image-sect #loader {
+	position: absolute;
+    margin-left: 50%;
+    transform: translate(-50%,-200%);
+    background: rgba(0,0,0,0.5);
+    color: #fff;
+    padding: 20px;
 }

@@ -7,6 +7,7 @@ import VideoView from './video-view';
 export default class VideoController {
 	constructor() {
 		this.videoView = new VideoView('video');
+		this.isStreaming = false;
 	}
 
 	initStream() {
@@ -28,16 +29,29 @@ export default class VideoController {
 		);
 
 		this.videoView.display();
+
+		this.isStreaming = true;
 	}
 
 	stopStream() {
 		this.videoView.stop();
 		this.videoView.hide();
+
+		// Stop the getMedia execution
+		this.videoSteam.getTracks()[0].stop();
+
+		this.isStreaming = false;
+	}
+	
+	getVideo() {
+		return this.videoView.getDomElement();
 	}
 
 	_handleStream(stream) {
+		this.videoSteam = stream;
+
 		// Setup video stream
-		this.videoView.setStreamSrc(stream, (!!navigator.mozGetUserMedia));
+		this.videoView.setStreamSrc(this.videoSteam, (!!navigator.mozGetUserMedia));
 
 		this.videoView.play();
 	}
