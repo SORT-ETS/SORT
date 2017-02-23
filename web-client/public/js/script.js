@@ -1,91 +1,99 @@
-function sendImage(data) {
-	// HTTP Post request wrapper. It sends the provided data as in the requests body
-	var xhttp = new XMLHttpRequest();
+// import Image from "./src/image";
 
-	xhttp.onreadystatechange = function() {
-		if (this.readyState == 4 && this.status == 200) {
-			document.getElementById('processed').setAttribute('src', "data:image/png;base64,"+xhttp.responseText);
-		}
-	};
+// var image = new Image();
+// console.log(image.data);
 
-	xhttp.open("POST", "/api/image", true);
-	xhttp.setRequestHeader("Content-type", "application/json");
-	xhttp.send('{ "image": "'+ data.split(',')[1] +'" }');
-}
+// function sendImage(data) {
+// 	// HTTP Post request wrapper. It sends the provided data as in the requests body
+// 	var xhttp = new XMLHttpRequest();
 
-// Inspired by :
-// https://developer.mozilla.org/fr/docs/WebRTC/Prendre_des_photos_avec_la_webcam
-function main() {
+// 	xhttp.onreadystatechange = function() {
+// 		if (this.readyState == 4 && this.status == 200) {
+// 			document.getElementById('processed').setAttribute('src', "data:image/png;base64,"+xhttp.responseText);
+// 		}
+// 	};
 
-	var streaming = false;
-	var video = document.querySelector('#video');
-	var canvas = document.querySelector('#canvas');
-	var pictureButton = document.querySelector('#pictureButton');
-	var width = 320;
-	var height = 0;
+// 	xhttp.open("POST", "/api/image", true);
+// 	xhttp.setRequestHeader("Content-type", "application/json");
+// 	xhttp.send('{ "image": "'+ data +'" }');
+// }
 
-	navigator.getMedia = ( navigator.getUserMedia ||
-		navigator.webkitGetUserMedia ||
-		navigator.mozGetUserMedia ||
-		navigator.msGetUserMedia);
+// // Inspired by :
+// // https://developer.mozilla.org/fr/docs/WebRTC/Prendre_des_photos_avec_la_webcam
+// function main() {
 
-	navigator.getMedia(
-	{
-		video: true,
-		audio: false
-	},
-	function(stream) {
-		// Setup video stream
-		if (navigator.mozGetUserMedia) {
-			video.mozSrcObject = stream;
-		} else {
-			var vendorURL = window.URL || window.webkitURL;
-			video.src = vendorURL.createObjectURL(stream);
-		}
-		video.play();
-	},
-	function(err) {
-		console.log("An error occured! " + err);
-	}
-	);
+// 	var streaming = false;
+// 	var video = document.querySelector('#video');
+// 	var canvas = document.querySelector('#canvas');
+// 	var pictureButton = document.querySelector('#pictureButton');
+// 	var width = 320;
+// 	var height = 0;
 
-	video.addEventListener('canplay', function(ev){
-		if (!streaming) {
-			height = video.videoHeight / (video.videoWidth/width);
+// 	navigator.getMedia = ( navigator.getUserMedia ||
+// 		navigator.webkitGetUserMedia ||
+// 		navigator.mozGetUserMedia ||
+// 		navigator.msGetUserMedia);
 
-			video.setAttribute('width', width);
-			video.setAttribute('height', height);
+// 	navigator.getMedia(
+// 	{
+// 		video: true,
+// 		audio: false
+// 	},
+// 	function(stream) {
+// 		// Setup video stream
+// 		if (navigator.mozGetUserMedia) {
+// 			video.mozSrcObject = stream;
+// 		} else {
+// 			var vendorURL = window.URL || window.webkitURL;
+// 			video.src = vendorURL.createObjectURL(stream);
+// 		}
+// 		video.play();
+// 	},
+// 	function(err) {
+// 		console.log("An error occured! " + err);
+// 	}
+// 	);
 
-			canvas.setAttribute('width', width);
-			canvas.setAttribute('height', height);
+// 	video.addEventListener('canplay', function(ev){
+// 		if (!streaming) {
+// 			height = video.videoHeight / (video.videoWidth/width);
 
-			streaming = true;
-		}
-	}, false);
+// 			video.setAttribute('width', width);
+// 			video.setAttribute('height', height);
 
-	function takePicture(callback) {
-		// Draws video frame into cavas
-		canvas.width = width;
-		canvas.height = height;
-		canvas.getContext('2d').drawImage(video, 0, 0, width, height);
+// 			canvas.setAttribute('width', width);
+// 			canvas.setAttribute('height', height);
 
-		// By default base64, no conversion needed
-		var data = canvas.toDataURL('image/png');
+// 			streaming = true;
+// 		}
+// 	}, false);
 
-		// After drawing image, send canvas pixel to callback
-		callback(data)
-	}
+// 	function takePicture(callback) {
+// 		// Draws video frame into cavas
+// 		canvas.width = width;
+// 		canvas.height = height;
+// 		canvas.getContext('2d').drawImage(video, 0, 0, width, height);
 
-	pictureButton.addEventListener('click', function(event){
-		event.preventDefault();
+// 		// By default base64, no conversion needed
+// 		var data = canvas.toDataURL('image/png');
 
-		// Take a picture and send image as a callback
-		takePicture(sendImage);
-	}, false);
-}
+// 		// After drawing image, send canvas pixel to callback
+// 		callback(data)
+// 	}
 
+// 	pictureButton.addEventListener('click', function(event){
+// 		event.preventDefault();
+
+// 		// Take a picture and send image as a callback
+// 		takePicture(sendImage);
+// 	}, false);
+// }
+
+import ApplicationController from './src/application-controller';
 
 document.addEventListener("DOMContentLoaded", function(event) {
-	// Setup app
-	main();
+	// Setup app - MAIN
+	var applicationController = new ApplicationController();
+
+	applicationController.initApp();
 });
