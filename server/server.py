@@ -55,10 +55,7 @@ def analyse_image():
     @apiName  AnalyseImage
     @apiGroup Communication
 
-    @apiParam {Object} Image Image data encoded in base64.
-
-    @apiSuccess (Main Fields)           {Object}   image
-            Analyzed image data encoded in base64 modified with colorised area.
+    @apiParam {String} Image Image data encoded in base64.
 
     @apiSuccess (Main Fields)           {Object[]} residues
             List of the residues that were found in the image.
@@ -66,20 +63,30 @@ def analyse_image():
     @apiSuccess (Residue Object Fields) {String}   name
             The name of the item.
 
+    @apiSuccess (Residue Object Fields) {String}   displayName
+            The display name of the item.
+
     @apiSuccess (Residue Object Fields) {String}   category
             Represent the different classification the trash can be.
+
+    @apiSuccess (Residue Object Fields) {Number[]} boundaries
+            The boundaries of the residue.
 
     @apiSuccess (Residue Object Fields) {String[]} notes
             Notes or facts concerning the item.
 
     @apiParamExample {json} Answer-Exemple
     {
-        image : object,
         residues : [
             {
                 name: "container_metro",
+                displayName: "Contenant Metro",
                 categories : "recyclable",
-                notes: "May contain something inside, handle carefully"
+                boundaries : [ 20, 40, 13, 60 ],
+                notes: [
+                  "Veuillez verifier de vider le contenu de celui-ci dans les
+                   poubelles appropriees."
+                ]
             }
         ]
     }
