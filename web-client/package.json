@@ -4,7 +4,7 @@
   "description": "SORT project web client",
   "main": "server.js",
   "scripts": {
-    "start": "node --use_strict server.js",
+    "start": "npm run build-client && node --use_strict server.js",
     "build-client": "browserify ./public/js/script.js -o ./public/js/app.js -t [ babelify --presets [ es2015 ] ]",
     "watch-client": "nodemon --watch public/js -x 'npm run build-client' --ignore app.*",
     "test": "echo \"Error: no test specified\" && exit 1"
