@@ -1,4 +1,6 @@
 images/
 iot/*.png
 *.pyc
+*.DS_Store
 
+*.js.tmp-*

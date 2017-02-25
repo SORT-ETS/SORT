@@ -5,15 +5,22 @@ var bodyParser = require('body-parser');
 
 var ReverseProxy = require('./reverse-proxy');
 
+/**
+* The HTTPServer class uses an Express http server as its main engine.
+* It sets its parameters to handle images analysis requests and delegates
+* them to the ReverseProxy server which serves as an API.
+* 
+* It is also used to serve static content for the user to use the API. 
+*/
 class HTTPServer {
 
-	constructor(port, proxyHost) {
+	constructor(port, proxyHostURI) {
 		// Using agregation with express instance, because inheritence was limited
 		// Class functions were somehow not accessible
 		this.app = express();
 
 		this.port = port;
-		this.proxyHost = proxyHost;
+		this.proxyHostURI = proxyHostURI;
 	}
 
 	startServer() {
@@ -21,8 +28,6 @@ class HTTPServer {
 		this.app.listen(this.port, () => {
 			console.log('Web-client HTTP server listening on port ' + this.port);
 		});
-
-		console.log('START')
 
 		this._handleImagesResquests();
 		this._deliverStaticFiles();
@@ -43,7 +48,7 @@ class HTTPServer {
 
 	_setReverseProxy() {
 		// Instantiate wrapper as private reference
-		this._reverseProxy = new ReverseProxy(this.proxyHost);
+		this._reverseProxy = new ReverseProxy(this.proxyHostURI);
 
 		// Delegates every HTTP /api request to the proxy
 		this.app.use('/api', this._reverseProxy);
