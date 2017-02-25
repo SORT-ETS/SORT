@@ -41,3 +41,11 @@
     color: #fff;
     padding: 20px;
 }
+
+#results #results-template {
+	display: none;
+}
+
+#results #results-container ul {
+	list-style:none;
+}

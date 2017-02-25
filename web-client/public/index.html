@@ -33,6 +33,27 @@
 
 		<div class="row" id="results">
 			<h2>Résultats</h2>	
+
+			<div id="results-template">
+				<ul>
+				{{#each residues}}
+					<li>
+						<h4>Name : {{ name }}</h4>
+						<ul>
+						    <li><h5>Category : {{ category }}</h5></li>
+						    <ul>
+						    	{{#each notes}}
+						        	<li><h6>{{ this }}</h6></li>
+						    	{{/each}}
+						    </ul>
+						</ul>
+					</li>
+				{{/each}}
+				</ul>
+			</div>
+
+			<div id="results-container"></div>
+
 			<button id="backButton">Retour à l'accueil</button>		
 		</div>
 	</div>

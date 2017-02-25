@@ -1,3 +1,5 @@
+'use-scrict';
+
 import View from './view';
 
 /**
@@ -35,6 +37,10 @@ export default class ImageView extends View {
 
 		// By default base64, no conversion needed
 		this.base64Data = this.domElement.toDataURL('image/png');
+	}
+
+	setOverlay(borders) {
+		console.log('Display borders', borders);
 	}
 
 	getData() {

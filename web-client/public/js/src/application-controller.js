@@ -1,9 +1,12 @@
+'use-scrict';
+
 import VideoController from './video-controller';
 import ImageController from './image-controller';
 import LoaderController from './loader-controller';
 import ResultsController from './results-controller';
 
 import AnalysisRequest from './analysis-request';
+import Analysis from './analysis';
 
 /**
 * Application controller class
@@ -60,8 +63,8 @@ export default class ApplicationController {
 				//Ready callback
 				this.loaderController.stopLoading();
 
-				// var analysis = new Analysis(results);
-				var analysis = {
+				// REPLACE WITH RESULTS ONCE IMPLEMENTED ON API SIDE
+				var analysisObj = {
 					residues: [ 
 					{
 						borders : [],
@@ -94,7 +97,11 @@ export default class ApplicationController {
 					]
 				}
 
-				// this.imageController.drawBoxes();
+				var analysis = new Analysis(analysisObj);
+
+				// On result the image must be updated with analysed borders
+				this.imageController.setImageOverlay(analysis.getBorders());
+				// On result the restults section must show analysis details
 				this.resultsController.showResults(analysis);
 			});
 

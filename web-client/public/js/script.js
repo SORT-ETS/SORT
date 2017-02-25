@@ -1,43 +1,4 @@
-// // Inspired by :
-// // https://developer.mozilla.org/fr/docs/WebRTC/Prendre_des_photos_avec_la_webcam
-// function main() {
-
-// 	var streaming = false;
-// 	var video = document.querySelector('#video');
-// 	var canvas = document.querySelector('#canvas');
-// 	var pictureButton = document.querySelector('#pictureButton');
-// 	var width = 320;
-// 	var height = 0;
-
-
-// 	video.addEventListener('canplay', function(ev){
-// 		if (!streaming) {
-// 			height = video.videoHeight / (video.videoWidth/width);
-
-// 			video.setAttribute('width', width);
-// 			video.setAttribute('height', height);
-
-// 			canvas.setAttribute('width', width);
-// 			canvas.setAttribute('height', height);
-
-// 			streaming = true;
-// 		}
-// 	}, false);
-
-// 	function takePicture(callback) {
-// 		// Draws video frame into cavas
-// 		canvas.width = width;
-// 		canvas.height = height;
-// 		canvas.getContext('2d').drawImage(video, 0, 0, width, height);
-
-// 		// By default base64, no conversion needed
-// 		var data = canvas.toDataURL('image/png');
-
-// 		// After drawing image, send canvas pixel to callback
-// 		callback(data)
-// 	}
-
-// }
+'use-scrict';
 
 import ApplicationController from './src/application-controller';
 
