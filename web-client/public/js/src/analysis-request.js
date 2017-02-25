@@ -4,11 +4,11 @@
 * HTTP Post request wrapper. It sends the provided data as in the requests body
 */
 export default class AnalysisRequest {
-	
+
 	constructor(loadingCallback, readyCallback) {
 		// Wrapping XMLHttpRequest, because cannot be extended...
 		this._this = new XMLHttpRequest();
-		
+
 		this.loadingCallback = loadingCallback;
 		this.readyCallback = readyCallback;
 
@@ -31,7 +31,7 @@ export default class AnalysisRequest {
 			if(this._this.readyState == 4) {
 				// Rest done, ready
 				// if (this.readyState == 4 && this.status == 200) {
-				this.readyCallback();
+				this.readyCallback(JSON.parse(this._this.responseText));
 
 			}
 		};
