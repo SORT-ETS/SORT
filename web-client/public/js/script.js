@@ -1,18 +1,3 @@
-// function sendImage(data) {
-// 	// HTTP Post request wrapper. It sends the provided data as in the requests body
-// 	var xhttp = new XMLHttpRequest();
-
-// 	xhttp.onreadystatechange = function() {
-// 		if (this.readyState == 4 && this.status == 200) {
-// 			document.getElementById('processed').setAttribute('src', "data:image/png;base64,"+xhttp.responseText);
-// 		}
-// 	};
-
-// 	xhttp.open("POST", "/api/image", true);
-// 	xhttp.setRequestHeader("Content-type", "application/json");
-// 	xhttp.send('{ "image": "'+ data +'" }');
-// }
-
 // // Inspired by :
 // // https://developer.mozilla.org/fr/docs/WebRTC/Prendre_des_photos_avec_la_webcam
 // function main() {

@@ -16,6 +16,10 @@ export default class ImageController {
 		this.imageView.setImage(video);
 	}
 
+	hideImage() {
+		this.imageView.hide();
+	}
+
 	getImageData() {
 		return this.imageView.getData();
 	}
