@@ -4,18 +4,61 @@
 <head>
 	<meta charset="utf-8">
 
-	<title>SORT Client Web</title>
+	<title>SORT</title>
+	<link rel="stylesheet" type="text/css" href="/css/styles.css">
 </head>
 
 <body>
-	<h1>SORT Client Web</h1>
+	<div class="container">
+		<div class="row title-sect">
+			<div class="twelve columns">
+				<h1>SORT</h1>
+			</div>	
+		</div>
 
-	<video id="video"></video>
-	<button id="pictureButton">Prendre une photo</button>
-	<canvas id="canvas"></canvas>
-	<img id="processed"></img>
+		<div class="row video-sect">
+			<video id="video"></video>
+			<button id="pictureButton">Analyser</button>
+		</div>
 
-	<script src="/js/script.js"></script>
+		<div class="row image-sect">
+			<canvas id="image-canvas"></canvas>
+	
+			<img src="" id="processed-image" alt="">		
+		</div>
+
+		<div class="row" id="loader">
+			<h2>Analyse en cours</h2>			
+		</div>
+
+		<div class="row" id="results">
+			<h2>Résultats</h2>	
+
+			<div id="results-template">
+				<ul>
+				{{#each residues}}
+					<li>
+						<h4>Name : {{ name }}</h4>
+						<ul>
+						    <li><h5>Category : {{ category }}</h5></li>
+						    <ul>
+						    	{{#each notes}}
+						        	<li><h6>{{ this }}</h6></li>
+						    	{{/each}}
+						    </ul>
+						</ul>
+					</li>
+				{{/each}}
+				</ul>
+			</div>
+
+			<div id="results-container"></div>
+
+			<button id="backButton">Retour à l'accueil</button>		
+		</div>
+	</div>
+
+	<script src="/js/app.js"></script>
 </body>
 </html>
 

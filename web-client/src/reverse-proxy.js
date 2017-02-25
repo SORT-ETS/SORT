@@ -6,7 +6,6 @@ var proxy = require('express-http-proxy');
 class ReverseProxy extends proxy {
 	constructor(host) {
 		// Sets host in the extended module class
-		console.log(host)
 		super(host);
 	}
 }

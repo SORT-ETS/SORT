@@ -8,4 +8,4 @@ COPY . /usr/src/web-client
 RUN npm install
 
 EXPOSE 6088
-CMD [ "npm", "start" ]
+CMD npm run build-client && npm start
