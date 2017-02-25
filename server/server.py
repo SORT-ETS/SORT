@@ -2,9 +2,8 @@ import os
 import base64
 import random
 import string
-import sys
 from tools.stub import Stub
-from flask import Flask, request
+from flask import Flask, request, jsonify
 from PIL import Image
 
 import subprocess
@@ -21,6 +20,31 @@ app.config['DARKNET_DIR'] = DARKNET_DIR
 app.config['USE_STUB'] = False
 
 preId = 0
+possibleResidues = {
+    'container_metro': {
+        'displayName': 'Contenant Metro',
+        'categorie': 'recyclable',
+        'notes': [
+            "Veuillez verifier de vider le contenu de celui-ci dans les \
+            poubelles appropriees."]
+    },
+    'can_monster': {
+        'displayName': 'Canette',
+        'categorie': 'metal',
+    },
+    'can_pepsi': {
+        'displayName': 'Canette',
+        'categorie': 'metal',
+    },
+    'compost': {
+        'displayName': 'Restants de table',
+        'categorie': 'Composte'
+    },
+    'dishes': {
+        'displayName': 'Assiettes',
+        'categorie': 'aucune'
+    }
+}
 
 
 def id_generator():
@@ -69,6 +93,7 @@ def handle_invalid_usage(error):
     response = jsonify(error.to_dict())
     response.status_code = error.status_code
     return response
+
 
 @app.route('/image', methods=['POST'])
 def analyse_image():
@@ -135,17 +160,22 @@ def analyse_image():
     # Call Image processing engine
     boxes = callIPEngine(fileLocation, resultLocation, width, height)
 
-    # TODO Call pillow to draw boxes
+    response = {
+        'residues': []
+    }
+
     for b in boxes:
-        sys.stderr.write('    '.join(b) + '\n')
+        key = b[0]
+        # If the key is not present we pick a random item...
+        if key not in possibleResidues:
+            key = random.sample(possibleResidues, 1)[0]
 
-    # Encode result
-    i = open(resultLocation, 'rb')
-    encoded_string = base64.b64encode(i.read())
-    i.close()
+        residue = possibleResidues[key]
+        residue['name'] = b[0]
+        residue['boundaries'] = b[1:5]
+        response['residues'].append(residue)
 
-    # TODO return found objects and image
-    return encoded_string
+    return jsonify(response)
 
 
 @app.route('/version')
