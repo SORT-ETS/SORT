@@ -1,7 +1,11 @@
+'use-scrict';
+
 import ImageView from './image-view';
 
 /**
 * Image controller class
+* Must display or hide results image canvas. Allows drawing ovelay according to
+* analysis data.
 */
 export default class ImageController {
 	constructor() {
@@ -14,6 +18,10 @@ export default class ImageController {
 	setImage(video) {
 		this.imageView.display();
 		this.imageView.setImage(video);
+	}
+
+	setImageOverlay(borders) {
+		this.imageView.setOverlay(borders);
 	}
 
 	hideImage() {

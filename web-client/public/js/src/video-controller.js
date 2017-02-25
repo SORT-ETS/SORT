@@ -1,3 +1,5 @@
+'use-scrict';
+
 import VideoView from './video-view';
 
 /**

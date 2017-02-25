@@ -1,7 +1,10 @@
+'use-scrict';
+
 import ResultsView from './results-view';
 
 /**
-* Loader controller class
+* Results controller class
+* Must display or hide results section and delegate data.
 */
 export default class ResultsController {
 	constructor() {

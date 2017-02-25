@@ -1,3 +1,5 @@
+'use-scrict';
+
 /**
 * Abstract class, meant to expose rules and common behaviour for concrete
 * implementations.
