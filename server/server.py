@@ -23,26 +23,26 @@ preId = 0
 possibleResidues = {
     'container_metro': {
         'displayName': 'Contenant Metro',
-        'categorie': 'recyclable',
+        'category': 'recyclable',
         'notes': [
             "Veuillez verifier de vider le contenu de celui-ci dans les \
             poubelles appropriees."]
     },
     'can_monster': {
         'displayName': 'Canette',
-        'categorie': 'metal',
+        'category': 'metal',
     },
     'can_pepsi': {
         'displayName': 'Canette',
-        'categorie': 'metal',
+        'category': 'metal',
     },
     'compost': {
         'displayName': 'Restants de table',
-        'categorie': 'Composte'
+        'category': 'Composte'
     },
     'dishes': {
         'displayName': 'Assiettes',
-        'categorie': 'aucune'
+        'category': 'aucune'
     }
 }
 

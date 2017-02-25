@@ -24,7 +24,7 @@ export default class ImageView extends View {
 	}
 
 	setImage(videoElement) {
-		// Could get videoWith or height, but as they are never set we 
+		// Could get videoWith or height, but as they are never set we
 		// rely on the dom's element dimensions
 		var width = videoElement.offsetWidth;
 		var height = videoElement.offsetHeight;
@@ -32,19 +32,19 @@ export default class ImageView extends View {
 
 		this.domElement.width = width;
 		this.domElement.height = height;
-		this.domElement.getContext('2d').drawImage(videoElement, 0, 0, 
+		this.domElement.getContext('2d').drawImage(videoElement, 0, 0,
 			width, height);
 
 		// By default base64, no conversion needed
 		this.base64Data = this.domElement.toDataURL('image/png');
 	}
 
-	setOverlay(borders) {
-		console.log('Display borders', borders);
+	setOverlay(boundaries) {
+		console.log('Display boundaries', boundaries);
 	}
 
 	getData() {
 		return this.base64Data;
 	}
-	
+
 }
