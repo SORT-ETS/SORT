@@ -86,6 +86,8 @@ def analyse_image():
     """
     sys.stderr.write('Receive post on /image\n')
     imageData = request.get_json()['image']
+    if imageData.startswith('data:image/png;base64,'):
+        imageData = imageData.split(',')[1]
 
     # Generate an id
     imageId = id_generator() + '.png'
