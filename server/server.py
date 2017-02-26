@@ -2,9 +2,8 @@ import os
 import base64
 import random
 import string
-import sys
 from tools.stub import Stub
-from flask import Flask, request
+from flask import Flask, request, jsonify
 from PIL import Image
 
 import subprocess
@@ -21,6 +20,31 @@ app.config['DARKNET_DIR'] = DARKNET_DIR
 app.config['USE_STUB'] = False
 
 preId = 0
+possibleResidues = {
+    'container_metro': {
+        'displayName': 'Contenant Metro',
+        'category': 'recyclable',
+        'notes': [
+            "Veuillez verifier de vider le contenu de celui-ci dans les \
+            poubelles appropriees."]
+    },
+    'can_monster': {
+        'displayName': 'Canette',
+        'category': 'metal',
+    },
+    'can_pepsi': {
+        'displayName': 'Canette',
+        'category': 'metal',
+    },
+    'compost': {
+        'displayName': 'Restants de table',
+        'category': 'Composte'
+    },
+    'dishes': {
+        'displayName': 'Assiettes',
+        'category': 'aucune'
+    }
+}
 
 
 def id_generator():
@@ -48,6 +72,29 @@ def callIPEngine(fileLocation, resultLocation, imageWidth, imageHeight):
     return boxes
 
 
+class InvalidUsage(Exception):
+    status_code = 400
+
+    def __init__(self, message, status_code=None, payload=None):
+        Exception.__init__(self)
+        self.message = message
+        if status_code is not None:
+            self.status_code = status_code
+        self.payload = payload
+
+    def to_dict(self):
+        rv = dict(self.payload or ())
+        rv['message'] = self.message
+        return rv
+
+
+@app.errorhandler(InvalidUsage)
+def handle_invalid_usage(error):
+    response = jsonify(error.to_dict())
+    response.status_code = error.status_code
+    return response
+
+
 @app.route('/image', methods=['POST'])
 def analyse_image():
     """
@@ -55,10 +102,7 @@ def analyse_image():
     @apiName  AnalyseImage
     @apiGroup Communication
 
-    @apiParam {Object} Image Image data encoded in base64.
-
-    @apiSuccess (Main Fields)           {Object}   image
-            Analyzed image data encoded in base64 modified with colorised area.
+    @apiParam {String} Image Image data encoded in base64.
 
     @apiSuccess (Main Fields)           {Object[]} residues
             List of the residues that were found in the image.
@@ -66,25 +110,37 @@ def analyse_image():
     @apiSuccess (Residue Object Fields) {String}   name
             The name of the item.
 
+    @apiSuccess (Residue Object Fields) {String}   displayName
+            The display name of the item.
+
     @apiSuccess (Residue Object Fields) {String}   category
             Represent the different classification the trash can be.
+
+    @apiSuccess (Residue Object Fields) {Number[]} boundaries
+            The boundaries of the residue.
 
     @apiSuccess (Residue Object Fields) {String[]} notes
             Notes or facts concerning the item.
 
     @apiParamExample {json} Answer-Exemple
     {
-        image : object,
         residues : [
             {
                 name: "container_metro",
+                displayName: "Contenant Metro",
                 categories : "recyclable",
-                notes: "May contain something inside, handle carefully"
+                boundaries : [ 20, 40, 13, 60 ],
+                notes: [
+                  "Veuillez verifier de vider le contenu de celui-ci dans les
+                   poubelles appropriees."
+                ]
             }
         ]
     }
     """
-    sys.stderr.write('Receive post on /image\n')
+    if request.get_json() is None or 'image' not in request.get_json():
+        raise InvalidUsage('Please specify the image parameter', 400)
+
     imageData = request.get_json()['image']
     if imageData.startswith('data:image/png;base64,'):
         imageData = imageData.split(',')[1]
@@ -104,17 +160,22 @@ def analyse_image():
     # Call Image processing engine
     boxes = callIPEngine(fileLocation, resultLocation, width, height)
 
-    # TODO Call pillow to draw boxes
+    response = {
+        'residues': []
+    }
+
     for b in boxes:
-        sys.stderr.write('    '.join(b) + '\n')
+        key = b[0]
+        # If the key is not present we pick a random item...
+        if key not in possibleResidues:
+            key = random.sample(possibleResidues, 1)[0]
 
-    # Encode result
-    i = open(resultLocation, 'rb')
-    encoded_string = base64.b64encode(i.read())
-    i.close()
+        residue = possibleResidues[key]
+        residue['name'] = b[0]
+        residue['boundaries'] = b[1:5]
+        response['residues'].append(residue)
 
-    # TODO return found objects and image
-    return encoded_string
+    return jsonify(response)
 
 
 @app.route('/version')
