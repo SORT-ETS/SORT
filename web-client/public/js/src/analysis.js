@@ -1,7 +1,7 @@
 'use-scrict';
 
 /**
-* Analysis class wraps a standard JS object and exposes methods to access 
+* Analysis class wraps a standard JS object and exposes methods to access
 * specific parameters
 */
 export default class Analysis {
@@ -11,21 +11,21 @@ export default class Analysis {
 	}
 
 	// Analysis abstraction meant to be used by images, does not expose all params
-	getBorders() {
+	getBoundaries() {
 		return this.residues.map(function(residue) {
 			return {
-				'borders': residue.borders, 
-				'category': residue.category 
+				'boundaries': residue.boundaries,
+				'category': residue.category
 			};
 		});
 	}
 
 	// Analysis data meant to be used by textual results section
-	getResults() {
+	getTextualResults() {
 		return this.residues.map(function(residue) {
 			return {
-				'name': residue.name, 
-				'category': residue.category, 
+				'name': residue.displayName,
+				'category': residue.category,
 				'notes': residue.notes
 			};
 		});

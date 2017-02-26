@@ -35,7 +35,7 @@ export default class ApplicationController {
 			// analysys
 			if(this.videoController.isStreaming) {
 				this._analyseImage();
-			}		
+			}
 		}, false);
 
 		this.backButton.addEventListener('click', (event) => {
@@ -58,50 +58,16 @@ export default class ApplicationController {
 			() => {
 				// Loading callback
 				this.loaderController.startLoading();
-			}, 
+			},
 			(results) => {
-				//Ready callback
+				// Ready callback
 				this.loaderController.stopLoading();
 
-				// REPLACE WITH RESULTS ONCE IMPLEMENTED ON API SIDE
-				var analysisObj = {
-					residues: [ 
-					{
-						borders : [],
-						name: "Residue 1",
-						category: "1",
-						notes : ["Lorem ipsum Aliquip labore non ea ut laborum laborum anim dolor occaecat.", 
-						"Lorem ipsum Deserunt esse sunt mollit anim."]				
-					},
-					{
-						borders : [],
-						name: "Residue 2",
-						category: "2",
-						notes : ["Lorem ipsum Aliquip labore non ea ut laborum laborum anim dolor occaecat.", 
-						"Lorem ipsum Deserunt esse sunt mollit anim."]				
-					},
-					{
-						borders : [],
-						name: "Residue 3",
-						category: "3",
-						notes : ["Lorem ipsum Aliquip labore non ea ut laborum laborum anim dolor occaecat.", 
-						"Lorem ipsum Deserunt esse sunt mollit anim."]				
-					},
-					{
-						borders : [],
-						name: "Residue 4",
-						category: "4",
-						notes : ["Lorem ipsum Aliquip labore non ea ut laborum laborum anim dolor occaecat.", 
-						"Lorem ipsum Deserunt esse sunt mollit anim."]				
-					}
-					]
-				}
-
-				var analysis = new Analysis(analysisObj);
+				var analysis = new Analysis(results);
 
 				// On result the image must be updated with analysed borders
-				this.imageController.setImageOverlay(analysis.getBorders());
-				// On result the restults section must show analysis details
+				this.imageController.setImageOverlay(analysis.getBoundaries());
+				// On result the results section must show analysis details
 				this.resultsController.showResults(analysis);
 			});
 
