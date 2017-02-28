@@ -40,7 +40,34 @@ export default class ImageView extends View {
 	}
 
 	setOverlay(boundaries) {
-		console.log('Display boundaries', boundaries);
+		
+		var context = this.domElement.getContext('2d');
+		boundaries.forEach(function(item){
+			var x = item.boundaries[0];
+			var width = item.boundaries[1] - x;
+			var y = item.boundaries[2];
+			var height = item.boundaries[3] - y;
+			
+			context.beginPath();
+			context.lineWidth="2";
+			
+			switch(item.category) {
+				case "recyclable":
+				context.strokeStyle="yellow";
+				break;
+				case "metal":
+				context.strokeStyle="blue";
+				break;
+				case "Composte":
+				context.strokeStyle="red";
+				break;
+				default:
+				context.strokeStyle="gray";
+			} 
+			context.rect(x,y,width,height);
+			context.stroke();
+		});
+		
 	}
 
 	getData() {
