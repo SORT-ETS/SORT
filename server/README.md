@@ -17,7 +17,7 @@ Modify `SORT/server/server.py` to use STUB. On line 20:
 ​	1B\. With YOLO (Linux or MacOs only)
 
 Due to Darknet working only on Linux and MacOs running the server on
-Windows will failed.
+Windows will fail.
 
 Clone our _fork_ of Darknet
 
@@ -37,7 +37,7 @@ RESULT_FOLDER = SERVER_FOLDER + '/results'
 DARKNET_DIR = '/usr/src/darknet'
 ```
 
-​	3\. Start server
+​	3\. Start the Python server
 
 ```sh
   cd SORT/server/
@@ -46,7 +46,7 @@ DARKNET_DIR = '/usr/src/darknet'
   virtual venv
   source venv/bin/activate
 
-  # Finally start the server...
+  # Finally, start the server...
   python server.py
 ```
 
@@ -54,25 +54,13 @@ DARKNET_DIR = '/usr/src/darknet'
 
 Refer to `SORT/web-client/README.md` section `How to develop/Locally`
 
-### Using Docker and Docker-compose
+### Using Docker
 
-1. Follow the [instructions to install Docker](https://docs.docker.com/engine/installation/) to install Docker.
+Refer to `SORT/README.md`.
 
-2. Follow the [instruction to install Docker-Compose](https://docs.docker.com/compose/install/).
+## Code format
 
-3. From a terminal:
-
-  ```sh
-    docker-compose build
-    docker-compose up
-  ```
-
-4. Open your favorite browser at [localhost:6088](localhost:6088) and you should see the _web-client_ showing the _server_ version via the reverse proxy.
-
-
-### Code format
-
-Before commiting just be sure to run `make lint` to pass Flake
+Before committing just be sure to run `make lint` to pass Flake
 
 ## Development of Darknet and Yolo
 
