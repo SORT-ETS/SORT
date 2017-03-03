@@ -29,18 +29,20 @@ This project use the [recommended workflow](https://github.com/waffleio/waffle.i
 
 2a\. Optional: To use Nvidia CUDA install [nvidia-docker](https://github.com/NVIDIA/nvidia-docker#quick-start) and [nvidia-docker-compose](https://github.com/eywalker/nvidia-docker-compose)
 
-3.1\. CPU only, from a terminal:
+3\. Option #1 (CPU): from a terminal do the following:
 
   ```sh
     docker-compose build
     docker-compose up
   ```
 
-3.2\. With Nvidia CUDA, from a terminal:
+3\. Option #2 (Nvidia CUDA): from a terminal do the following:
 
   ```sh
-    nvidia-docker-compose -f docker-compose-nvidia.yml build # Build using the default file and docker-compose-nvidia.yml
-    nvidia-docker-compose up # Start containers with GPU devices
+    # Build using the default file and docker-compose-nvidia.yml
+    nvidia-docker-compose -f docker-compose-nvidia.yml build
+    # Start containers with GPU devices
+    nvidia-docker-compose up
   ```
 
 4\. Open your favorite browser at [localhost:6088](localhost:6088) and you should see the _web-client_ showing the _server_ version via the reverse proxy.
