@@ -1,7 +1,10 @@
 version: '2'
 services:
   server:
-    build: ./server
+    build:
+      context: ./server
+      args:
+        CUDA: 'false'
     volumes:
       - ./server/:/usr/src/server/
     ports:
@@ -17,4 +20,3 @@ services:
       - server
     environment:
       PROXY: server:5000
-
