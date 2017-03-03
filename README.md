@@ -23,15 +23,27 @@ This project use the [recommended workflow](https://github.com/waffleio/waffle.i
 
 ## How to develop
 
-1. Follow the [instructions to install Docker](https://docs.docker.com/engine/installation/) to install Docker.
-2. Follow the [instruction to install Docker-Compose](https://docs.docker.com/compose/install/).
-3. From a terminal:
+1\. Follow the [instructions to install Docker](https://docs.docker.com/engine/installation/) to install Docker.
+
+2\. Follow the [instruction to install Docker-Compose](https://docs.docker.com/compose/install/).
+
+2a\. Optional: To use Nvidia CUDA install [nvidia-docker](https://github.com/NVIDIA/nvidia-docker#quick-start) and [nvidia-docker-compose](https://github.com/eywalker/nvidia-docker-compose)
+
+3.1\. CPU only, from a terminal:
 
   ```sh
     docker-compose build
     docker-compose up
   ```
-4. Open your favorite browser at [localhost:6088](localhost:6088) and you should see the _web-client_ showing the _server_ version via the reverse proxy.
+
+3.2\. With Nvidia CUDA, from a terminal:
+
+  ```sh
+    nvidia-docker-compose -f docker-compose-nvidia.yml build # Build using the default file and docker-compose-nvidia.yml
+    nvidia-docker-compose up # Start containers with GPU devices
+  ```
+
+4\. Open your favorite browser at [localhost:6088](localhost:6088) and you should see the _web-client_ showing the _server_ version via the reverse proxy.
 
 ### Web-client
 
