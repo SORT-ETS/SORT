@@ -3,3 +3,5 @@ iot/*.png
 *.DS_Store
 
 *.js.tmp-*
+
+nvidia-docker-compose.yml
