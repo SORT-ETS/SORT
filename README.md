@@ -4,12 +4,12 @@ Sustainability through Object Recognition and Training
 This project aims to educate members of a community on how to sort residual waste items.
 
 ## Important links
-[Scrum board](https://waffle.io/SORT-ETS/SORT) - Tasks list created from GitHub issues.
+[Scrum board](https://waffle.io/SORT-ETS/SORT) - Task list created from GitHub issues.
 
 ## Development workflow
-This project use the [recommended workflow](https://github.com/waffleio/waffle.io/wiki/Recommended-Workflow-Using-Pull-Requests-&-Automatic-Work-Tracking) with [Waffle.io](https://waffle.io/SORT-ETS/SORT).
+This project uses the [recommended workflow](https://github.com/waffleio/waffle.io/wiki/Recommended-Workflow-Using-Pull-Requests-&-Automatic-Work-Tracking) with [Waffle.io](https://waffle.io/SORT-ETS/SORT).
 
-1. Choose an Issues from the Ready columns.
+1. Choose an Issue from the Ready columns.
 2. Create a new local branch with the issue number and push it.
 
   ```
@@ -47,20 +47,21 @@ This project use the [recommended workflow](https://github.com/waffleio/waffle.i
 
 4\. Open your favorite browser at [localhost:6088](localhost:6088) and you should see the _web-client_ showing the _server_ version via the reverse proxy.
 
-### Web-client
+5\. For the _web-client_ you can also start a NPM task that compile on file changes.
 
-To develop the web-client on your local machine:
+```shell
+  # In a new terminal!
+  cd web-client/
 
-  ```sh
-    cd web-client
-    npm install
-    docker-compose -f docker-compose.yml -f docker-compose.dev.yml up
-  ```
+  npm run watch-client  # Watch JavaScript files for changes and recompile.
+```
 
-You can also use the normal instructions just be sure to run step 3 when you're installing new NPM packages.
+### Locally
+
+Refer to `SORT/server/README.md` and `SORT/web-client/README.md`.
 
 ## Version
 0.0.2
 
-## Licence
+## License
 AGPL-3.0
