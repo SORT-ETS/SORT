@@ -1,4 +1,6 @@
-FROM ubuntu:latest
+FROM nvidia/cuda
+
+ARG CUDA
 
 # Update operating system and install packages
 RUN apt-get update && apt-get install -y \
@@ -15,9 +17,11 @@ WORKDIR /usr/src/
 RUN git clone https://github.com/SORT-ETS/darknet.git
 WORKDIR /usr/src/darknet
 RUN git checkout origin/custom-output
+
+# Enable GPU
+RUN if [ ${CUDA} = "true" ]; then sed -i.old 's/GPU=0/GPU=1/' Makefile; fi;
 RUN make
 RUN wget http://pjreddie.com/media/files/yolo.weights
-
 
 ## Install Python server
 
