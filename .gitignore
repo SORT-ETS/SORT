@@ -1,6 +1,7 @@
-images/
 iot/*.png
 *.pyc
 *.DS_Store
 
 *.js.tmp-*
+
+nvidia-docker-compose.yml
