@@ -17,20 +17,21 @@ app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['RESULT_FOLDER'] = RESULT_FOLDER
 app.config['DARKNET_DIR'] = DARKNET_DIR
-app.config['USE_STUB'] = False
+app.config['USE_STUB'] = True
 
 preId = 0
 possibleResidues = {
     'container_metro': {
         'displayName': 'Contenant Metro',
         'category': 'recyclable',
-        'notes': [
+        'warning': [
             "Veuillez verifier de vider le contenu de celui-ci dans les \
             poubelles appropriees."]
     },
     'can_monster': {
         'displayName': 'Canette',
         'category': 'metal',
+        'notes': ["Saviez vous que l'aluminium est recyclable a 99"]
     },
     'can_pepsi': {
         'displayName': 'Canette',
@@ -38,11 +39,13 @@ possibleResidues = {
     },
     'compost': {
         'displayName': 'Restants de table',
-        'category': 'Composte'
+        'category': 'composte'
     },
     'dishes': {
         'displayName': 'Assiettes',
-        'category': 'aucune'
+        'category': 'aucune',
+        'warning': "Seulement les fruits et les legumes sont compostables!",
+        'notes': ["Je jette du composte par les yeux", "Second note"]
     }
 }
 
@@ -122,6 +125,9 @@ def analyse_image():
     @apiSuccess (Residue Object Fields) {String[]} notes
             Notes or facts concerning the item.
 
+    @apiSuccess (Residue Object Fields) {String[]} warning
+            Warning concerning the item.
+
     @apiParamExample {json} Answer-Exemple
     {
         residues : [
@@ -130,7 +136,7 @@ def analyse_image():
                 displayName: "Contenant Metro",
                 categories : "recyclable",
                 boundaries : [ 20, 40, 13, 60 ],
-                notes: [
+                warning: [
                   "Veuillez verifier de vider le contenu de celui-ci dans les
                    poubelles appropriees."
                 ]
