@@ -17,7 +17,7 @@ app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['RESULT_FOLDER'] = RESULT_FOLDER
 app.config['DARKNET_DIR'] = DARKNET_DIR
-app.config['USE_STUB'] = True
+app.config['USE_STUB'] = False
 
 preId = 0
 possibleResidues = {
