@@ -31,7 +31,7 @@ possibleResidues = {
     'can_monster': {
         'displayName': 'Canette',
         'category': 'metal',
-		'notes': ["Saviez vous que l'aluminium est recyclable a 99"]
+        'notes': ["Saviez vous que l'aluminium est recyclable a 99"]
     },
     'can_pepsi': {
         'displayName': 'Canette',
@@ -44,8 +44,8 @@ possibleResidues = {
     'dishes': {
         'displayName': 'Assiettes',
         'category': 'aucune',
-		'warning': "Seulement les fruits et les legumes sont compostables!",
-		'notes': ["Je jette du composte par les yeux", "Second note"]
+        'warning': "Seulement les fruits et les legumes sont compostables!",
+        'notes': ["Je jette du composte par les yeux", "Second note"]
     }
 }
 
@@ -124,7 +124,7 @@ def analyse_image():
 
     @apiSuccess (Residue Object Fields) {String[]} notes
             Notes or facts concerning the item.
-			
+
     @apiSuccess (Residue Object Fields) {String[]} warning
             Warning concerning the item.
 
