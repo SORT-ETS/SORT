@@ -77,7 +77,7 @@ export default class ImageView extends View {
 			context.font="20px helvetica";
 			context.fillStyle = "#fff";
 			context.textAlign="center"; 
-			var capitalizeCat = item.category.charAt(0).toUpperCase() + string.slice(1);
+			var capitalizeCat = item.category.charAt(0).toUpperCase() + item.category.slice(1);
 			context.fillText(capitalizeCat, x+width /2, y - textBoxHeight/2);
 			
 			context.rect(x,y,width,height);
