@@ -26,6 +26,7 @@ export default class Analysis {
 			return {
 				'name': residue.displayName,
 				'category': residue.category,
+				'warning': residue.warning,
 				'notes': residue.notes
 			};
 		});
