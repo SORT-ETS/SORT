@@ -58,7 +58,7 @@ export default class ImageView extends View {
 				case "metal":
 				context.strokeStyle="blue";
 				break;
-				case "Composte":
+				case "composte":
 				context.strokeStyle="red";
 				break;
 				default:
