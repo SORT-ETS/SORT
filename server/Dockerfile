@@ -21,7 +21,9 @@ RUN git checkout origin/custom-output
 # Enable GPU
 RUN if [ ${CUDA} = "true" ]; then sed -i.old 's/GPU=0/GPU=1/' Makefile; fi;
 RUN make
-RUN wget http://pjreddie.com/media/files/yolo.weights
+RUN wget http://www.ntfournier.com/static/yolo-sort_5000.weights
+RUN wget http://www.ntfournier.com/static/yolo-sort.cfg
+RUN wget http://www.ntfournier.com/static/voc-sort.data
 
 ## Install Python server
 
