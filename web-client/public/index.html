@@ -17,7 +17,7 @@
 		</div>
 	</div>
 
-	<div class="video-sect u-full-width">
+	<div id="video-sect" class="video-sect u-full-width">
 		<video id="video"></video>
 		<div id="pictureButton" class="outer-button">
 			<div class="inner-button"></div>
@@ -30,33 +30,26 @@
 	</div>
 
 
-	<div class="container screen-home">
-
+	<div id="home" class="container screen-home">
 		<div class="row instruction-card">
 			<p>Appuyez sur le <span class="btn-txt-green">bouton</span> pour analyser vos déchets</p>
 		</div>
 	</div>
+
 	<div class="row screen-loading"></div>
 	<div class="row screen-analysed"></div>
 	<div class="row screen-more"></div>
 
 
 
-
-
-
-
-
 	<div class="container app">
 
-
-		<div class="row instructions">
-
-		</div>
-
-
 		<div class="row" id="loader">
-			<h2>Analyse en cours</h2>
+			<div class="spinner">
+				<div class="bounce1"></div>
+				<div class="bounce2"></div>
+				<div class="bounce3"></div>
+			</div>
 		</div>
 
 		<div class="row" id="results">
@@ -89,6 +82,7 @@
 		</div>
 	</div>
 
+	<a class="icon-credits" href="https://icons8.com">Icon pack by Icons8</a>
 	<script src="/js/app.js"></script>
 </body>
 </html>
