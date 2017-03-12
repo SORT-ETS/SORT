@@ -45,7 +45,7 @@ export default class ApplicationController {
 				this.imageController.hideImage();
 				this.resultsController.hideResults();
 				this.videoController.initStream();
-			}	
+			}
 		}, false);
 	}
 

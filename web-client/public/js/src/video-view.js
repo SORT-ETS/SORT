@@ -25,9 +25,9 @@ export default class VideoView extends View {
 	}
 
 	stop() {
-		this.domElement.pause();		
+		this.domElement.pause();
 	}
-	
+
 	getDomElement() {
 		return this.domElement;
 	}
@@ -41,8 +41,8 @@ export default class VideoView extends View {
 		} else {
 			// Webkit and opera need to wrap it in a URL
 			var vendorURL = window.URL || window.webkitURL;
-			this.domElement.src = vendorURL.createObjectURL(streamObj); 
+			this.domElement.src = vendorURL.createObjectURL(streamObj);
 		}
 	}
-	
+
 }
