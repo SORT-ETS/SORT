@@ -6,58 +6,86 @@
 
 	<title>SORT</title>
 	<link rel="stylesheet" type="text/css" href="/css/styles.css">
+
+	<link rel="icon" type="image/png" href="/images/favicon.png" />
 </head>
 
 <body>
-	<div class="container">
-		<div class="row title-sect">
-			<div class="twelve columns">
-				<h1>SORT</h1>
-			</div>	
+	<div class="container logo-sect">
+		<div class="row">
+			<img src="/images/logo.png" alt="SORT">
+		</div>
+	</div>
+
+	<div class="video-sect u-full-width">
+		<video id="video"></video>
+		<div id="pictureButton" class="outer-button">
+			<div class="inner-button"></div>
+		</div>
+	</div>
+
+	<div class="image-sect u-full-width">
+		<canvas id="image-canvas"></canvas>
+		<img src="" id="processed-image" alt="">
+	</div>
+
+
+	<div class="container screen-home">
+
+		<div class="row instruction-card">
+			<p>Appuyez sur le <span class="btn-txt-green">bouton</span> pour analyser vos déchets</p>
+		</div>
+	</div>
+	<div class="row screen-loading"></div>
+	<div class="row screen-analysed"></div>
+	<div class="row screen-more"></div>
+
+
+
+
+
+
+
+
+	<div class="container app">
+
+
+		<div class="row instructions">
+
 		</div>
 
-		<div class="row video-sect">
-			<video id="video"></video>
-			<button id="pictureButton">Analyser</button>
-		</div>
-
-		<div class="row image-sect">
-			<canvas id="image-canvas"></canvas>
-	
-			<img src="" id="processed-image" alt="">		
-		</div>
 
 		<div class="row" id="loader">
-			<h2>Analyse en cours</h2>			
+			<h2>Analyse en cours</h2>
 		</div>
 
 		<div class="row" id="results">
-			<h2>Résultats</h2>	
+			<h2>Résultats</h2>
 
 			<div id="results-template">
 				<ul>
-				{{#each residues}}
+					{{#each residues}}
 					<li>
 						<h4>Name : {{ name }}</h4>
 						<ul>
-						    <li><h5>Category : {{ category }}</h5></li>
+							<li><h5>Category : {{ category }}</h5></li>
 							<li>
 								{{warning}}
 							</li>
-						    <ul>
-						    	{{#each notes}}
-						        	<li><h6>{{ this }}</h6></li>
-						    	{{/each}}
-						    </ul>
+							<ul>
+								{{#each notes}}
+								<li><h6>{{ this }}</h6></li>
+								{{/each}}
+							</ul>
 						</ul>
 					</li>
-				{{/each}}
+					{{/each}}
 				</ul>
 			</div>
 
 			<div id="results-container"></div>
 
-			<button id="backButton">Retour à l'accueil</button>		
+			<button id="backButton">Retour à l'accueil</button>
 		</div>
 	</div>
 
