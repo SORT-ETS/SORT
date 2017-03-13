@@ -46,6 +46,10 @@ body {
 
 	width: 100%;
 	margin: 0 auto;
+
+	// -webkit-transform: scale(1, -1);
+	//     -ms-transform: scale(1, -1);
+	//         transform: scale(1, -1);
 }
 
 /*
@@ -57,10 +61,11 @@ body {
 
 	width: 10vh;
 	height: 10vh;
+	margin-top: -75%;
 	margin-left: 50%;
 
 	cursor: pointer;
-	transform: translate(-50%, -50%);
+	transform: translate(-50%, 0%);
 
 	border: 1px solid rgba(1,1,1,0.3);
 	border-radius: 10vh;
@@ -88,7 +93,6 @@ body {
 
 	z-index: -1;
 
-	margin-top: 1em;
 	margin-bottom: 1em;
 	padding: 1em;
 
@@ -98,9 +102,14 @@ body {
 	box-shadow: 0 1px 10px #000;
 }
 
+
 /*
 * HOME SCREEN SECTION
 */
+
+.screen-home .card {
+	margin-top: -9em;
+}
 .screen-home .card p {
 	margin-top: 10%;
 }
@@ -113,7 +122,7 @@ body {
 * LOADING SCREEN SECTION
 */
 .screen-loading {
-	margin-top: -190px;
+	margin-top: -75%;
 	margin-bottom: 20px;
 
 	text-align: center;
