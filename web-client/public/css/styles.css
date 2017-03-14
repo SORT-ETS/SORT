@@ -135,7 +135,59 @@ body {
 	height: 25px;
 }
 
+/*
+* ANALYSED SCREEN SECTION
+*/
+.screen-analysed {
 
+}
+
+.screen-analysed .img-container {
+	width: 4em;
+	height: 4em;
+	border-radius: 4em;
+	margin: 0 auto;
+}
+
+.img-container img {
+    width: 2.5em;
+    height: 2.5em;
+    transform: translate(-50%, -50%);
+    margin-top: 50%;
+    margin-left: 50%;
+}
+
+.screen-analysed .amount {
+	width: 2em;
+	height: 2em;
+	border-radius: 2em;
+	background: #fff;
+	color: #000;
+	text-align: center;
+	line-height: 2em;
+	margin: 10px auto;
+}
+
+.screen-analysed .trash .img-container {
+	background-color: #000;
+}
+
+.trash .img-container {
+
+}
+
+.screen-analysed .compost .img-container {
+	background-color: #EB5757;
+}
+
+.screen-analysed .paper .img-container {
+	background-color: #2F80ED;
+}
+
+.screen-analysed .metal .img-container {
+	background-color: #F2C94C;
+	transform: scale(-1,1);
+}
 
 #results #results-template {
 	display: none;
