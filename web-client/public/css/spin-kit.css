@@ -1,7 +1,7 @@
 /* Taken from http://tobiasahlin.com/spinkit/ */
 .spinner {
   width: 40%;
-  margin: 10px auto 100px;
+  margin: 10px auto 20px;
 
   text-align: center;
 }
@@ -9,8 +9,8 @@
 .spinner > div {
   display: inline-block;
 
-  width: 36px;
-  height: 36px;
+  width: 2em;
+  height: 2em;
 
   -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
           animation: sk-bouncedelay 1.4s infinite ease-in-out both;
