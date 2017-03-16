@@ -47,7 +47,6 @@ body {
 */
 .card {
 	font: 'Helvetica Neue Light';
-	padding: 1em;
 	text-align: center;
 }
 
@@ -153,17 +152,32 @@ body {
 /*
 * ANALYSED SCREEN SECTION
 */
-.screen-analysed .img-container {
-	width: 4em;
-	height: 4em;
-	margin: 0 auto;
 
-	border-radius: 4em;
+.screen-analysed {
+	background: rgba(196, 196, 196, 0.8);
+	box-shadow: 0 1px 10px #000;
+	position: absolute;
+	margin-left: 50%;
+	bottom: 0;
+
+	transform: translate(-50%, 0%)
+}
+
+.screen-analysed .card {
+	width: 100%;
+}
+
+.screen-analysed .img-container {
+	width: 6em;
+	height: 6em;
+	margin: 1em auto;
+
+	border-radius: 6em;
 }
 
 .img-container img {
-	width: 2.5em;
-	height: 2.5em;
+	width: 4em;
+	height: 4em;
 	margin-top: 50%;
 	margin-left: 50%;
 
@@ -171,37 +185,79 @@ body {
 }
 
 .screen-analysed .amount {
+	font-size: 1em;
 	line-height: 2em;
 
 	width: 2em;
 	height: 2em;
-	margin: 10px auto;
+	margin: 10px auto 20px auto;
 
 	text-align: center;
 
 	color: #000;
 	border-radius: 2em;
 	background: #fff;
+	text-shadow: 1px 1px 2px #ccc;
 }
 
-.screen-analysed .trash .img-container {
+.screen-analysed .three.columns {
+	width: 25%;
+}
+
+.trash, .compost, .paper, .metal {
+	margin: 0;
+}
+
+.screen-analysed .trash {
+	background-color: rgba(0, 0, 0, 0.4);
+}
+
+.trash .img-container {
 	background-color: #000;
 }
 
+.screen-analysed .compost {
+	/* RGBA Color intepreted from hex img-container bg */
+	background-color: rgba(235, 87, 87, 0.4);
+}
 
-
-.screen-analysed .compost .img-container {
+.compost .img-container {
 	background-color: #eb5757;
 }
 
-.screen-analysed .paper .img-container {
+.screen-analysed .paper {
+	background-color: rgba(47, 128, 237, 0.4);
+}
+
+.paper .img-container {
 	background-color: #2f80ed;
 }
 
-.screen-analysed .metal .img-container {
+.screen-analysed .metal {
+	background-color: rgba(242, 201, 76, 0.4);
+}
+
+.metal .img-container {
 	transform: scale(-1,1);
 
 	background-color: #f2c94c;
+}
+
+.screen-analysed .details {
+	padding: 2em;
+
+	text-align: center;
+
+	color: #fff;
+	background-color: rgba(39, 174, 96, 0.95);
+}
+
+.details #moreDetailsButton {
+	font-size: 3em;
+
+	margin-bottom: 0;
+
+	text-shadow: 1px 1px 2px #000;
 }
 
 #results #results-template {
