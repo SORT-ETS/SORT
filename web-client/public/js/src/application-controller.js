@@ -38,6 +38,17 @@ export default class ApplicationController {
 			}
 		}, false);
 
+		document.addEventListener('keypress', (event) => {
+			if (event.keyCode == 13) {
+				event.preventDefault();
+				// This button is only present when streaming and user to trigger
+				// analysys
+				if(this.videoController.isStreaming) {
+					this._analyseImage();
+				}
+			}
+		}, false);
+
 		this.backButton.addEventListener('click', (event) => {
 			event.preventDefault();
 			// Triggers back video
