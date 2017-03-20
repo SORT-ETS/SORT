@@ -12,7 +12,7 @@ export default class Analysis {
 			residues: [
 			{
 				boundaries: [383, 859, 537, 613],
-				category: 'trash',
+				category: 'metal',
 				displayName: 'Objet 1',
 				name: 'obj_1',
 				notes: [
@@ -30,7 +30,7 @@ export default class Analysis {
 			},
 			{
 				boundaries: [383, 859, 537, 613],
-				category: 'trash',
+				category: 'paper',
 				displayName: 'Objet 3',
 				name: 'obj_3',
 				notes: [
@@ -39,7 +39,7 @@ export default class Analysis {
 			},
 			{
 				boundaries: [383, 859, 537, 613],
-				category: 'trash',
+				category: 'compost',
 				displayName: 'Objet 4',
 				name: 'obj_4',
 				notes: [
@@ -48,7 +48,7 @@ export default class Analysis {
 			},
 			{
 				boundaries: [383, 859, 537, 613],
-				category: 'trash',
+				category: 'compost',
 				displayName: 'Objet 5',
 				name: 'obj_5',
 				notes: [
