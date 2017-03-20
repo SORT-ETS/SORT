@@ -212,6 +212,18 @@ body {
 	width: 25%;
 }
 
+.screen-analysed .four.columns {
+	width: 33.33%;
+}
+
+.screen-analysed .six.columns {
+	width: 50%;
+}
+
+// .screen-analysed .twelve.columns {
+// 	width: 1000%;
+// }
+
 .trash, .compost, .paper, .metal {
 	margin: 0;
 }
