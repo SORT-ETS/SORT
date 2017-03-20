@@ -20,6 +20,7 @@ export default class ApplicationController {
 
 		this.pictureButton = document.getElementById('pictureButton');
 		this.backButton = document.getElementById('backButton');
+		this.moreDetailsButton = document.getElementById('moreDetailsButton');
 	}
 
 	initApp() {
@@ -79,7 +80,7 @@ export default class ApplicationController {
 				// On result the image must be updated with analysed borders
 				this.imageController.setImageOverlay(analysis.getBoundaries());
 				// On result the results section must show analysis details
-				this.resultsController.showResults(analysis);
+				this.resultsController.sendResultsRequest(analysis.getCategoriesCount());
 			});
 
 		var imageData = this.imageController.getImageData();
