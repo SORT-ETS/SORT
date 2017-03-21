@@ -20,6 +20,7 @@ export default class ApplicationController {
 
 		this.pictureButton = document.getElementById('pictureButton');
 		this.backButton = document.getElementById('backButton');
+		this.moreDetailsButton = document.getElementById('moreDetailsButton');
 	}
 
 	initApp() {
@@ -38,6 +39,17 @@ export default class ApplicationController {
 			}
 		}, false);
 
+		document.addEventListener('keypress', (event) => {
+			if (event.keyCode == 13) {
+				event.preventDefault();
+				// This button is only present when streaming and user to trigger
+				// analysys
+				if(this.videoController.isStreaming) {
+					this._analyseImage();
+				}
+			}
+		}, false);
+
 		this.backButton.addEventListener('click', (event) => {
 			event.preventDefault();
 			// Triggers back video
@@ -45,7 +57,7 @@ export default class ApplicationController {
 				this.imageController.hideImage();
 				this.resultsController.hideResults();
 				this.videoController.initStream();
-			}	
+			}
 		}, false);
 	}
 
@@ -68,7 +80,7 @@ export default class ApplicationController {
 				// On result the image must be updated with analysed borders
 				this.imageController.setImageOverlay(analysis.getBoundaries());
 				// On result the results section must show analysis details
-				this.resultsController.showResults(analysis);
+				this.resultsController.sendResultsRequest(analysis.getCategoriesCount());
 			});
 
 		var imageData = this.imageController.getImageData();

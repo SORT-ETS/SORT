@@ -5,62 +5,64 @@
 	<meta charset="utf-8">
 
 	<title>SORT</title>
-	<link rel="stylesheet" type="text/css" href="/css/styles.css">
+
+	<link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" media="(min-device-width: 500px)" href="/css/styles.css">
+	<link rel="stylesheet" type="text/css" media="(max-device-width: 500px)" href="/css/mobile.css">
+	<link rel="icon" type="image/png" href="/images/favicon.png" />
 </head>
 
 <body>
-	<div class="container">
-		<div class="row title-sect">
-			<div class="twelve columns">
-				<h1>SORT</h1>
-			</div>	
-		</div>
-
-		<div class="row video-sect">
-			<video id="video"></video>
-			<button id="pictureButton">Analyser</button>
-		</div>
-
-		<div class="row image-sect">
-			<canvas id="image-canvas"></canvas>
-	
-			<img src="" id="processed-image" alt="">		
-		</div>
-
-		<div class="row" id="loader">
-			<h2>Analyse en cours</h2>			
-		</div>
-
-		<div class="row" id="results">
-			<h2>Résultats</h2>	
-
-			<div id="results-template">
-				<ul>
-				{{#each residues}}
-					<li>
-						<h4>Name : {{ name }}</h4>
-						<ul>
-						    <li><h5>Category : {{ category }}</h5></li>
-							<li>
-								{{warning}}
-							</li>
-						    <ul>
-						    	{{#each notes}}
-						        	<li><h6>{{ this }}</h6></li>
-						    	{{/each}}
-						    </ul>
-						</ul>
-					</li>
-				{{/each}}
-				</ul>
-			</div>
-
-			<div id="results-container"></div>
-
-			<button id="backButton">Retour à l'accueil</button>		
+	<div class="container logo-sect">
+		<div class="row">
+			<button id="backButton">
+				<img src="/images/logo.png" alt="SORT">
+			</button>
 		</div>
 	</div>
 
+	<div id="video-sect" class="container video-sect">
+		<div class="twelve columns">
+			<video id="video"></video>
+		</div>
+	</div>
+
+	<div class="container image-sect">
+		<div class="twelve columns">
+			<canvas id="image-canvas"></canvas>
+		</div>
+		<img src="" id="processed-image" alt="">
+	</div>
+
+	<div id="home" class="container screen-home">
+		<div id="pictureButton" class="outer-button">
+			<div class="inner-button"></div>
+		</div>
+		<div class="row card">
+			<p>Appuyez sur le <span class="btn-txt-green">bouton</span> pour analyser vos déchets</p>
+		</div>
+	</div>
+
+	<div class="container screen-loading">
+		<div class="row card">
+			<h1>Analyse en cours</h1>
+			<div class="row" id="loader">
+				<div class="spinner">
+					<div class="bounce1"></div>
+					<div class="bounce2"></div>
+					<div class="bounce3"></div>
+				</div>
+			</div>
+			<h2>Saviez vous que</h2>
+			<p>Lorem ipsum Sint ex reprehenderit Duis ex dolore Excepteur Ut sunt voluptate laborum ullamco ullamco occaecat Duis culpa sunt voluptate dolor sint reprehenderit exercitation Ut nisi mollit minim.</p>
+		</div>
+	</div>
+
+	<div id="results" class="container screen-analysed"></div>
+
+	<div class="row screen-more"></div>
+
+	<a class="icon-credits" href="https://icons8.com">Icon pack by Icons8</a>
 	<script src="/js/app.js"></script>
 </body>
 </html>

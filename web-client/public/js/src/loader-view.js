@@ -13,10 +13,10 @@ export default class LoaderView extends View {
 	}
 
 	display() {
-		this.domElement.style.display = 'block';
+		this.domElement.parentNode.style.display = 'block';
 	}
 
 	hide() {
-		this.domElement.style.display = 'none';
+		this.domElement.parentNode.style.display = 'none';
 	}
 }
