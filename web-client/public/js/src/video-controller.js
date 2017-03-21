@@ -1,20 +1,22 @@
 'use-scrict';
 
 import VideoView from './video-view';
+import HomeView from './home-view';
 
 /**
-* The video controller class has the responsability to delegate events to the 
+* The video controller class has the responsability to delegate events to the
 * VideoView.
 */
 export default class VideoController {
 	constructor() {
 		this.videoView = new VideoView('video');
+		this.homeView = new HomeView('home');
 		this.isStreaming = false;
 	}
 
 	initStream() {
 		// Makes sure navigatore.getUserMedia is browser independant
-		navigator.getMedia = ( 
+		navigator.getMedia = (
 			navigator.getUserMedia ||
 			navigator.webkitGetUserMedia ||
 			navigator.mozGetUserMedia ||
@@ -31,6 +33,7 @@ export default class VideoController {
 		);
 
 		this.videoView.display();
+		this.homeView.display();
 
 		this.isStreaming = true;
 	}
@@ -38,13 +41,14 @@ export default class VideoController {
 	stopStream() {
 		this.videoView.stop();
 		this.videoView.hide();
+		this.homeView.hide();
 
 		// Stop the getMedia execution
 		this.videoSteam.getTracks()[0].stop();
 
 		this.isStreaming = false;
 	}
-	
+
 	getVideo() {
 		return this.videoView.getDomElement();
 	}

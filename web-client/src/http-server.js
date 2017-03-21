@@ -9,8 +9,8 @@ var ReverseProxy = require('./reverse-proxy');
 * The HTTPServer class uses an Express http server as its main engine.
 * It sets its parameters to handle images analysis requests and delegates
 * them to the ReverseProxy server which serves as an API.
-* 
-* It is also used to serve static content for the user to use the API. 
+*
+* It is also used to serve static content for the user to use the API.
 */
 class HTTPServer {
 
@@ -40,7 +40,7 @@ class HTTPServer {
 		this.app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 	}
 
-	_deliverStaticFiles() { 
+	_deliverStaticFiles() {
 		// Makes public for the client every file in the public folder
 		// index.html is served by default on '/'
 		this.app.use(express.static('public'));
