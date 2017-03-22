@@ -220,10 +220,6 @@ body {
 	width: 50%;
 }
 
-// .screen-analysed .twelve.columns {
-// 	width: 1000%;
-// }
-
 .trash, .compost, .paper, .metal {
 	margin: 0;
 }
@@ -270,6 +266,10 @@ body {
 
 	color: #fff;
 	background-color: rgba(39, 174, 96, 0.95);
+}
+
+.screen-analysed .warning {
+	background: red;
 }
 
 .details #moreDetailsButton {
