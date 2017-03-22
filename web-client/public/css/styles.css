@@ -282,12 +282,8 @@ body {
 	cursor: pointer;
 }
 
-#results #results-template {
-	display: none;
-}
-
-#results #results-container ul {
-	list-style: none;
+.screen-more {
+	margin-top: 300px;
 }
 
 

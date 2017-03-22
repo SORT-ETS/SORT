@@ -94,7 +94,8 @@ export default class ApplicationController {
 
 							this.imageController.hideImage();
 							this.resultsController.hideResults();
-							this.detailsController.showMore();
+							// Which fetches the template and displays the view
+							this.detailsController.sendRequest();
 						}, false);
 					});
 
