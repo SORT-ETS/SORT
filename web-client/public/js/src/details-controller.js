@@ -9,23 +9,23 @@ import TemplateRequest from './template-request';
 */
 export default class DetailsController {
 	constructor() {
-		this.resultsView = new DetailsView('details');
+		this.detailsView = new DetailsView('details');
 		this.templateRequest = new TemplateRequest('/templates/details.hbs',
 			(template) => {
 				this.showMore(template);
 			});
 
 		// hidden by default
-		this.resultsView.hide();
+		this.detailsView.hide();
 	}
 
 	showMore(template) {
-		console.log(template)
-		this.resultsView.display(template);
+		console.trace('TEMP',template)
+		this.detailsView.display(template);
 	}
 
 	hideResults() {
-		this.resultsView.hide();
+		this.detailsView.hide();
 	}
 
 	sendRequest() {
