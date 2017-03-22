@@ -4,22 +4,22 @@ import View from './view';
 import Handlebars from 'handlebars';
 
 /**
-* Results view
+* Details view
 * Generates HTML using handlebars according to analysis data.
 */
-export default class ResultsView extends View {
+export default class DetailsView extends View {
 	constructor(domId) {
 		super(domId);
 
 		this.domElement = document.getElementById(this.domId);
 	}
 
-	display(resultsTemplate, analysedCategories) {
+	display(detailsTemplate) {
 		this.domElement.style.display = 'block';
 
-		var resultsHTML = this._compileHandlebarsSection(resultsTemplate, analysedCategories);
+		var detailsHTML = this._compileHandlebarsSection(detailsTemplate, {});
 
-		this.domElement.innerHTML = resultsHTML;
+		this.domElement.innerHTML = detailsHTML;
 	}
 
 	hide() {

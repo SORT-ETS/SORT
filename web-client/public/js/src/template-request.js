@@ -1,13 +1,15 @@
 'use-scrict';
 
 /**
-* HTTP GET request wrapper. It sends the provided data as in the requests body
+* HTTP GET request wrapper. It is used to get Handlebars tempaltes through AJAX
 */
-export default class ResultsRequest {
+export default class TemplateRequest {
 
-	constructor(readyCallback) {
+	constructor(path, readyCallback) {
 		// Wrapping XMLHttpRequest, because cannot be extended...
 		this._this = new XMLHttpRequest();
+
+		this.path = path;
 
 		this.readyCallback = readyCallback;
 
@@ -15,8 +17,7 @@ export default class ResultsRequest {
 	}
 
 	sendRequest() {
-		this._this.open("GET", "/templates/results.hbs", true);
-		this._this.setRequestHeader("Content-type", "application/json");
+		this._this.open("GET", this.path, true);
 		this._this.send();
 	}
 
