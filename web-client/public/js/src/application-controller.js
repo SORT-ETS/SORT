@@ -4,6 +4,7 @@ import VideoController from './video-controller';
 import ImageController from './image-controller';
 import LoaderController from './loader-controller';
 import ResultsController from './results-controller';
+import DetailsController from './details-controller';
 
 import AnalysisRequest from './analysis-request';
 import Analysis from './analysis';
@@ -17,10 +18,11 @@ export default class ApplicationController {
 		this.imageController = new ImageController();
 		this.loaderController = new LoaderController();
 		this.resultsController = new ResultsController();
+		this.detailsController = new DetailsController();
 
 		this.pictureButton = document.getElementById('pictureButton');
 		this.backButton = document.getElementById('backButton');
-		this.moreDetailsButton = document.getElementById('moreDetailsButton');
+		this.moreDetailsButton = undefined;
 	}
 
 	initApp() {
@@ -59,6 +61,8 @@ export default class ApplicationController {
 				this.videoController.initStream();
 			}
 		}, false);
+
+
 	}
 
 	_analyseImage() {
@@ -80,7 +84,21 @@ export default class ApplicationController {
 				// On result the image must be updated with analysed borders
 				this.imageController.setImageOverlay(analysis.getBoundaries());
 				// On result the results section must show analysis details
-				this.resultsController.sendResultsRequest(analysis.getCategoriesCount());
+				this.resultsController.sendResultsRequest(analysis.getCategoriesCount(),
+					() => {
+						// Once ready moreDetailsButton should exist in DOM
+						this.moreDetailsButton = document.getElementById('moreDetailsButton');
+						console.log(this.moreDetailsButton)
+						this.moreDetailsButton.addEventListener('click', (event) => {
+							event.preventDefault();
+
+							this.imageController.hideImage();
+							this.resultsController.hideResults();
+							this.detailsController.showMore();
+						}, false);
+					});
+
+
 			});
 
 		var imageData = this.imageController.getImageData();
