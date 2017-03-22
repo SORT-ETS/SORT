@@ -17,6 +17,9 @@ export default class Analysis {
 				name: 'obj_1',
 				notes: [
 				"Saviez vous que l'aluminium est recyclable a 99"
+				],
+				"warning": [
+				"Veuillez verifier de bien vider le contenu du sac dans les poubelles appropriees."
 				]
 			},
 			{
@@ -92,21 +95,29 @@ export default class Analysis {
 
 		// Count the number of categories and keep in ref the number of columns
 		// needed in the 12columns grid system
+		// NEEDS TO BE DONE PRIOR TO ADDING MORE members eg.: warning
 		switch(Object.keys(categories).length) {
 			case 1:
-				categories.itemDOMColumns = 'twelve';
-				break;
+			categories.itemDOMColumns = 'twelve';
+			break;
 			case 2:
-				categories.itemDOMColumns = 'six';
-				break;
+			categories.itemDOMColumns = 'six';
+			break;
 			case 3:
-				categories.itemDOMColumns = 'four';
-				break;
+			categories.itemDOMColumns = 'four';
+			break;
 			case 4:
-				categories.itemDOMColumns = 'three';
-				break;
+			categories.itemDOMColumns = 'three';
+			break;
 		}
 
+		// Find the first warning to be displayed
+		categories.warning = this.residues.find(
+			function(item){
+				return !!item.warning;
+			}).warning[0];
+
+		console.log(categories)
 		return categories;
 	}
 }
