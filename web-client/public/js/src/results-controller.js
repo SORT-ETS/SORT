@@ -1,7 +1,7 @@
 'use-scrict';
 
 import ResultsView from './results-view';
-import ResultsRequest from './results-request';
+import TemplateRequest from './template-request';
 
 /**
 * Results controller class
@@ -9,29 +9,30 @@ import ResultsRequest from './results-request';
 */
 export default class ResultsController {
 	constructor() {
-		this.resultsView = new ResultsView('results', 'moreDetailsButton');
-		this.resultsRequest = new ResultsRequest((resultsTemplate) => {
-			this.showResults(resultsTemplate);
-		});
+		this.resultsView = new ResultsView('results');
+
+
+		this.templateRequest = new TemplateRequest('/templates/results.hbs',
+			(template) => {
+				this.showResults(template);
+			});
 
 		// hidden by default
 		this.resultsView.hide();
 	}
 
-	showResults(resultsTemplate) {
-		this.resultsView.display(resultsTemplate, this.analysedCategories);
+	showResults(template) {
+		this.resultsView.display(template, this.analysedCategories);
+		this.domReadyCallback();
 	}
 
 	hideResults() {
 		this.resultsView.hide();
 	}
 
-	showMore() {
-		this.resultsView.toggleDetails();
-	}
-
-	sendResultsRequest(analysedCategories) {
+	sendResultsRequest(analysedCategories, domReadyCallback) {
 		this.analysedCategories = analysedCategories;
-		this.resultsRequest.sendRequest();
+		this.domReadyCallback = domReadyCallback;
+		this.templateRequest.sendRequest();
 	}
 }

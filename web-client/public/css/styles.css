@@ -220,10 +220,6 @@ body {
 	width: 50%;
 }
 
-// .screen-analysed .twelve.columns {
-// 	width: 1000%;
-// }
-
 .trash, .compost, .paper, .metal {
 	margin: 0;
 }
@@ -272,6 +268,10 @@ body {
 	background-color: rgba(39, 174, 96, 0.95);
 }
 
+.screen-analysed .warning {
+	background: red;
+}
+
 .details #moreDetailsButton {
 	font-size: 3em;
 
@@ -282,12 +282,8 @@ body {
 	cursor: pointer;
 }
 
-#results #results-template {
-	display: none;
-}
-
-#results #results-container ul {
-	list-style: none;
+.screen-more {
+	margin-top: 300px;
 }
 
 
