@@ -33,9 +33,18 @@
 						</div>
 						{{#if notes}}
 						<div class="row notes">
-							{{#each notes}}
-							<p>{{this}}</p>
-							{{/each}}
+							<div class="two columns">
+								<div class="img-container">
+									<p class="notes-img">!</p>
+								</div>
+							</div>
+							<div class="ten columns">
+								<p class="category">Notes</p>
+								{{#each notes}}
+									<p class="note">{{this}}</p>
+								{{/each}}
+							</div>
+
 						</div>
 						{{/if}}
 						{{#if warning}}
@@ -61,16 +70,52 @@
 			{{#compare category "compost"}}
 			<div class="detail-item row">
 				<img src="{{canvas}}" alt="residue">
-				<div class="item modal">
-					<button>exist</button>
-					<p>{{displayName}}</p>
-					<p>{{category}}</p>
-					{{#each notes}}
-					<p>{{this}}</p>
-					{{/each}}
-					{{#each warning}}
-					<p>{{this}}</p>
-					{{/each}}
+				<div class="item modal container">
+					<div class="three columns">
+						<div class="row">
+							<button class="close-modal">X</button>
+						</div>
+						<div class="row">
+							<img class="residue-img" src="{{canvas}}" alt="residue">
+						</div>
+					</div>
+					<div class="nine columns">
+						<div class="row main">
+							<div class="two columns">
+								<div class="img-container">
+									<img src="/images/compost.png">
+								</div>
+							</div>
+							<div class="ten columns">
+								<p class="category">Composte</p>
+								<p class="name">{{displayName}}</p>
+							</div>
+
+						</div>
+						{{#if notes}}
+						<div class="row notes">
+							<div class="two columns">
+								<div class="img-container">
+									<p class="notes-img">!</p>
+								</div>
+							</div>
+							<div class="ten columns">
+								<p class="category">Notes</p>
+								{{#each notes}}
+									<p class="note">{{this}}</p>
+								{{/each}}
+							</div>
+
+						</div>
+						{{/if}}
+						{{#if warning}}
+						<div class="row warnings">
+							{{#each warning}}
+							<p>{{this}}</p>
+							{{/each}}
+						</div>
+						{{/if}}
+					</div>
 				</div>
 			</div>
 			{{/compare}}
@@ -86,16 +131,52 @@
 			{{#compare category "paper"}}
 			<div class="detail-item row">
 				<img src="{{canvas}}" alt="residue">
-				<div class="item modal">
-					<button>exist</button>
-					<p>{{displayName}}</p>
-					<p>{{category}}</p>
-					{{#each notes}}
-					<p>{{this}}</p>
-					{{/each}}
-					{{#each warning}}
-					<p>{{this}}</p>
-					{{/each}}
+				<div class="item modal container">
+					<div class="three columns">
+						<div class="row">
+							<button class="close-modal">X</button>
+						</div>
+						<div class="row">
+							<img class="residue-img" src="{{canvas}}" alt="residue">
+						</div>
+					</div>
+					<div class="nine columns">
+						<div class="row main">
+							<div class="two columns">
+								<div class="img-container">
+									<img src="/images/paper.png">
+								</div>
+							</div>
+							<div class="ten columns">
+								<p class="category">Recyclage</p>
+								<p class="name">{{displayName}}</p>
+							</div>
+
+						</div>
+						{{#if notes}}
+						<div class="row notes">
+							<div class="two columns">
+								<div class="img-container">
+									<p class="notes-img">!</p>
+								</div>
+							</div>
+							<div class="ten columns">
+								<p class="category">Notes</p>
+								{{#each notes}}
+									<p class="note">{{this}}</p>
+								{{/each}}
+							</div>
+
+						</div>
+						{{/if}}
+						{{#if warning}}
+						<div class="row warnings">
+							{{#each warning}}
+							<p>{{this}}</p>
+							{{/each}}
+						</div>
+						{{/if}}
+					</div>
 				</div>
 			</div>
 			{{/compare}}
@@ -111,16 +192,52 @@
 			{{#compare category "metal"}}
 			<div class="detail-item row">
 				<img src="{{canvas}}" alt="residue">
-				<div class="item modal">
-					<button>exist</button>
-					<p>{{displayName}}</p>
-					<p>{{category}}</p>
-					{{#each notes}}
-					<p>{{this}}</p>
-					{{/each}}
-					{{#each warning}}
-					<p>{{this}}</p>
-					{{/each}}
+				<div class="item modal container">
+					<div class="three columns">
+						<div class="row">
+							<button class="close-modal">X</button>
+						</div>
+						<div class="row">
+							<img class="residue-img" src="{{canvas}}" alt="residue">
+						</div>
+					</div>
+					<div class="nine columns">
+						<div class="row main">
+							<div class="two columns">
+								<div class="img-container">
+									<img src="/images/paper.png">
+								</div>
+							</div>
+							<div class="ten columns">
+								<p class="category">Metal</p>
+								<p class="name">{{displayName}}</p>
+							</div>
+
+						</div>
+						{{#if notes}}
+						<div class="row notes">
+							<div class="two columns">
+								<div class="img-container">
+									<p class="notes-img">!</p>
+								</div>
+							</div>
+							<div class="ten columns">
+								<p class="category">Notes</p>
+								{{#each notes}}
+									<p class="note">{{this}}</p>
+								{{/each}}
+							</div>
+
+						</div>
+						{{/if}}
+						{{#if warning}}
+						<div class="row warnings">
+							{{#each warning}}
+							<p>{{this}}</p>
+							{{/each}}
+						</div>
+						{{/if}}
+					</div>
 				</div>
 			</div>
 			{{/compare}}

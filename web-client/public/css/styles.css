@@ -7,7 +7,6 @@ body {
 	font-weight: 300;
 
 	background: #6fcf97;
-	/*overflow: hidden;*/
 }
 
 /*
@@ -332,10 +331,10 @@ body {
 	transform: translate(-50%, 0);
 	text-align: left;
 
-	background: rgba(255, 255, 255, 0.9);
+	background: rgba(255, 255, 255, 0.8);
 }
 
-.modal canvas {
+.modal .residue-img {
 	margin-left: 1em;
 }
 
@@ -351,6 +350,7 @@ body {
 	width: 3em;
 	height: 3em;
 	margin: 4vh 5vh;
+
 	border-radius: 3em;
 }
 
@@ -358,6 +358,8 @@ body {
 	width: 1.5em;
 	height: 1.5em;
 	margin: 50%;
+
+	box-shadow: none;
 }
 
 .modal .residue-img {
@@ -369,27 +371,37 @@ body {
 }
 
 .modal .main, .modal .notes, .modal .warnings {
+	margin: 2em 1em 2em 3em;
+
 	background: #fff;
 	box-shadow: 1px 1px 8px #000;
-	margin: 2em 1em 2em 3em;
 }
 
-.modal .main .name  {
+.modal .main .name {
 	font-size: 3em;
 }
 
-.modal .main .category {
-	margin: 5vh 0;
+.modal .category {
 	font-size: 1.5em;
+	font-weight: 100;
+
+	margin: 5vh 0;
 }
 
-
-.modal .notes {
-
+.modal .notes .img-container {
+	background: #ccc;
 }
 
-.modal .warnings {
+.modal .notes .img-container p {
+	font-size: 2em;
+	font-weight: bold;
+	line-height: 1.5em;
 
+	text-align: center;
+}
+
+.modal .notes .note {
+	font-size: 1.5em;
 }
 
 /**
