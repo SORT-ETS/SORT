@@ -1,5 +1,6 @@
 import RPi.GPIO as GPIO
 import smbus
+import keyboard
 import time
 
 # Open IO bus
@@ -24,6 +25,7 @@ while True:
 
     if ((not prev_input) and input):
         print('Pressed')
+        keyboard.press_and_release('enter')
         bus.write_byte_data(address, 0, on_sig)  # Dels on
         time.sleep(0.5)  # to get a long enough flash
         bus.write_byte_data(address, 0, off_sig)  # Dels off
