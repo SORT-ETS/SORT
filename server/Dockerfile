@@ -9,6 +9,7 @@ RUN apt-get update && apt-get install -y \
     python-pip \
     python-dev \
     build-essential \
+    vim \
  && rm -rf /var/lib/apt/lists/*
 
 
@@ -21,9 +22,9 @@ RUN git checkout origin/custom-output
 # Enable GPU
 RUN if [ ${CUDA} = "true" ]; then sed -i.old 's/GPU=0/GPU=1/' Makefile; fi;
 RUN make
-RUN wget http://www.ntfournier.com/static/yolo-sort_5000.weights
-RUN wget http://www.ntfournier.com/static/yolo-sort.cfg
-RUN wget http://www.ntfournier.com/static/voc-sort.data
+RUN wget -o yolo-sort.weights http://www.ntfournier.com/static/yolo/yolo-sort-latest.weights
+RUN wget -o yolo-sort.cfg http://www.ntfournier.com/static/yolo/yolo-sort-latest.cfg
+RUN wget -o voc-sort.data http://www.ntfournier.com/static/yolo/voc-sort-latest.data
 
 ## Install Python server
 
