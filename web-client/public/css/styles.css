@@ -20,6 +20,7 @@ body {
 .logo-sect #backButton {
 	height: 12vh;
 	padding: 1.5vh;
+
 	border: none;
 }
 
@@ -31,13 +32,16 @@ body {
 * VIDEO AND IMAGE SECTIONS
 */
 .video-sect, .image-sect {
-	background: #000;
 	margin-bottom: 20px;
+
+	background: #000;
 }
 
 .video-sect #video, .image-sect #image-canvas {
 	display: block;
+
 	width: 100%;
+
 	box-shadow: 1px 1px 10px #000;
 }
 
@@ -47,22 +51,23 @@ body {
 */
 .card {
 	font: 'Helvetica Neue Light';
+
 	text-align: center;
 }
 
 /*
 * HOME SCREEN SECTION
 */
-.screen-home {}
+
 
 .screen-home .outer-button {
 	position: absolute;
 	z-index: 1;
+	bottom: 25vh;
 
 	width: 10vh;
 	height: 10vh;
 	margin-left: 50%;
-	bottom: 25vh;
 
 	cursor: pointer;
 	transform: translate(-50%, 0);
@@ -89,16 +94,19 @@ body {
 
 .screen-home .card {
 	position: absolute;
-	margin-left: 50%;
 	bottom: 4vh;
 
-	transform: translate(-50%, 0%);
 	width: 100%;
+	margin-left: 50%;
+
+	transform: translate(-50%, 0%);
 }
 
 .screen-home .card p {
-	margin-top: 10%;
 	font-size: 3em;
+
+	margin-top: 10%;
+
 	color: #fff;
 	text-shadow: 1px 1px 5px #000;
 }
@@ -119,13 +127,14 @@ body {
 
 .screen-loading .card {
 	position: absolute;
-	margin-left: 50%;
 	bottom: 4vh;
 
-	transform: translate(-50%, 0%);
 	width: 100%;
+	margin-left: 50%;
 
+	transform: translate(-50%, 0%);
 	/*background: rgba(196, 196, 196, 0.8);*/
+
 	color: #fff;
 	text-shadow: 1px 1px 10px #000;
 	/*box-shadow: 0 1px 10px #000;*/
@@ -134,13 +143,15 @@ body {
 .screen-loading .card h1 {
 	font-family: 'Roboto Mono', monospace;
 
+	margin-bottom: 5vh;
+
 	color: #fff;
 	text-shadow: 1px 1px 10px #000;
-	margin-bottom: 5vh;
 }
 
 .screen-loading .card p {
 	font-size: 24px;
+
 	padding: 0 5%;
 }
 
@@ -154,13 +165,15 @@ body {
 */
 
 .screen-analysed {
-	background: rgba(196, 196, 196, 0.8);
-	box-shadow: 0 1px 10px #000;
 	position: absolute;
-	margin-left: 50%;
 	bottom: 0;
 
-	transform: translate(-50%, 0%)
+	margin-left: 50%;
+
+	transform: translate(-50%, 0%);
+
+	background: rgba(196, 196, 196, 0.8);
+	box-shadow: 0 1px 10px #000;
 }
 
 .screen-analysed .card {
@@ -269,9 +282,9 @@ body {
 
 	margin-bottom: 0;
 
-	text-shadow: 1px 1px 2px #000;
-
 	cursor: pointer;
+
+	text-shadow: 1px 1px 2px #000;
 }
 
 /**
@@ -280,6 +293,7 @@ body {
 
 .screen-more {
 	height: 80%;
+
 	background: rgba(196, 196, 196, 0.8);
 	box-shadow: 0 1px 10px #000;
 }
@@ -292,26 +306,74 @@ body {
 	min-height: 80vh;
 }
 
-.screen-more .detail-item {
 
-}
 
 .detail-item img {
 	width: 80%;
 	margin: 0 auto;
-	cursor: pointer;
-	box-shadow: 0 1px 10px #000;
 	margin: 10px;
+
+	cursor: pointer;
+
+	box-shadow: 0 1px 10px #000;
 }
 
 .modal {
-	display: none;
 	position: absolute;
-	width: 80%;
-	height: 80%;
+	z-index: 1;
+	top: 0;
 	left: 50%;
+
+	display: none;
+
+	width: 100%;
+	height: 100%;
+
 	transform: translate(-50%, 0);
-	background: rgba(255, 255, 255, 0.85);
+	text-align: left;
+
+	background: rgba(255, 255, 255, 0.9);
+}
+
+.modal .close-modal {
+	font-size: 6vh;
+
+	margin: 3vh 1vh;
+
+	border: none;
+}
+
+.modal .img-container {
+	width: 3em;
+	height: 3em;
+	margin: 4vh 0;
+	border-radius: 3em;
+}
+
+.modal .img-container img {
+	width: 1.5em;
+	height: 1.5em;
+	margin: 50%;
+}
+
+.modal .residue-img {
+	width: 100%;
+}
+
+.modal .main .name  {
+	font-size: 4em;
+}
+
+.modal .main .name {
+	font-size: 5em;
+}
+
+.modal .notes {
+
+}
+
+.modal .warnings {
+
 }
 
 /**

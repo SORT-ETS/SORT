@@ -9,16 +9,42 @@
 			{{#compare category "trash"}}
 			<div class="detail-item row">
 				<img src="{{canvas}}" alt="residue">
-				<div class="item modal">
-					<button>exist</button>
-					<p>{{displayName}}</p>
-					<p>{{category}}</p>
-					{{#each notes}}
-					<p>{{this}}</p>
-					{{/each}}
-					{{#each warning}}
-					<p>{{this}}</p>
-					{{/each}}
+				<div class="item modal container">
+					<div class="three columns">
+						<div class="row">
+							<button class="close-modal">X</button>
+						</div>
+						<div class="row">
+							<img class="residue-img" src="{{canvas}}" alt="residue">
+						</div>
+					</div>
+					<div class="eight columns">
+						<div class="row main">
+							<div class="three columns">
+								<div class="img-container">
+									<img src="/images/trash.png">
+								</div>
+							</div>
+							<div class=" eight columns">
+								<span class="category">Déchets</span>
+							</div>
+							<p class="name">{{displayName}}</p>
+						</div>
+						{{#if notes}}
+						<div class="row notes">
+							{{#each notes}}
+							<p>{{this}}</p>
+							{{/each}}
+						</div>
+						{{/if}}
+						{{#if warning}}
+						<div class="row warnings">
+							{{#each warning}}
+							<p>{{this}}</p>
+							{{/each}}
+						</div>
+						{{/if}}
+					</div>
 				</div>
 			</div>
 			{{/compare}}
