@@ -57,7 +57,9 @@ export default class ApplicationController {
 			// Triggers back video
 			if(!this.videoController.isStreaming) {
 				this.imageController.hideImage();
+				this.loaderController.stopLoading();
 				this.resultsController.hideResults();
+				this.detailsController.hideResults();
 				this.videoController.initStream();
 			}
 		}, false);
