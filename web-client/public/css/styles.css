@@ -335,6 +335,10 @@ body {
 	background: rgba(255, 255, 255, 0.9);
 }
 
+.modal canvas {
+	margin-left: 1em;
+}
+
 .modal .close-modal {
 	font-size: 6vh;
 
@@ -346,7 +350,7 @@ body {
 .modal .img-container {
 	width: 3em;
 	height: 3em;
-	margin: 4vh 0;
+	margin: 4vh 5vh;
 	border-radius: 3em;
 }
 
@@ -360,13 +364,25 @@ body {
 	width: 100%;
 }
 
-.modal .main .name  {
-	font-size: 4em;
+.modal .nine.columns {
+	margin: 0;
 }
 
-.modal .main .name {
-	font-size: 5em;
+.modal .main, .modal .notes, .modal .warnings {
+	background: #fff;
+	box-shadow: 1px 1px 8px #000;
+	margin: 2em 1em 2em 3em;
 }
+
+.modal .main .name  {
+	font-size: 3em;
+}
+
+.modal .main .category {
+	margin: 5vh 0;
+	font-size: 1.5em;
+}
+
 
 .modal .notes {
 
