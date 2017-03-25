@@ -8,12 +8,13 @@
 * http://stackoverflow.com/questions/30559225/how-to-create-abstract-base-class-in-javascript-that-cant-be-instantiated
 */
 export default class View {
-	constructor(domId) {
+	constructor(domId, parentId) {
 		this.domId = domId;
+		this.parentId = parentId;
 
-		if (this.display === undefined) 
+		if (this.display === undefined)
       		throw new TypeError("Must override display method");
-    	
+
     	if (this.hide === undefined)
     		throw new TypeError("Must override hide method");
 	}

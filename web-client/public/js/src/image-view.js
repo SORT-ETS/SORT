@@ -8,19 +8,21 @@ import View from './view';
 * is made.
 */
 export default class ImageView extends View {
-	constructor(domId) {
-		super(domId);
+	constructor(domId, parentId) {
+		super(domId, parentId);
 
 		this.domElement = document.getElementById(this.domId);
+		this.parentSection = document.getElementById(this.parentId);
+
 		this.base64Data = '';
 	}
 
 	display() {
-		this.domElement.parentNode.style.display = 'block';
+		this.parentSection.style.display = 'block';
 	}
 
 	hide() {
-		this.domElement.parentNode.style.display = 'none';
+		this.parentSection.style.display = 'none';
 	}
 
 	setImage(videoElement) {
@@ -40,20 +42,20 @@ export default class ImageView extends View {
 	}
 
 	setOverlay(boundaries) {
-		
+
 		var context = this.domElement.getContext('2d');
 		var textBoxHeight = 50;
-		
+
 		boundaries.forEach(function(item){
 			var x = item.boundaries[0];
 			var width = item.boundaries[1] - x;
 			var y = item.boundaries[2];
 			var height = item.boundaries[3] - y;
-			
+
 			context.beginPath();
 			context.lineWidth="2";
 			context.globalAlpha = 0.8;
-			
+
 			switch(item.category) {
 				case "recyclable":
 				context.strokeStyle="yellow";
@@ -73,17 +75,17 @@ export default class ImageView extends View {
 			}
 			context.rect(x, y -textBoxHeight, width, textBoxHeight);
 			context.fillRect(x, y -textBoxHeight, width, textBoxHeight);
-			
+
 			context.font="20px helvetica";
 			context.fillStyle = "#fff";
-			context.textAlign="center"; 
+			context.textAlign="center";
 			var capitalizeCat = item.category.charAt(0).toUpperCase() + item.category.slice(1);
 			context.fillText(capitalizeCat, x+width /2, y - textBoxHeight/2);
-			
+
 			context.rect(x,y,width,height);
 			context.stroke();
 		});
-		
+
 	}
 
 	getData() {
