@@ -68,6 +68,7 @@ export default class ApplicationController {
 	_analyseImage() {
 		// Must set image before stopping stream otherwise nothing visible
 		this.imageController.setImage(this.videoController.getVideo());
+
 		this.videoController.stopStream();
 
 		var analysisReq = new AnalysisRequest(
@@ -95,6 +96,7 @@ export default class ApplicationController {
 							this.imageController.hideImage();
 							this.resultsController.hideResults();
 							// Which fetches the template and displays the view
+							this.detailsController.setImage(this.imageController.getImage());
 							this.detailsController.sendRequest(analysis.getCategoriesAndItems(),
 								() => {
 									// Can handle anything hapening in the details view

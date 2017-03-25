@@ -31,4 +31,8 @@ export default class ImageController {
 	getImageData() {
 		return this.imageView.getData();
 	}
+
+	getImage() {
+		return this.imageView.getCanvas();
+	}
 }

@@ -21,7 +21,7 @@ export default class DetailsController {
 	}
 
 	showMore(template) {
-		this.detailsView.display(template, this.analysedCategories);
+		this.detailsView.display(template, this.analysedCategories, this.image);
 	}
 
 	hideResults() {
@@ -32,5 +32,9 @@ export default class DetailsController {
 		this.analysedCategories = analysedCategories;
 		this.domReadyCallback = domReadyCallback;
 		this.templateRequest.sendRequest();
+	}
+
+	setImage(image) {
+		this.image = image;
 	}
 }
