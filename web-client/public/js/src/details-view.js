@@ -14,10 +14,10 @@ export default class DetailsView extends View {
 		this.domElement = document.getElementById(this.domId);
 	}
 
-	display(detailsTemplate) {
+	display(detailsTemplate, data) {
 		this.domElement.style.display = 'block';
 
-		var detailsHTML = this._compileHandlebarsSection(detailsTemplate, {});
+		var detailsHTML = this._compileHandlebarsSection(detailsTemplate, data);
 
 		this.domElement.innerHTML = detailsHTML;
 	}

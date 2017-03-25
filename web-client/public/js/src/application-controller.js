@@ -95,7 +95,9 @@ export default class ApplicationController {
 							this.imageController.hideImage();
 							this.resultsController.hideResults();
 							// Which fetches the template and displays the view
-							this.detailsController.sendRequest();
+							this.detailsController.sendRequest(analysis.getCategoriesCount(), () => {
+								// Can handle anything hapening in the details view
+							});
 						}, false);
 					});
 
