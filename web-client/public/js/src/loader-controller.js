@@ -5,7 +5,7 @@ import LoaderView from './loader-view';
 */
 export default class LoaderController {
 	constructor() {
-		this.loaderView = new LoaderView('loader');
+		this.loaderView = new LoaderView('loader', 'loading-sect');
 
 		// hidden by default
 		this.loaderView.hide();
