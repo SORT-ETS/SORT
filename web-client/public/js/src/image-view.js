@@ -37,6 +37,10 @@ export default class ImageView extends View {
 		this.domElement.getContext('2d').drawImage(videoElement, 0, 0,
 			width, height);
 
+		// As a reference for further use after calling setOverlay
+		// this.setImageReference();
+		this.imageRef = this.domElement;
+
 		// By default base64, no conversion needed
 		this.base64Data = this.domElement.toDataURL('image/png');
 	}
@@ -90,6 +94,10 @@ export default class ImageView extends View {
 
 	getData() {
 		return this.base64Data;
+	}
+
+	getCanvas() {
+		return this.imageRef;
 	}
 
 }

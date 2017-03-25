@@ -22,8 +22,10 @@ export default class DetailsView extends View {
 		this.domElement = document.getElementById(this.domId);
 	}
 
-	display(detailsTemplate, data) {
+	display(detailsTemplate, data, image) {
 		this.domElement.style.display = 'block';
+
+		data.residues = this._generateCanvas(data.residues, image);
 
 		var detailsHTML = this._compileHandlebarsSection(detailsTemplate, data);
 
@@ -32,6 +34,26 @@ export default class DetailsView extends View {
 
 	hide() {
 		this.domElement.style.display = 'none';
+	}
+
+	// Computes the individual residue canvasses according to data and image provided
+	_generateCanvas(residues, image) {
+		for(var i = 0; i < residues.length; i++) {
+			var residue = residues[i];
+			var x = residue.boundaries[0];
+			var width = residue.boundaries[1] - x;
+			var y = residue.boundaries[2];
+			var height = residue.boundaries[3] - y;
+
+			var canvas = document.createElement('canvas');
+			canvas.width = width;
+			canvas.height = height;
+			var context = canvas.getContext('2d');
+
+			context.drawImage(image, x, y, width, height, 0, 0, width, height);
+			residues[i].canvas = canvas.toDataURL();
+		}
+		return residues;
 	}
 
 	_compileHandlebarsSection(template, data) {

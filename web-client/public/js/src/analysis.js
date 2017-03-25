@@ -11,7 +11,7 @@ export default class Analysis {
 		Object.assign(this, {
 			residues: [
 			{
-				boundaries: [383, 859, 537, 613],
+				boundaries: [353, 859, 537, 613],
 				category: 'metal',
 				displayName: 'Objet 1',
 				name: 'obj_1',
@@ -23,7 +23,7 @@ export default class Analysis {
 				]
 			},
 			{
-				boundaries: [383, 859, 537, 613],
+				boundaries: [363, 859, 547, 613],
 				category: 'trash',
 				displayName: 'Objet 2',
 				name: 'obj_2',
@@ -32,7 +32,7 @@ export default class Analysis {
 				]
 			},
 			{
-				boundaries: [383, 859, 537, 613],
+				boundaries: [373, 859, 557, 613],
 				category: 'paper',
 				displayName: 'Objet 3',
 				name: 'obj_3',
@@ -41,7 +41,7 @@ export default class Analysis {
 				]
 			},
 			{
-				boundaries: [383, 859, 537, 613],
+				boundaries: [383, 859, 567, 613],
 				category: 'compost',
 				displayName: 'Objet 4',
 				name: 'obj_4',
@@ -50,7 +50,7 @@ export default class Analysis {
 				]
 			},
 			{
-				boundaries: [383, 859, 537, 613],
+				boundaries: [393, 859, 577, 613],
 				category: 'compost',
 				displayName: 'Objet 5',
 				name: 'obj_5',
