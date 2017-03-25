@@ -326,7 +326,8 @@ body {
 	display: none;
 
 	width: 100%;
-	height: 100%;
+	height: auto !important;
+	min-height: 100%;
 
 	transform: translate(-50%, 0);
 	text-align: left;
@@ -392,7 +393,11 @@ body {
 	background: #ccc;
 }
 
-.modal .notes .img-container p {
+.modal .warnings .img-container {
+	background: red;
+}
+
+.modal .img-container p {
 	font-size: 2em;
 	font-weight: bold;
 	line-height: 1.5em;
@@ -400,8 +405,10 @@ body {
 	text-align: center;
 }
 
-.modal .notes .note {
+.modal .note {
 	font-size: 1.5em;
+
+	padding-right: 1em;
 }
 
 /**

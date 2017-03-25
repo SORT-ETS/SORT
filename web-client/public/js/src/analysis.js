@@ -18,7 +18,7 @@ export default class Analysis {
 				notes: [
 				"Saviez vous que l'aluminium est recyclable a 99"
 				],
-				warning: [
+				warnings: [
 				"Veuillez verifier de bien vider le contenu du sac dans les poubelles appropriees."
 				]
 			},
@@ -112,10 +112,10 @@ export default class Analysis {
 		}
 
 		// Find the first warning to be displayed
-		categories.warning = this.residues.find(
+		categories.warnings = this.residues.find(
 			function(item){
-				return !!item.warning;
-			}).warning[0];
+				return !!item.warnings;
+			}).warnings[0];
 
 		return categories;
 	}
