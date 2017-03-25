@@ -95,9 +95,23 @@ export default class ApplicationController {
 							this.imageController.hideImage();
 							this.resultsController.hideResults();
 							// Which fetches the template and displays the view
-							this.detailsController.sendRequest(analysis.getCategoriesCount(), () => {
-								// Can handle anything hapening in the details view
-							});
+							this.detailsController.sendRequest(analysis.getCategoriesAndItems(),
+								() => {
+									// Can handle anything hapening in the details view
+									var detailItems = document.getElementsByClassName('detail-item');
+
+									for(var i = 0; i < detailItems.length; i++) {
+										var item = detailItems.item(i);
+
+										item.addEventListener('click', function(event) {
+											event.preventDefault();
+											var modal = this.getElementsByClassName('modal')[0];
+											console.log(modal);
+											modal.style.display = "block";
+										});
+									}
+
+								});
 						}, false);
 					});
 

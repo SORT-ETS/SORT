@@ -1,31 +1,103 @@
 <div class="row card">
 	<div class="row">
-		{{#if this.trash}}
-		<div class="{{ this.itemDOMColumns }} columns trash">
+		{{#if this.categories.trash}}
+		<div class="{{ this.categories.itemDOMColumns }} columns trash">
 			<div class="img-container">
 				<img src="/images/trash.png">
 			</div>
+			{{#each this.residues}}
+			{{#compare category "trash"}}
+			<div class="detail-item row">
+				<h3>{{displayName}}</h3>
+				<div class="item modal">
+					<button>exist</button>
+					<p>{{displayName}}</p>
+					<p>{{category}}</p>
+					{{#each notes}}
+					<p>{{this}}</p>
+					{{/each}}
+					{{#each warning}}
+					<p>{{this}}</p>
+					{{/each}}
+				</div>
+			</div>
+			{{/compare}}
+			{{/each}}
 		</div>
 		{{/if}}
-		{{#if this.compost}}
-		<div class="{{ this.itemDOMColumns }} columns compost">
+		{{#if this.categories.compost}}
+		<div class="{{ this.categories.itemDOMColumns }} columns compost">
 			<div class="img-container">
 				<img src="/images/compost.png">
 			</div>
+			{{#each this.residues}}
+			{{#compare category "compost"}}
+			<div class="detail-item row">
+				<h3>{{displayName}}</h3>
+				<div class="item modal">
+					<button>exist</button>
+					<p>{{displayName}}</p>
+					<p>{{category}}</p>
+					{{#each notes}}
+					<p>{{this}}</p>
+					{{/each}}
+					{{#each warning}}
+					<p>{{this}}</p>
+					{{/each}}
+				</div>
+			</div>
+			{{/compare}}
+			{{/each}}
 		</div>
 		{{/if}}
-		{{#if this.paper}}
-		<div class="{{ this.itemDOMColumns }} columns paper">
+		{{#if this.categories.paper}}
+		<div class="{{ this.categories.itemDOMColumns }} columns paper">
 			<div class="img-container">
 				<img src="/images/paper.png">
 			</div>
+			{{#each this.residues}}
+			{{#compare category "paper"}}
+			<div class="detail-item row">
+				<h3>{{displayName}}</h3>
+				<div class="item modal">
+					<button>exist</button>
+					<p>{{displayName}}</p>
+					<p>{{category}}</p>
+					{{#each notes}}
+					<p>{{this}}</p>
+					{{/each}}
+					{{#each warning}}
+					<p>{{this}}</p>
+					{{/each}}
+				</div>
+			</div>
+			{{/compare}}
+			{{/each}}
 		</div>
 		{{/if}}
-		{{#if this.metal}}
-		<div class="{{ this.itemDOMColumns }} columns metal">
+		{{#if this.categories.metal}}
+		<div class="{{ this.categories.itemDOMColumns }} columns metal">
 			<div class="img-container">
 				<img src="/images/paper.png">
 			</div>
+			{{#each this.residues}}
+			{{#compare category "metal"}}
+			<div class="detail-item row">
+				<h3>{{displayName}}</h3>
+				<div class="item modal">
+					<button>exist</button>
+					<p>{{displayName}}</p>
+					<p>{{category}}</p>
+					{{#each notes}}
+					<p>{{this}}</p>
+					{{/each}}
+					{{#each warning}}
+					<p>{{this}}</p>
+					{{/each}}
+				</div>
+			</div>
+			{{/compare}}
+			{{/each}}
 		</div>
 		{{/if}}
 	</div>
