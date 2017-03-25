@@ -108,8 +108,21 @@ export default class ApplicationController {
 										item.addEventListener('click', function(event) {
 											event.preventDefault();
 											var modal = this.getElementsByClassName('modal')[0];
-											console.log(modal);
+
 											modal.style.display = "block";
+										});
+									}
+
+									var exitModalButtons = document.getElementsByClassName('close-modal');
+
+									for(var i = 0; i < exitModalButtons.length; i++) {
+										var item = exitModalButtons.item(i);
+
+										item.addEventListener('click', function(event) {
+											event.stopPropagation();
+											// Three layers top of exit button is .modal
+											var parentModal = this.parentNode.parentNode.parentNode;
+											parentModal.style.display = "none";
 										});
 									}
 
