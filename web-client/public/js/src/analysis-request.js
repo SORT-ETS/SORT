@@ -16,11 +16,9 @@ export default class AnalysisRequest {
 	}
 
 	sendRequest(imageData) {
-		// this._this.open("POST", "/api/image", true);
-		// this._this.setRequestHeader("Content-type", "application/json");
-		// this._this.send('{ "image": "'+ imageData +'" }');
-
-		this.readyCallback({});
+		this._this.open("POST", "/api/image", true);
+		this._this.setRequestHeader("Content-type", "application/json");
+		this._this.send('{ "image": "'+ imageData +'" }');
 	}
 
 	_handleCallbacksDelegation() {
@@ -32,7 +30,6 @@ export default class AnalysisRequest {
 
 			if(this._this.readyState == 4) {
 				// Rest done, ready
-				// if (this.readyState == 4 && this.status == 200) {
 				this.readyCallback(JSON.parse(this._this.responseText));
 
 			}

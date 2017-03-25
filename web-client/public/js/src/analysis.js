@@ -60,7 +60,7 @@ export default class Analysis {
 			}
 
 			]
-		})
+		});
 	}
 
 	// Analysis abstraction meant to be used by images, does not expose all params

@@ -89,7 +89,7 @@ export default class ApplicationController {
 					() => {
 						// Once ready moreDetailsButton should exist in DOM
 						this.moreDetailsButton = document.getElementById('moreDetailsButton');
-						console.log(this.moreDetailsButton)
+
 						this.moreDetailsButton.addEventListener('click', (event) => {
 							event.preventDefault();
 
