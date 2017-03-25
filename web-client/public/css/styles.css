@@ -292,6 +292,10 @@ body {
 	min-height: 80vh;
 }
 
+.modal {
+	display: none;
+}
+
 /**
 * ICON CREDITS SECTION
 */

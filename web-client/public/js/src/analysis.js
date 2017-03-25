@@ -18,7 +18,7 @@ export default class Analysis {
 				notes: [
 				"Saviez vous que l'aluminium est recyclable a 99"
 				],
-				"warning": [
+				warning: [
 				"Veuillez verifier de bien vider le contenu du sac dans les poubelles appropriees."
 				]
 			},
@@ -117,7 +117,16 @@ export default class Analysis {
 				return !!item.warning;
 			}).warning[0];
 
-		console.log(categories)
 		return categories;
+	}
+
+	getCategoriesAndItems() {
+		var data = {};
+
+		data.categories = this.getCategoriesCount();
+
+		data.residues = this.residues;
+
+		return data;
 	}
 }
