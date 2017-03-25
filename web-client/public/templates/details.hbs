@@ -1,3 +1,32 @@
 <div class="row card">
-	<h1>Details</h1>
+	<div class="row">
+		{{#if this.trash}}
+		<div class="{{ this.itemDOMColumns }} columns trash">
+			<div class="img-container">
+				<img src="/images/trash.png">
+			</div>
+		</div>
+		{{/if}}
+		{{#if this.compost}}
+		<div class="{{ this.itemDOMColumns }} columns compost">
+			<div class="img-container">
+				<img src="/images/compost.png">
+			</div>
+		</div>
+		{{/if}}
+		{{#if this.paper}}
+		<div class="{{ this.itemDOMColumns }} columns paper">
+			<div class="img-container">
+				<img src="/images/paper.png">
+			</div>
+		</div>
+		{{/if}}
+		{{#if this.metal}}
+		<div class="{{ this.itemDOMColumns }} columns metal">
+			<div class="img-container">
+				<img src="/images/paper.png">
+			</div>
+		</div>
+		{{/if}}
+	</div>
 </div>
