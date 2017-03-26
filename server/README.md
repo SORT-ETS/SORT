@@ -46,6 +46,8 @@ DARKNET_DIR = '/usr/src/darknet'
   virtual venv
   source venv/bin/activate
 
+  pip install -r requirements.txt
+
   # Finally, start the server...
   python server.py
 ```
