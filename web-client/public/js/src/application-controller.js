@@ -57,7 +57,9 @@ export default class ApplicationController {
 			// Triggers back video
 			if(!this.videoController.isStreaming) {
 				this.imageController.hideImage();
+				this.loaderController.stopLoading();
 				this.resultsController.hideResults();
+				this.detailsController.hideResults();
 				this.videoController.initStream();
 			}
 		}, false);
@@ -89,7 +91,7 @@ export default class ApplicationController {
 					() => {
 						// Once ready moreDetailsButton should exist in DOM
 						this.moreDetailsButton = document.getElementById('moreDetailsButton');
-						console.log(this.moreDetailsButton)
+
 						this.moreDetailsButton.addEventListener('click', (event) => {
 							event.preventDefault();
 
@@ -108,8 +110,21 @@ export default class ApplicationController {
 										item.addEventListener('click', function(event) {
 											event.preventDefault();
 											var modal = this.getElementsByClassName('modal')[0];
-											console.log(modal);
+
 											modal.style.display = "block";
+										});
+									}
+
+									var exitModalButtons = document.getElementsByClassName('close-modal');
+
+									for(var i = 0; i < exitModalButtons.length; i++) {
+										var item = exitModalButtons.item(i);
+
+										item.addEventListener('click', function(event) {
+											event.stopPropagation();
+											// Three layers top of exit button is .modal
+											var parentModal = this.parentNode.parentNode.parentNode;
+											parentModal.style.display = "none";
 										});
 									}
 

@@ -30,7 +30,6 @@ export default class AnalysisRequest {
 
 			if(this._this.readyState == 4) {
 				// Rest done, ready
-				// if (this.readyState == 4 && this.status == 200) {
 				this.readyCallback(JSON.parse(this._this.responseText));
 
 			}
