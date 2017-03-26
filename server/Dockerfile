@@ -22,9 +22,10 @@ RUN git checkout origin/custom-output
 # Enable GPU
 RUN if [ ${CUDA} = "true" ]; then sed -i.old 's/GPU=0/GPU=1/' Makefile; fi;
 RUN make
-RUN wget -o yolo-sort.weights http://www.ntfournier.com/static/yolo/yolo-sort-latest.weights
-RUN wget -o yolo-sort.cfg http://www.ntfournier.com/static/yolo/yolo-sort-latest.cfg
-RUN wget -o voc-sort.data http://www.ntfournier.com/static/yolo/voc-sort-latest.data
+RUN wget -O yolo-sort.weights http://www.ntfournier.com/static/yolo/yolo-sort-latest.weights
+RUN wget -O yolo-sort.cfg http://www.ntfournier.com/static/yolo/yolo-sort-latest.cfg
+RUN wget -O voc-sort.data http://www.ntfournier.com/static/yolo/voc-sort-latest.data
+RUN wget -O data/sort.names http://www.ntfournier.com/static/yolo/sort-latest.names
 
 ## Install Python server
 
