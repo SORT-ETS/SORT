@@ -8,8 +8,8 @@ import Handlebars from 'handlebars';
 * Generates HTML using handlebars according to analysis data.
 */
 export default class ResultsView extends View {
-	constructor(domId) {
-		super(domId);
+	constructor(domId, parentId=undefined) {
+		super(domId, parentId);
 
 		this.domElement = document.getElementById(this.domId);
 	}

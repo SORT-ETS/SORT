@@ -13,6 +13,7 @@ export default class DetailsController {
 		this.templateRequest = new TemplateRequest('/templates/details.hbs',
 			(template) => {
 				this.showMore(template);
+				this.domReadyCallback();
 			});
 
 		// hidden by default
@@ -20,15 +21,20 @@ export default class DetailsController {
 	}
 
 	showMore(template) {
-		console.trace('TEMP',template)
-		this.detailsView.display(template);
+		this.detailsView.display(template, this.analysedCategories, this.image);
 	}
 
 	hideResults() {
 		this.detailsView.hide();
 	}
 
-	sendRequest() {
+	sendRequest(analysedCategories, domReadyCallback) {
+		this.analysedCategories = analysedCategories;
+		this.domReadyCallback = domReadyCallback;
 		this.templateRequest.sendRequest();
+	}
+
+	setImage(image) {
+		this.image = image;
 	}
 }
