@@ -46,6 +46,8 @@ DARKNET_DIR = '/usr/src/darknet'
   virtual venv
   source venv/bin/activate
 
+  pip install -r requirements.txt
+
   # Finally, start the server...
   python server.py
 ```
@@ -103,4 +105,47 @@ DARKNET_DIR = '/usr/src/server/darknet'
 
   # Exit the Docker container.
   exit
+```
+
+# Training on your images
+
+1. Start the docker-compose stack with Nvidia enabled (training without Nvidia is possible but it will takes weeks).
+
+```shell
+    nvidia-docker-compose -f docker-compose-nvidia.yml build
+    nvidia-docker-compose up
+```
+
+2. Clone training images folder and follow the `README` to get images.
+
+```shell
+  cd sort/server/
+  git clone git@github.com:SORT-ETS/training-data.git
+```
+
+4. Follow the instruction in `training-data/README` to get `.png` and `.jpg` files.
+
+5. Enter the container with the `Darknet` software, navigate to the `training-data` and generate configuration.
+
+```shell
+  make attach
+  cd training-data
+  ./genConfig.sh    # This script will generate labels, parameters, configs location and move file for Darknet.
+```
+
+5. Start training and wait for the first 100 iterations.
+
+```shell
+  cd ../../darknet
+  ./darknet detector train /usr/src/server/training-data/cfg/obj.data \
+                            /usr/src/server/training-data/cfg/yolo-sort.cfg \
+                            /usr/src/server/training-data
+```
+
+6. if results are better than the last version you have upload them on a remote location and change in the server Dockerfile.
+
+```dockerfile
+  RUN wget -o yolo-sort.weights http://www.ntfournier.com/static/yolo-sort-latest.weights
+  RUN wget -o yolo-sort.cfg http://www.ntfournier.com/static/yolo-sort-latest.cfg
+  RUN wget -o voc-sort.data http://www.ntfournier.com/static/voc-sort-latest.data
 ```

@@ -16,11 +16,9 @@ export default class AnalysisRequest {
 	}
 
 	sendRequest(imageData) {
-		// this._this.open("POST", "/api/image", true);
-		// this._this.setRequestHeader("Content-type", "application/json");
-		// this._this.send('{ "image": "'+ imageData +'" }');
-
-		this.readyCallback({});
+		this._this.open("POST", "/api/image", true);
+		this._this.setRequestHeader("Content-type", "application/json");
+		this._this.send('{ "image": "'+ imageData +'", "useStub": true }');
 	}
 
 	_handleCallbacksDelegation() {

@@ -2,10 +2,11 @@ import random
 
 
 class Stub():
-    possibleItems = ['container_metro', 'can_pepsi',
-                     'can_monster', 'compost', 'dishes']
-    minItemsFound = 1
-    maxItemsFound = 4
+    possibleItems = ['container_metro', 'can_aluminium',
+                     'container_juice', 'container_paper_milk', 'cup_paper',
+                     'container_bag', 'compost', 'plastic_bottle']
+    minItemsFound = 3
+    maxItemsFound = 7
 
     def getRandomOutput(self, imageWidth, imageHeight):
         boxes = []
