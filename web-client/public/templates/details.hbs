@@ -1,12 +1,12 @@
 <div class="row card">
 	<div class="row">
-		{{#if this.categories.trash}}
+		{{#if this.categories.poubelle}}
 		<div class="{{ this.categories.itemDOMColumns }} columns trash">
 			<div class="img-container">
 				<img src="/images/trash.png">
 			</div>
 			{{#each this.residues}}
-			{{#compare category "trash"}}
+			{{#compare category "poubelle"}}
 			<div class="detail-item row">
 				<img src="{{canvas}}" alt="residue">
 				<div class="item modal container">
@@ -70,13 +70,13 @@
 			{{/each}}
 		</div>
 		{{/if}}
-		{{#if this.categories.compost}}
+		{{#if this.categories.composte}}
 		<div class="{{ this.categories.itemDOMColumns }} columns compost">
 			<div class="img-container">
 				<img src="/images/compost.png">
 			</div>
 			{{#each this.residues}}
-			{{#compare category "compost"}}
+			{{#compare category "composte"}}
 			<div class="detail-item row">
 				<img src="{{canvas}}" alt="residue">
 				<div class="item modal container">
@@ -140,13 +140,13 @@
 			{{/each}}
 		</div>
 		{{/if}}
-		{{#if this.categories.paper}}
+		{{#if this.categories.recyclable}}
 		<div class="{{ this.categories.itemDOMColumns }} columns paper">
 			<div class="img-container">
 				<img src="/images/paper.png">
 			</div>
 			{{#each this.residues}}
-			{{#compare category "paper"}}
+			{{#compare category "recyclable"}}
 			<div class="detail-item row">
 				<img src="{{canvas}}" alt="residue">
 				<div class="item modal container">
