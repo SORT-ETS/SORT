@@ -2,7 +2,7 @@
   "container_metro": {
     "display_name": "Contenant Metro",
     "category": "recyclable",
-    "warning": [
+    "warnings": [
        "Veuillez verifier de bien vider le contenu du contenant dans les poubelles appropriees."
     ]
   },
@@ -24,7 +24,7 @@
   "container_bag": {
     "display_name": "Sac de plastic",
     "category": "poubelle",
-    "warning": [
+    "warnings": [
         "Veuillez verifier de bien vider le contenu du sac dans les poubelles appropriees."
     ]
   },

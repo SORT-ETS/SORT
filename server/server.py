@@ -97,7 +97,7 @@ def analyse_image():
     @apiSuccess (Residue Object Fields) {String[]} notes
             Notes or facts concerning the item.
 
-    @apiSuccess (Residue Object Fields) {String[]} warning
+    @apiSuccess (Residue Object Fields) {String[]} warnings
             Warning concerning the item.
 
     @apiParamExample {json} Answer-Exemple

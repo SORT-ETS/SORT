@@ -41,9 +41,11 @@
 		</div>
 		{{/if}}
 	</div>
+    {{#if this.warnings}}
 	<div class="row warning">
 	<h5>Attention : {{ this.warnings }}</h5>
 	</div>
+    {{/if}}
 	<div class="row details">
 		<p id="moreDetailsButton">Obtenir plus de détails</p>
 	</div>
