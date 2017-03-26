@@ -1,32 +1,32 @@
 <div class="row card">
 	<div class="row">
-		{{#if this.trash}}
+		{{#if this.poubelle}}
 		<div class="{{ this.itemDOMColumns }} columns trash">
 			<div class="img-container">
 				<img src="/images/trash.png">
 			</div>
 			<div class="amount">
-				<p>{{ this.trash }}</p>
+				<p>{{ this.poubelle }}</p>
 			</div>
 		</div>
 		{{/if}}
-		{{#if this.compost}}
+		{{#if this.composte}}
 		<div class="{{ this.itemDOMColumns }} columns compost">
 			<div class="img-container">
 				<img src="/images/compost.png">
 			</div>
 			<div class="amount">
-				<p>{{ this.compost }}</p>
+				<p>{{ this.composte }}</p>
 			</div>
 		</div>
 		{{/if}}
-		{{#if this.paper}}
+		{{#if this.recyclable}}
 		<div class="{{ this.itemDOMColumns }} columns paper">
 			<div class="img-container">
 				<img src="/images/paper.png">
 			</div>
 			<div class="amount">
-				<p>{{ this.paper }}</p>
+				<p>{{ this.recyclable }}</p>
 			</div>
 		</div>
 		{{/if}}

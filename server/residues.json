@@ -15,7 +15,7 @@
   },
   "compost": {
     "display_name": "Restants de table",
-    "category": "compost"
+    "category": "composte"
   },
   "container_aluminium": {
     "display_name": "Contenant d'aluminium",
@@ -23,7 +23,7 @@
   },
   "container_bag": {
     "display_name": "Sac de plastic",
-    "category": "trash",
+    "category": "poubelle",
     "warning": [
         "Veuillez verifier de bien vider le contenu du sac dans les poubelles appropriees."
     ]
@@ -38,7 +38,7 @@
   },
   "cup_paper": {
     "display_name": "Carton de cafe/brevage NON-RECYCLABLE",
-    "category": "trash"
+    "category": "poubelle"
   },
   "plastic_bottle": {
     "display_name": "Bouteille de plastique",
