@@ -123,6 +123,8 @@ def analyse_image():
     if imageData.startswith('data:image/png;base64,'):
         imageData = imageData.split(',')[1]
 
+    use_stub = request.get_json()['useStub']
+
     # Generate an id
     imageId = id_generator() + '.png'
     fileLocation = os.path.join(app.config['UPLOAD_FOLDER'], imageId)
@@ -136,7 +138,7 @@ def analyse_image():
     with Image.open(fileLocation) as im:
         width, height = im.size
     # Call Image processing engine
-    boxes = callIPEngine(fileLocation, resultLocation, width, height)
+    boxes = callIPEngine(fileLocation, resultLocation, width, height, use_stub)
 
     response = {
         'residues': []
