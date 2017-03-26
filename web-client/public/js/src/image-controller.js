@@ -9,7 +9,7 @@ import ImageView from './image-view';
 */
 export default class ImageController {
 	constructor() {
-		this.imageView = new ImageView('image-canvas');
+		this.imageView = new ImageView('image-canvas', 'image-sect');
 
 		// hidden by default
 		this.imageView.hide();
@@ -30,5 +30,9 @@ export default class ImageController {
 
 	getImageData() {
 		return this.imageView.getData();
+	}
+
+	getImage() {
+		return this.imageView.getCanvas();
 	}
 }

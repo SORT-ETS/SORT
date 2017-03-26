@@ -1,3 +1,104 @@
 <div class="row card">
-	<h1>Details</h1>
+	<div class="row">
+		{{#if this.categories.trash}}
+		<div class="{{ this.categories.itemDOMColumns }} columns trash">
+			<div class="img-container">
+				<img src="/images/trash.png">
+			</div>
+			{{#each this.residues}}
+			{{#compare category "trash"}}
+			<div class="detail-item row">
+				<img src="{{canvas}}" alt="residue">
+				<div class="item modal">
+					<button>exist</button>
+					<p>{{displayName}}</p>
+					<p>{{category}}</p>
+					{{#each notes}}
+					<p>{{this}}</p>
+					{{/each}}
+					{{#each warning}}
+					<p>{{this}}</p>
+					{{/each}}
+				</div>
+			</div>
+			{{/compare}}
+			{{/each}}
+		</div>
+		{{/if}}
+		{{#if this.categories.compost}}
+		<div class="{{ this.categories.itemDOMColumns }} columns compost">
+			<div class="img-container">
+				<img src="/images/compost.png">
+			</div>
+			{{#each this.residues}}
+			{{#compare category "compost"}}
+			<div class="detail-item row">
+				<img src="{{canvas}}" alt="residue">
+				<div class="item modal">
+					<button>exist</button>
+					<p>{{displayName}}</p>
+					<p>{{category}}</p>
+					{{#each notes}}
+					<p>{{this}}</p>
+					{{/each}}
+					{{#each warning}}
+					<p>{{this}}</p>
+					{{/each}}
+				</div>
+			</div>
+			{{/compare}}
+			{{/each}}
+		</div>
+		{{/if}}
+		{{#if this.categories.paper}}
+		<div class="{{ this.categories.itemDOMColumns }} columns paper">
+			<div class="img-container">
+				<img src="/images/paper.png">
+			</div>
+			{{#each this.residues}}
+			{{#compare category "paper"}}
+			<div class="detail-item row">
+				<img src="{{canvas}}" alt="residue">
+				<div class="item modal">
+					<button>exist</button>
+					<p>{{displayName}}</p>
+					<p>{{category}}</p>
+					{{#each notes}}
+					<p>{{this}}</p>
+					{{/each}}
+					{{#each warning}}
+					<p>{{this}}</p>
+					{{/each}}
+				</div>
+			</div>
+			{{/compare}}
+			{{/each}}
+		</div>
+		{{/if}}
+		{{#if this.categories.metal}}
+		<div class="{{ this.categories.itemDOMColumns }} columns metal">
+			<div class="img-container">
+				<img src="/images/paper.png">
+			</div>
+			{{#each this.residues}}
+			{{#compare category "metal"}}
+			<div class="detail-item row">
+				<img src="{{canvas}}" alt="residue">
+				<div class="item modal">
+					<button>exist</button>
+					<p>{{displayName}}</p>
+					<p>{{category}}</p>
+					{{#each notes}}
+					<p>{{this}}</p>
+					{{/each}}
+					{{#each warning}}
+					<p>{{this}}</p>
+					{{/each}}
+				</div>
+			</div>
+			{{/compare}}
+			{{/each}}
+		</div>
+		{{/if}}
+	</div>
 </div>

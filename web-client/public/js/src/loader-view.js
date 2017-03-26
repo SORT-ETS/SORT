@@ -6,17 +6,17 @@ import View from './view';
 * Loader view
 */
 export default class LoaderView extends View {
-	constructor(domId) {
-		super(domId);
+	constructor(domId, parentId) {
+		super(domId, parentId);
 
-		this.domElement = document.getElementById(this.domId);
+		this.parentSection = document.getElementById(this.parentId);
 	}
 
 	display() {
-		this.domElement.parentNode.style.display = 'block';
+		this.parentSection.style.display = 'block';
 	}
 
 	hide() {
-		this.domElement.parentNode.style.display = 'none';
+		this.parentSection.style.display = 'none';
 	}
 }

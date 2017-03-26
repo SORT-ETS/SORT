@@ -68,6 +68,7 @@ export default class ApplicationController {
 	_analyseImage() {
 		// Must set image before stopping stream otherwise nothing visible
 		this.imageController.setImage(this.videoController.getVideo());
+
 		this.videoController.stopStream();
 
 		var analysisReq = new AnalysisRequest(
@@ -95,7 +96,24 @@ export default class ApplicationController {
 							this.imageController.hideImage();
 							this.resultsController.hideResults();
 							// Which fetches the template and displays the view
-							this.detailsController.sendRequest();
+							this.detailsController.setImage(this.imageController.getImage());
+							this.detailsController.sendRequest(analysis.getCategoriesAndItems(),
+								() => {
+									// Can handle anything hapening in the details view
+									var detailItems = document.getElementsByClassName('detail-item');
+
+									for(var i = 0; i < detailItems.length; i++) {
+										var item = detailItems.item(i);
+
+										item.addEventListener('click', function(event) {
+											event.preventDefault();
+											var modal = this.getElementsByClassName('modal')[0];
+											console.log(modal);
+											modal.style.display = "block";
+										});
+									}
+
+								});
 						}, false);
 					});
 

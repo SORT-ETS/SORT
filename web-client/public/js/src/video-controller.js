@@ -9,7 +9,7 @@ import HomeView from './home-view';
 */
 export default class VideoController {
 	constructor() {
-		this.videoView = new VideoView('video');
+		this.videoView = new VideoView('video', 'video-sect');
 		this.homeView = new HomeView('home');
 		this.isStreaming = false;
 	}

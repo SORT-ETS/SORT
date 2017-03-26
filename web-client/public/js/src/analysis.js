@@ -8,7 +8,6 @@ export default class Analysis {
 	constructor(analysisObject) {
 		// Good pattern for extending objects
 		Object.assign(this, analysisObject);
-		console.log(analysisObject)
 	}
 
 	// Analysis abstraction meant to be used by images, does not expose all params
@@ -65,7 +64,16 @@ export default class Analysis {
 				return !!item.warning;
 			}).warning[0];
 
-		console.log(categories)
 		return categories;
+	}
+
+	getCategoriesAndItems() {
+		var data = {};
+
+		data.categories = this.getCategoriesCount();
+
+		data.residues = this.residues;
+
+		return data;
 	}
 }
