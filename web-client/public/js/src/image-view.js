@@ -38,8 +38,7 @@ export default class ImageView extends View {
 			width, height);
 
 		// As a reference for further use after calling setOverlay
-		// this.setImageReference();
-		this.imageRef = this.domElement;
+		this.setImageReference();
 
 		// By default base64, no conversion needed
 		this.base64Data = this.domElement.toDataURL('image/png');
@@ -90,6 +89,19 @@ export default class ImageView extends View {
 			context.stroke();
 		});
 
+	}
+
+	setImageReference() {
+
+    this.imageRef = document.createElement('canvas');
+    var context = this.imageRef.getContext('2d');
+
+    //set dimensions
+    this.imageRef.width = this.domElement.width;
+    this.imageRef.height = this.domElement.height;
+
+    //apply the old canvas to the new one
+    context.drawImage(this.domElement, 0, 0);
 	}
 
 	getData() {

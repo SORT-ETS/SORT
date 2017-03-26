@@ -7,7 +7,7 @@
 export default class Analysis {
 	constructor(analysisObject) {
 		// Good pattern for extending objects
-		Object.assign(this, analysisObject);
+    Object.assign(this, analysisObject);
 	}
 
 	// Analysis abstraction meant to be used by images, does not expose all params
@@ -59,10 +59,10 @@ export default class Analysis {
 		}
 
 		// Find the first warning to be displayed
-		categories.warning = this.residues.find(
+		categories.warnings = this.residues.find(
 			function(item){
-				return !!item.warning;
-			}).warning[0];
+				return !!item.warnings;
+			}).warnings[0];
 
 		return categories;
 	}
