@@ -49,9 +49,28 @@ export default class ApplicationController {
 				if(this.videoController.isStreaming) {
 					this._analyseImage();
 				}
-			}
+			}			
 		}, false);
 
+		
+		document.addEventListener('keydown', (event) => {
+			switch(event.keyCode){
+				case 37: 
+				//Left arrow
+				console.log("Left");
+				break;
+				case 38: //Up arrow
+				console.log("Up");
+				break;
+				case 39: //Right arrow
+				console.log("Right");
+				break;
+				case 40: //Down arrow
+				console.log("Down");
+				break;
+			}
+		}, false);
+		
 		this.backButton.addEventListener('click', (event) => {
 			event.preventDefault();
 			// Triggers back video
