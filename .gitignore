@@ -5,3 +5,5 @@ iot/*.png
 *.js.tmp-*
 
 nvidia-docker-compose.yml
+
+training-data/

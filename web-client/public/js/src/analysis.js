@@ -7,60 +7,7 @@
 export default class Analysis {
 	constructor(analysisObject) {
 		// Good pattern for extending objects
-		// Object.assign(this, analysisObject);
-		Object.assign(this, {
-			residues: [
-			{
-				boundaries: [353, 859, 537, 613],
-				category: 'metal',
-				displayName: 'Objet 1',
-				name: 'obj_1',
-				notes: [
-				"Saviez vous que l'aluminium est recyclable a 99"
-				],
-				warning: [
-				"Veuillez verifier de bien vider le contenu du sac dans les poubelles appropriees."
-				]
-			},
-			{
-				boundaries: [363, 859, 547, 613],
-				category: 'trash',
-				displayName: 'Objet 2',
-				name: 'obj_2',
-				notes: [
-				"Saviez vous que l'aluminium est recyclable a 99"
-				]
-			},
-			{
-				boundaries: [373, 859, 557, 613],
-				category: 'paper',
-				displayName: 'Objet 3',
-				name: 'obj_3',
-				notes: [
-				"Saviez vous que l'aluminium est recyclable a 99"
-				]
-			},
-			{
-				boundaries: [383, 859, 567, 613],
-				category: 'compost',
-				displayName: 'Objet 4',
-				name: 'obj_4',
-				notes: [
-				"Saviez vous que l'aluminium est recyclable a 99"
-				]
-			},
-			{
-				boundaries: [393, 859, 577, 613],
-				category: 'compost',
-				displayName: 'Objet 5',
-				name: 'obj_5',
-				notes: [
-				"Saviez vous que l'aluminium est recyclable a 99"
-				]
-			}
-
-			]
-		})
+		Object.assign(this, analysisObject);
 	}
 
 	// Analysis abstraction meant to be used by images, does not expose all params

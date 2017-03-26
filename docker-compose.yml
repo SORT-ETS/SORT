@@ -14,8 +14,8 @@ services:
     ports:
       - "6088:6088"
     volumes:
-      - ./web-client/public/:/usr/src/web-client/public/
-      - ./web-client/server.js:/usr/src/web-client/server.js
+      - ./web-client/public/:/usr/src/app/public/
+      - ./web-client/server.js:/usr/src/app/server.js
     depends_on:
       - server
     environment:

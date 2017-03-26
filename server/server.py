@@ -1,53 +1,25 @@
+from __future__ import print_function
 import os
 import base64
 import random
 import string
+import sys
 from tools.stub import Stub
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, json
 from PIL import Image
 
 import subprocess
 
 SERVER_FOLDER = '/usr/src/server'
-UPLOAD_FOLDER = SERVER_FOLDER + '/images'
-RESULT_FOLDER = SERVER_FOLDER + '/results'
 DARKNET_DIR = '/usr/src/darknet'
 
 app = Flask(__name__)
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-app.config['RESULT_FOLDER'] = RESULT_FOLDER
+app.config['UPLOAD_FOLDER'] = SERVER_FOLDER + '/images'
+app.config['RESULT_FOLDER'] = SERVER_FOLDER + '/results'
+app.config['RESIDUES_FILE'] = SERVER_FOLDER + '/residues.json'
 app.config['DARKNET_DIR'] = DARKNET_DIR
-app.config['USE_STUB'] = False
 
 preId = 0
-possibleResidues = {
-    'container_metro': {
-        'displayName': 'Contenant Metro',
-        'category': 'recyclable',
-        'warning': [
-            "Veuillez verifier de vider le contenu de celui-ci dans les \
-            poubelles appropriees."]
-    },
-    'can_monster': {
-        'displayName': 'Canette',
-        'category': 'metal',
-        'notes': ["Saviez vous que l'aluminium est recyclable a 99"]
-    },
-    'can_pepsi': {
-        'displayName': 'Canette',
-        'category': 'metal',
-    },
-    'compost': {
-        'displayName': 'Restants de table',
-        'category': 'composte'
-    },
-    'dishes': {
-        'displayName': 'Assiettes',
-        'category': 'aucune',
-        'warning': "Seulement les fruits et les legumes sont compostables!",
-        'notes': ["Je jette du composte par les yeux", "Second note"]
-    }
-}
 
 
 def id_generator():
@@ -59,8 +31,8 @@ def id_generator():
                 for _ in range(8))
 
 
-def callIPEngine(fileLocation, resultLocation, imageWidth, imageHeight):
-    if app.config['USE_STUB']:
+def callIPEngine(fileLocation, resultLocation, imageWidth, imageHeight, useStub=False):
+    if useStub:
         stub = Stub()
         boxes = stub.getRandomOutput(imageWidth, imageHeight)
 
@@ -151,6 +123,8 @@ def analyse_image():
     if imageData.startswith('data:image/png;base64,'):
         imageData = imageData.split(',')[1]
 
+    use_stub = request.get_json()['useStub']
+
     # Generate an id
     imageId = id_generator() + '.png'
     fileLocation = os.path.join(app.config['UPLOAD_FOLDER'], imageId)
@@ -164,22 +138,24 @@ def analyse_image():
     with Image.open(fileLocation) as im:
         width, height = im.size
     # Call Image processing engine
-    boxes = callIPEngine(fileLocation, resultLocation, width, height)
+    boxes = callIPEngine(fileLocation, resultLocation, width, height, use_stub)
 
     response = {
         'residues': []
     }
 
+    possibleResidues = json.load(open(app.config['RESIDUES_FILE']))
+
     for b in boxes:
         key = b[0]
         # If the key is not present we pick a random item...
-        if key not in possibleResidues:
-            key = random.sample(possibleResidues, 1)[0]
+        if key in possibleResidues:
+            residue = possibleResidues[key]
+            residue['name'] = b[0]
+            residue['boundaries'] = b[1:5]
+            response['residues'].append(residue)
+            print('item found : ' + b[0], file=sys.stderr)
 
-        residue = possibleResidues[key]
-        residue['name'] = b[0]
-        residue['boundaries'] = b[1:5]
-        response['residues'].append(residue)
 
     return jsonify(response)
 
