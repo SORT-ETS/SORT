@@ -5,6 +5,7 @@ import ImageController from './image-controller';
 import LoaderController from './loader-controller';
 import ResultsController from './results-controller';
 import DetailsController from './details-controller';
+import NavigationController from './navigation-controller';
 
 import AnalysisRequest from './analysis-request';
 import Analysis from './analysis';
@@ -19,6 +20,7 @@ export default class ApplicationController {
 		this.loaderController = new LoaderController();
 		this.resultsController = new ResultsController();
 		this.detailsController = new DetailsController();
+		
 
 		this.pictureButton = document.getElementById('pictureButton');
 		this.backButton = document.getElementById('backButton');
@@ -57,16 +59,16 @@ export default class ApplicationController {
 			switch(event.keyCode){
 				case 37: 
 				//Left arrow
-				console.log("Left");
+				this.navigationController.select("left");
 				break;
 				case 38: //Up arrow
-				console.log("Up");
+				this.navigationController.select("up");
 				break;
 				case 39: //Right arrow
-				console.log("Right");
+				this.navigationController.select("right");
 				break;
 				case 40: //Down arrow
-				console.log("Down");
+				this.navigationController.select("down");
 				break;
 			}
 		}, false);
@@ -113,13 +115,16 @@ export default class ApplicationController {
 
 						this.moreDetailsButton.addEventListener('click', (event) => {
 							event.preventDefault();
-
+							
+							
+							
 							this.imageController.hideImage();
 							this.resultsController.hideResults();
 							// Which fetches the template and displays the view
 							this.detailsController.setImage(this.imageController.getImage());
 							this.detailsController.sendRequest(analysis.getCategoriesAndItems(),
 								() => {
+									this.navigationController = new NavigationController();
 									// Can handle anything hapening in the details view
 									var detailItems = document.getElementsByClassName('detail-item');
 

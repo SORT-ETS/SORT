@@ -7,7 +7,7 @@
 			</div>
 			{{#each this.residues}}
 			{{#compare category "trash"}}
-			<div class="detail-item row">
+			<div id="1{{@index}}" class="selectable detail-item row">
 				<img src="{{canvas}}" alt="residue">
 				<div class="item modal container">
 					<div class="three columns">
@@ -77,7 +77,7 @@
 			</div>
 			{{#each this.residues}}
 			{{#compare category "compost"}}
-			<div class="detail-item row">
+			<div id="2{{@index}}" class="selectable detail-item row">
 				<img src="{{canvas}}" alt="residue">
 				<div class="item modal container">
 					<div class="three columns">
@@ -147,7 +147,7 @@
 			</div>
 			{{#each this.residues}}
 			{{#compare category "paper"}}
-			<div class="detail-item row">
+			<div id="3{{@index}}" class="selectable detail-item row">
 				<img src="{{canvas}}" alt="residue">
 				<div class="item modal container">
 					<div class="three columns">
@@ -217,7 +217,7 @@
 			</div>
 			{{#each this.residues}}
 			{{#compare category "recyclable"}}
-			<div class="detail-item row">
+			<div id="4{{@index}}" class="selectable detail-item row">
 				<img src="{{canvas}}" alt="residue">
 				<div class="item modal container">
 					<div class="three columns">
