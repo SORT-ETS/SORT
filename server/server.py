@@ -31,7 +31,8 @@ def id_generator():
                 for _ in range(8))
 
 
-def callIPEngine(fileLocation, resultLocation, imageWidth, imageHeight, useStub=False):
+def callIPEngine(fileLocation, resultLocation, imageWidth, imageHeight,
+                 useStub=False):
     if useStub:
         stub = Stub()
         boxes = stub.getRandomOutput(imageWidth, imageHeight)
@@ -123,10 +124,16 @@ def analyse_image():
     if imageData.startswith('data:image/png;base64,'):
         imageData = imageData.split(',')[1]
 
-    use_stub = request.get_json()['useStub']
+    use_stub = False
+    if 'useStub' in request.get_json():
+        use_stub = request.get_json()['useStub']
+
+    return_result = False
+    if 'returnResult' in request.get_json():
+        return_result = request.get_json()['returnResult']
 
     # Generate an id
-    imageId = id_generator() + '.png'
+    imageId = id_generator() + '.jpg'
     fileLocation = os.path.join(app.config['UPLOAD_FOLDER'], imageId)
     resultLocation = os.path.join(app.config['RESULT_FOLDER'], imageId)
 
@@ -144,6 +151,10 @@ def analyse_image():
         'residues': []
     }
 
+    if return_result:
+        with open(resultLocation, 'r') as result:
+            response['result'] = base64.b64encode(result.read())
+
     possibleResidues = json.load(open(app.config['RESIDUES_FILE']))
 
     for b in boxes:
@@ -156,13 +167,13 @@ def analyse_image():
             response['residues'].append(residue)
             print('item found : ' + b[0], file=sys.stderr)
 
-
     return jsonify(response)
 
 
 @app.route('/version')
-def get_version(self):
-    return {'version': '0.0.2'}
+def get_version():
+    return jsonify({'version': '0.0.2'})
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True, threaded=True)
