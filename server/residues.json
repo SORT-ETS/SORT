@@ -1,47 +1,47 @@
 {
   "container_metro": {
-    "display_name": "Contenant Metro",
-    "category": "recyclable",
+    "displayName": "Contenant Metro",
+    "category": "paper",
     "warnings": [
        "Veuillez verifier de bien vider le contenu du contenant dans les poubelles appropriees."
     ]
   },
   "can_aluminium": {
-    "display_name": "Canette",
-    "category": "metal",
+    "displayName": "Canette",
+    "category": "recyclable",
     "notes": [
       "Saviez vous que l'aluminium est recyclable pratiquement indéfiniment."
     ]
   },
   "compost": {
-    "display_name": "Restants de table",
-    "category": "composte"
+    "displayName": "Restants de table",
+    "category": "compost"
   },
   "container_aluminium": {
-    "display_name": "Contenant d'aluminium",
-    "category": "metal"
+    "displayName": "Contenant d'aluminium",
+    "category": "recyclable"
   },
   "container_bag": {
-    "display_name": "Sac de plastic",
-    "category": "poubelle",
+    "displayName": "Sac de plastic",
+    "category": "trash",
     "warnings": [
         "Veuillez verifier de bien vider le contenu du sac dans les poubelles appropriees."
     ]
   },
   "container_juice": {
-    "display_name": "Carton de jus",
+    "displayName": "Carton de jus",
     "category": "recyclable"
   },
   "container_paper_milk": {
-    "display_name": "Carton de lait",
+    "displayName": "Carton de lait",
     "category": "recyclable"
   },
   "cup_paper": {
-    "display_name": "Carton de cafe/brevage NON-RECYCLABLE",
-    "category": "poubelle"
+    "displayName": "Carton de cafe/brevage NON-RECYCLABLE",
+    "category": "trash"
   },
   "plastic_bottle": {
-    "display_name": "Bouteille de plastique",
+    "displayName": "Bouteille de plastique",
     "category": "recyclable"
   }
 }
