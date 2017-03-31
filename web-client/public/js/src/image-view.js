@@ -47,7 +47,7 @@ export default class ImageView extends View {
 	setOverlay(boundaries) {
 
 		var context = this.domElement.getContext('2d');
-		var textBoxHeight = 50;
+		var textBoxHeight = 42;
 
 		boundaries.forEach(function(item){
 			var x = item.boundaries[0];
@@ -59,31 +59,17 @@ export default class ImageView extends View {
 			context.lineWidth="2";
 			context.globalAlpha = 0.8;
 
-			switch(item.category) {
-				case "recyclable":
-				context.strokeStyle="yellow";
-				context.fillStyle = "yellow";
-				break;
-				case "metal":
-				context.strokeStyle="blue";
-				context.fillStyle = "blue";
-				break;
-				case "composte":
-				context.strokeStyle="red";
-				context.fillStyle = "red";
-				break;
-				default:
-				context.strokeStyle="gray";
-				context.fillStyle = "gray";
-			}
+			context.strokeStyle = item.color;
+			context.fillStyle =  item.color;
+
 			context.rect(x, y -textBoxHeight, width, textBoxHeight);
 			context.fillRect(x, y -textBoxHeight, width, textBoxHeight);
 
-			context.font="20px helvetica";
+			context.font="22px helvetica";
 			context.fillStyle = "#fff";
 			context.textAlign="center";
-			var capitalizeCat = item.category.charAt(0).toUpperCase() + item.category.slice(1);
-			context.fillText(capitalizeCat, x+width /2, y - textBoxHeight/2);
+
+			context.fillText(item.displayCategory, x+width /2, y - 18 / 2);
 
 			context.rect(x,y,width,height);
 			context.stroke();

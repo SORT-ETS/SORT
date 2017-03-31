@@ -1,42 +1,42 @@
 <div class="row card">
 	<div class="row">
-		{{#if this.poubelle}}
+		{{#if this.trash}}
 		<div class="{{ this.itemDOMColumns }} columns trash">
 			<div class="img-container">
 				<img src="/images/trash.png">
 			</div>
 			<div class="amount">
-				<p>{{ this.poubelle }}</p>
+				<p>{{ this.trash }}</p>
 			</div>
 		</div>
 		{{/if}}
-		{{#if this.composte}}
+		{{#if this.compost}}
 		<div class="{{ this.itemDOMColumns }} columns compost">
 			<div class="img-container">
 				<img src="/images/compost.png">
 			</div>
 			<div class="amount">
-				<p>{{ this.composte }}</p>
+				<p>{{ this.compost }}</p>
 			</div>
 		</div>
 		{{/if}}
-		{{#if this.recyclable}}
+		{{#if this.paper}}
 		<div class="{{ this.itemDOMColumns }} columns paper">
 			<div class="img-container">
 				<img src="/images/paper.png">
 			</div>
 			<div class="amount">
-				<p>{{ this.recyclable }}</p>
+				<p>{{ this.paper }}</p>
 			</div>
 		</div>
 		{{/if}}
-		{{#if this.metal}}
-		<div class="{{ this.itemDOMColumns }} columns metal">
+		{{#if this.recyclable}}
+		<div class="{{ this.itemDOMColumns }} columns recyclable">
 			<div class="img-container">
-				<img src="/images/paper.png">
+				<img src="/images/recyclable.png">
 			</div>
 			<div class="amount">
-				<p>{{ this.metal }}</p>
+				<p>{{ this.recyclable }}</p>
 			</div>
 		</div>
 		{{/if}}
