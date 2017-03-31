@@ -1,6 +1,7 @@
 from __future__ import print_function
 import os
 import base64
+import copy
 import random
 import string
 import sys
@@ -133,7 +134,7 @@ def analyse_image():
         return_result = request.get_json()['returnResult']
 
     # Generate an id
-    imageId = id_generator() + '.jpg'
+    imageId = id_generator() + '.png'
     fileLocation = os.path.join(app.config['UPLOAD_FOLDER'], imageId)
     resultLocation = os.path.join(app.config['RESULT_FOLDER'], imageId)
 
@@ -159,13 +160,12 @@ def analyse_image():
 
     for b in boxes:
         key = b[0]
-        # If the key is not present we pick a random item...
         if key in possibleResidues:
-            residue = possibleResidues[key]
+            residue = copy.copy(possibleResidues[key])
             residue['name'] = b[0]
             residue['boundaries'] = b[1:5]
             response['residues'].append(residue)
-            print('item found : ' + b[0], file=sys.stderr)
+            print('item found : ' + b[0] + "  " + str(b[1:5]), file=sys.stderr)
 
     return jsonify(response)
 
