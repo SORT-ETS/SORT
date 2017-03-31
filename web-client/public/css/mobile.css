@@ -223,7 +223,7 @@ body {
 	width: 50%;
 }
 
-.trash, .compost, .paper, .metal {
+.trash, .compost, .paper, .recyclable {
 	margin: 0;
 }
 
@@ -252,11 +252,11 @@ body {
 	background-color: #2f80ed;
 }
 
-.metal {
+.recyclable {
 	background-color: rgba(242, 201, 76, 0.4);
 }
 
-.metal .img-container {
+.recyclable .img-container {
 	transform: scale(-1,1);
 
 	background-color: #f2c94c;
@@ -300,7 +300,7 @@ body {
 	width: 100%;
 }
 
-.screen-more .trash, .screen-more .compost, .screen-more .paper, .screen-more .metal {
+.screen-more .trash, .screen-more .compost, .screen-more .paper, .screen-more .recyclable {
 	min-height: 80vh;
 }
 
