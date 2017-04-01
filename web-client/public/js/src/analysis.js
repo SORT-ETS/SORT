@@ -12,8 +12,7 @@ export default class Analysis {
 		this.categoriesMap = {
 			'recyclable': {
 				'display': 'Plastique/Metal',
-				// 'color': 'yellow'
-				'color': '#ffcc00'
+				'color': 'yellow'
 			},
 			'paper': {
 				'display': 'Papier/Carton',
@@ -25,7 +24,7 @@ export default class Analysis {
 			},
 			'compost': {
 				'display': 'Composte',
-				'color': 'maroon'
+				'color': 'red'
 			}
 		};
 
