@@ -8,6 +8,32 @@ export default class Analysis {
 	constructor(analysisObject) {
 		// Good pattern for extending objects
 		Object.assign(this, analysisObject);
+
+		this.categoriesMap = {
+			'recyclable': {
+				'display': 'Plastique/Metal',
+				'color': 'yellow'
+			},
+			'paper': {
+				'display': 'Papier/Carton',
+				'color': 'blue'
+			},
+			'trash': {
+				'display': 'Déchets',
+				'color': 'gray'
+			},
+			'compost': {
+				'display': 'Composte',
+				'color': 'red'
+			}
+		};
+
+		var _this = this;
+		this.residues.map(function (residue) {
+			residue['displayCategory'] = _this.categoriesMap[residue.category].display;
+			residue['color'] = _this.categoriesMap[residue.category].color;
+			return residue;
+		})
 	}
 
 	// Analysis abstraction meant to be used by images, does not expose all params
@@ -15,7 +41,9 @@ export default class Analysis {
 		return this.residues.map(function(residue) {
 			return {
 				'boundaries': residue.boundaries,
-				'category': residue.category
+				'category': residue.category,
+				'displayCategory': residue.displayCategory,
+				'color': residue.color
 			};
 		});
 	}
@@ -64,8 +92,8 @@ export default class Analysis {
 		})
 
 		if (residue != undefined) {
-            categories.warnings = residue.warnings[0];
-        }
+			categories.warnings = residue.warnings[0];
+		}
 
 		return categories;
 	}
