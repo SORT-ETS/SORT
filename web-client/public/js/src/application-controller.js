@@ -18,7 +18,7 @@ export default class ApplicationController {
 		this.loaderController = new LoaderController();
 		this.resultsController = new ResultsController();
 		this.detailsController = new DetailsController();
-		
+
 
 		this.pictureButton = document.getElementById('pictureButton');
 		this.backButton = document.getElementById('backButton');
@@ -49,12 +49,12 @@ export default class ApplicationController {
 				if(this.videoController.isStreaming) {
 					this._analyseImage();
 				}
-			}			
+			}
 		}, false);
 
-		
-		
-		
+
+
+
 		this.backButton.addEventListener('click', (event) => {
 			event.preventDefault();
 			// Triggers back video
@@ -97,26 +97,26 @@ export default class ApplicationController {
 
 						this.moreDetailsButton.addEventListener('click', (event) => {
 							event.preventDefault();
-							
-							
-							
+
+
+
 							this.imageController.hideImage();
 							this.resultsController.hideResults();
 							// Which fetches the template and displays the view
 							this.detailsController.setImage(this.imageController.getImage());
 							this.detailsController.sendRequest(analysis.getCategoriesAndItems(),
 								() => {
-									
+
 									var directions = {
 										38:'up',
 										40:'bottom',
 										37:'prev',
 										39:'next'
-									};								
+									};
 									var $selectable = $('.selectable');
-									
-									
-									
+
+
+
 									// Can handle anything hapening in the details view
 									var detailItems = document.getElementsByClassName('detail-item');
 
@@ -131,8 +131,8 @@ export default class ApplicationController {
 										});
 									}
 
-									var exitModalButtons = document.getElementsByClassName('close-modal');		
-					
+									var exitModalButtons = document.getElementsByClassName('close-modal');
+
 									for(var i = 0; i < exitModalButtons.length; i++) {
 										var item = exitModalButtons.item(i);
 
@@ -143,33 +143,33 @@ export default class ApplicationController {
 											parentModal.style.display = "none";
 										});
 									}
-									
+
 									document.addEventListener('keyup', (e) => {
-										
-										var dir = directions[e.which];									
+
+										var dir = directions[e.which];
 										var $active = $('.active');
-										
-										
+
+
 										if (!$active.length) {
 											if (e.which == 13) {
 												$(exitModalButtons).trigger("click");
 											}
-											
-											
+
+
 											$selectable.first().addClass('active');
 											return;
 										} else {
-											
+
 											if (e.which == 13) {
 												$(exitModalButtons).trigger("click");
 												$active.click();
 												$active.removeClass('active');
 												return;
 											}
-											
+
 											if(dir !== undefined){
-												var cat = $active.closest('.three.columns');										
-												
+												var cat = $active.closest('.columns');
+
 												if(dir === 'next'){
 													cat.next().children('.selectable').first().addClass('active');
 												} else if(dir === 'prev'){
@@ -179,7 +179,7 @@ export default class ApplicationController {
 													var p = dir === 'up' ? (i-1) : (i+1);
 													cat.children('.selectable').eq(p).addClass('active');
 												}
-												
+
 												$active.removeClass('active');
 											}
 										}
