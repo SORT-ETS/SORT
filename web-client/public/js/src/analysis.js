@@ -90,7 +90,7 @@ export default class Analysis {
 		// Find the first warning to be displayed
 		let residue = this.residues.find(function(item){
 			return !!item.warnings;
-		})
+		});
 
 		if (residue != undefined) {
 			categories.warnings = residue.warnings[0];

@@ -36,7 +36,7 @@ export default class ApplicationController {
 			event.preventDefault();
 			// This button is only present when streaming and user to trigger
 			// analysys
-			if(this.videoController.isStreaming) {
+			if (this.videoController.isStreaming) {
 				this._analyseImage();
 			}
 		}, false);
@@ -52,13 +52,10 @@ export default class ApplicationController {
 			}
 		}, false);
 
-
-
-
 		this.backButton.addEventListener('click', (event) => {
 			event.preventDefault();
 			// Triggers back video
-			if(!this.videoController.isStreaming) {
+			if (!this.videoController.isStreaming) {
 				this.imageController.hideImage();
 				this.loaderController.stopLoading();
 				this.resultsController.hideResults();
@@ -66,8 +63,6 @@ export default class ApplicationController {
 				this.videoController.initStream();
 			}
 		}, false);
-
-
 	}
 
 	_analyseImage() {
@@ -98,8 +93,6 @@ export default class ApplicationController {
 						this.moreDetailsButton.addEventListener('click', (event) => {
 							event.preventDefault();
 
-
-
 							this.imageController.hideImage();
 							this.resultsController.hideResults();
 							// Which fetches the template and displays the view
@@ -113,9 +106,8 @@ export default class ApplicationController {
 										37:'prev',
 										39:'next'
 									};
+
 									var $selectable = $('.selectable');
-
-
 
 									// Can handle anything hapening in the details view
 									var detailItems = document.getElementsByClassName('detail-item');
@@ -155,7 +147,6 @@ export default class ApplicationController {
 												$(exitModalButtons).trigger("click");
 											}
 
-
 											$selectable.first().addClass('active');
 											return;
 										} else {
@@ -167,12 +158,12 @@ export default class ApplicationController {
 												return;
 											}
 
-											if(dir !== undefined){
+											if (dir !== undefined) {
 												var cat = $active.closest('.columns');
 
-												if(dir === 'next'){
+												if (dir === 'next') {
 													cat.next().children('.selectable').first().addClass('active');
-												} else if(dir === 'prev'){
+												} else if (dir === 'prev') {
 													cat.prev().children('.selectable').first().addClass('active');
 												} else {
 													var i = cat.children('.selectable').index($active);
@@ -188,8 +179,6 @@ export default class ApplicationController {
 								});
 						}, false);
 					});
-
-
 			});
 
 		var imageData = this.imageController.getImageData();
