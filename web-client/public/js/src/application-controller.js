@@ -5,8 +5,6 @@ import ImageController from './image-controller';
 import LoaderController from './loader-controller';
 import ResultsController from './results-controller';
 import DetailsController from './details-controller';
-import NavigationController from './navigation-controller';
-
 import AnalysisRequest from './analysis-request';
 import Analysis from './analysis';
 
@@ -55,23 +53,7 @@ export default class ApplicationController {
 		}, false);
 
 		
-		document.addEventListener('keydown', (event) => {
-			switch(event.keyCode){
-				case 37: 
-				//Left arrow
-				this.navigationController.select("left");
-				break;
-				case 38: //Up arrow
-				this.navigationController.select("up");
-				break;
-				case 39: //Right arrow
-				this.navigationController.select("right");
-				break;
-				case 40: //Down arrow
-				this.navigationController.select("down");
-				break;
-			}
-		}, false);
+		
 		
 		this.backButton.addEventListener('click', (event) => {
 			event.preventDefault();
@@ -124,7 +106,17 @@ export default class ApplicationController {
 							this.detailsController.setImage(this.imageController.getImage());
 							this.detailsController.sendRequest(analysis.getCategoriesAndItems(),
 								() => {
-									this.navigationController = new NavigationController();
+									
+									var directions = {
+										38:'up',
+										40:'bottom',
+										37:'prev',
+										39:'next'
+									};								
+									var $selectable = $('.selectable');
+									
+									
+									
 									// Can handle anything hapening in the details view
 									var detailItems = document.getElementsByClassName('detail-item');
 
@@ -139,8 +131,8 @@ export default class ApplicationController {
 										});
 									}
 
-									var exitModalButtons = document.getElementsByClassName('close-modal');
-
+									var exitModalButtons = document.getElementsByClassName('close-modal');		
+					
 									for(var i = 0; i < exitModalButtons.length; i++) {
 										var item = exitModalButtons.item(i);
 
@@ -151,6 +143,47 @@ export default class ApplicationController {
 											parentModal.style.display = "none";
 										});
 									}
+									
+									document.addEventListener('keyup', (e) => {
+										
+										var dir = directions[e.which];									
+										var $active = $('.active');
+										
+										
+										if (!$active.length) {
+											if (e.which == 13) {
+												$(exitModalButtons).trigger("click");
+											}
+											
+											
+											$selectable.first().addClass('active');
+											return;
+										} else {
+											
+											if (e.which == 13) {
+												$(exitModalButtons).trigger("click");
+												$active.click();
+												$active.removeClass('active');
+												return;
+											}
+											
+											if(dir !== undefined){
+												var cat = $active.closest('.three.columns');										
+												
+												if(dir === 'next'){
+													cat.next().children('.selectable').first().addClass('active');
+												} else if(dir === 'prev'){
+													cat.prev().children('.selectable').first().addClass('active');
+												} else {
+													var i = cat.children('.selectable').index($active);
+													var p = dir === 'up' ? (i-1) : (i+1);
+													cat.children('.selectable').eq(p).addClass('active');
+												}
+												
+												$active.removeClass('active');
+											}
+										}
+									}, false);
 
 								});
 						}, false);

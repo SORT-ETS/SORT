@@ -290,6 +290,11 @@ body {
 * MORE DETAILS SECTION
 */
 
+.selectable.active {
+    border: 3px solid black !important;
+}
+
+
 .screen-more {
 	height: 80%;
 
