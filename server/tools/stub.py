@@ -25,6 +25,7 @@ class Stub():
 
             boxes.append((random.choice(self.possibleItems),
                           left, right,
-                          top, bottom))
+                          top, bottom,
+                          random.randint(40, 99)))
 
         return boxes

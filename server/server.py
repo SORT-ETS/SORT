@@ -90,6 +90,9 @@ def analyse_image():
     @apiSuccess (Residue Object Fields) {String}   displayName
             The display name of the item.
 
+    @apiSuccess (Residue Object Fields) {Number}   probability
+            The probability the residues is there.
+
     @apiSuccess (Residue Object Fields) {String}   category
             Represent the different classification the trash can be.
 
@@ -109,6 +112,7 @@ def analyse_image():
                 name: "container_metro",
                 displayName: "Contenant Metro",
                 categories : "recyclable",
+                probability: 34,
                 boundaries : [ 20, 40, 13, 60 ],
                 warning: [
                   "Veuillez verifier de vider le contenu de celui-ci dans les
@@ -164,6 +168,7 @@ def analyse_image():
             residue = copy.copy(possibleResidues[key])
             residue['name'] = b[0]
             residue['boundaries'] = b[1:5]
+            residue['probability'] = int(b[5])
             response['residues'].append(residue)
             print('item found : ' + b[0] + "  " + str(b[1:5]), file=sys.stderr)
 

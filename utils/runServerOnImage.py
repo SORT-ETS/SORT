@@ -3,38 +3,51 @@ import argparse
 import base64
 import json
 import httplib
+import os
+from os.path import basename
 import pprint
 
-parser = argparse.ArgumentParser(description='Send an image to SORT and save the result')
-parser.add_argument('imageLocation', type=str, help='The image to analyse')
-parser.add_argument('--server', default='localhost', type=str, help='The server location')
-parser.add_argument('--port', default=5000, type=int, help='The port for the server')
-args = parser.parse_args()
 
-with open(args.imageLocation, 'r') as picture:
-    picture_data = picture.read()
+def main():
+    parser = argparse.ArgumentParser(description='Send an image to SORT and save the result')
+    parser.add_argument('imageLocation', type=str, help='The image to analyse')
+    parser.add_argument('--server', default='localhost', type=str, help='The server location')
+    parser.add_argument('--port', default=5000, type=int, help='The port for the server')
+    args = parser.parse_args()
 
-    base64_picture_data = base64.b64encode(picture_data)
+    with open(args.imageLocation, 'r') as picture:
+        picture_data = picture.read()
 
-    conn = httplib.HTTPConnection(args.server, args.port, timeout=1000)
-    headers = {"Content-type": "application/json"}
-    body = {"image": base64_picture_data, "returnResult": True}
-    body_str = json.dumps(body)
+        base64_picture_data = base64.b64encode(picture_data)
 
-    conn.request("POST", "/image", body_str, headers)
-    response = conn.getresponse()
-    response_body = json.loads(response.read())
+        conn = httplib.HTTPConnection(args.server, args.port, timeout=1000)
+        headers = {"Content-type": "application/json"}
+        body = {"image": base64_picture_data, "returnResult": True}
+        body_str = json.dumps(body)
 
-    if not response_body['residues']:
-        print('No residues were founds by SORT')
-        print('no image was save')
+        conn.request("POST", "/image", body_str, headers)
+        response = conn.getresponse()
+        response_body = json.loads(response.read())
 
-    else:
-        print('Residues founds:')
-        for r in response_body['residues']:
-            pprint.pprint(r)
+        if not response_body['residues']:
+            print('No residues were founds by SORT')
+            print('No image was save')
 
-        base64_analysed_data = response_body['result']
-        with open("analysed.png", "wb") as analysed_picture:
-            analysed_picture.write(base64.b64decode(base64_analysed_data))
-            print('Image save as analysed.png')
+        else:
+            print('Residues founds:')
+            for r in response_body['residues']:
+                pprint.pprint(r)
+
+            base64_analysed_data = response_body['result']
+            saveLocation = getNameWithoutPathAndExtension(args.imageLocation) + "-analysed.png"
+            with open(saveLocation, "wb") as analysed_picture:
+                analysed_picture.write(base64.b64decode(base64_analysed_data))
+                print('Image save as ' + saveLocation)
+
+
+def getNameWithoutPathAndExtension(filename):
+    return os.path.splitext(basename(filename))[0]
+
+
+if __name__ == "__main__":
+    main()

@@ -3,14 +3,14 @@
     "displayName": "Contenant Metro",
     "category": "paper",
     "warnings": [
-       "Veuillez verifier de bien vider le contenu du contenant dans les poubelles appropriees."
+      "Veuillez vérifier de bien vider le contenu du contenant dans les poubelles appropriées."
     ]
   },
   "can_aluminium": {
     "displayName": "Canette",
     "category": "recyclable",
     "notes": [
-      "Saviez vous que l'aluminium est recyclable pratiquement indéfiniment."
+      "Saviez-vous que l'aluminium est recyclable pratiquement indéfiniment."
     ]
   },
   "compost": {
@@ -22,10 +22,10 @@
     "category": "recyclable"
   },
   "container_bag": {
-    "displayName": "Sac de plastic",
+    "displayName": "Sac de plastique",
     "category": "trash",
     "warnings": [
-        "Veuillez verifier de bien vider le contenu du sac dans les poubelles appropriees."
+      "Veuillez vérifier de bien vider le contenu du sac dans les poubelles appropriées."
     ]
   },
   "container_juice": {
@@ -37,8 +37,11 @@
     "category": "recyclable"
   },
   "cup_paper": {
-    "displayName": "Carton de cafe/brevage NON-RECYCLABLE",
-    "category": "trash"
+    "displayName": "Carton non recyclable",
+    "category": "trash",
+    "warnings": [
+      "les tasses de café en carton ne sont pas recyclables du à la grande quantité d'encre sur le carton"
+    ]
   },
   "plastic_bottle": {
     "displayName": "Bouteille de plastique",
