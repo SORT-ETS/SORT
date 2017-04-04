@@ -167,10 +167,11 @@ def analyse_image():
         if key in possibleResidues:
             residue = copy.copy(possibleResidues[key])
             residue['name'] = b[0]
-            residue['boundaries'] = b[1:5]
+            residue['boundaries'] = map(int, b[1:5])
             residue['probability'] = int(b[5])
             response['residues'].append(residue)
-            print('item found : ' + b[0] + "  " + str(b[1:5]), file=sys.stderr)
+            print("item found: " + b[0] + " probabilities: " + b[5] +
+                  " boundaries: " + str(b[1:5]), file=sys.stderr)
 
     return jsonify(response)
 

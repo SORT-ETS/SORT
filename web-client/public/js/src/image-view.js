@@ -69,7 +69,7 @@ export default class ImageView extends View {
 			context.fillStyle = "#fff";
 			context.textAlign="center";
 
-			context.fillText(`${item.displayName} (${item.probability})`, x+width /2, y - 18 / 2);
+			context.fillText(`${item.displayName} (${item.probability}%)`, x+width /2, y - 18 / 2);
 
 			context.rect(x,y,width,height);
 			context.stroke();

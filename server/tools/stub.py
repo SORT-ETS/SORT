@@ -20,12 +20,15 @@ class Stub():
             right = random.randint(left + self.minWidth, imageWidth)
 
             # top is lower than bottom because (0,0) is Top left corner.
-            top = random.randint(self.minTop, imageHeight - self.maxOffsetBottom - self.minHeight)
-            bottom = random.randint(top + self.minHeight, imageHeight - self.maxOffsetBottom)
+            top = random.randint(self.minTop,
+                                 imageHeight - self.maxOffsetBottom -
+                                 self.minHeight)
+            bottom = random.randint(top + self.minHeight,
+                                    imageHeight - self.maxOffsetBottom)
 
             boxes.append((random.choice(self.possibleItems),
-                          left, right,
-                          top, bottom,
-                          random.randint(40, 99)))
+                          str(left), str(right),
+                          str(top), str(bottom),
+                          str(random.randint(40, 99))))
 
         return boxes
