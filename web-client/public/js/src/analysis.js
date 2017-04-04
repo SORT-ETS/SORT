@@ -41,7 +41,8 @@ export default class Analysis {
 		return this.residues.map(function(residue) {
 			return {
 				'boundaries': residue.boundaries,
-				'category': residue.category,
+				'probability': residue.probability,
+				'displayName': residue.displayName,
 				'displayCategory': residue.displayCategory,
 				'color': residue.color
 			};
