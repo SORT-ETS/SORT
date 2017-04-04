@@ -4,12 +4,12 @@ import keyboard
 import time
 
 # Open IO bus
-bus = smbus.SMBus(1)
+#bus = smbus.SMBus(1)
 # BrightPI adress
-address = 0x70
+#address = 0x70
 
-on_sig = 0xff
-off_sig = 0x00
+#on_sig = 0xff
+#off_sig = 0x00
 
 GPIO.setmode(GPIO.BCM)
 
@@ -43,9 +43,9 @@ while True:
     if ((not prev_input) and inputButton):
         keyboard.press_and_release('enter')
 
-        bus.write_byte_data(address, 0, on_sig)  # Dels on
-        time.sleep(0.5)  # to get a long enough flash
-        bus.write_byte_data(address, 0, off_sig)  # Dels off
+        #bus.write_byte_data(address, 0, on_sig)  # Dels on
+        #time.sleep(0.5)  # to get a long enough flash
+        #bus.write_byte_data(address, 0, off_sig)  # Dels off
 
     if ((not prev_up) and inputUp):
         keyboard.press_and_release('up arrow')
