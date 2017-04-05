@@ -14,13 +14,14 @@ var ReverseProxy = require('./reverse-proxy');
 */
 class HTTPServer {
 
-	constructor(port, proxyHostURI) {
+	constructor(port, proxyHostURI, useStub) {
 		// Using agregation with express instance, because inheritence was limited
 		// Class functions were somehow not accessible
 		this.app = express();
 
 		this.port = port;
 		this.proxyHostURI = proxyHostURI;
+		this.useStub = useStub;
 	}
 
 	startServer() {
@@ -51,6 +52,12 @@ class HTTPServer {
 		this._reverseProxy = new ReverseProxy(this.proxyHostURI);
 
 		// Delegates every HTTP /api request to the proxy
+		let self = this;
+		this.app.post('/api/image', function (req, res, next) {
+			if (req.body.useStub === undefined)
+          req.body.useStub = self.useStub;
+			next();
+		});
 		this.app.use('/api', this._reverseProxy);
 	}
 }
