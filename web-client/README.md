@@ -43,6 +43,21 @@ server.
 
 ​	3\. Enjoy
 
+### Deploy on Heroku
+
+```sh
+  cd SORT
+  heroku create
+
+  # Set PROXY and PORT variables
+  heroku config:set PROXY=<IP> # e.g. 98.143.215.203:5000
+
+  # push web-client folder
+  git subtree push --prefix web-client heroku master
+
+  heroku open
+```
+
 ### Using Docker
 
 Refer to `SORT/README.md`.
