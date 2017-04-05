@@ -11,7 +11,10 @@ The server is the module responsible to call Yolo for you.
 Modify `SORT/server/server.py` to use STUB. On line 20:
 
 ```python
-  app.config['USE_STUB'] = True
+  # @app.route('/image', methods=['POST'])
+  # def analyse_image():
+  # ...
+  useStub = True
 ```
 
 ​	1B\. With YOLO (Linux or MacOs only)
